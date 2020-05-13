@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.utils import timezone
+from django.utils import timezone
 
 # Integer 필드 최댓값 최솟값 설정을 위한 임포트
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -11,9 +11,9 @@ class Topic(models.Model):
   description = models.TextField()
   # 임시로 CharField적용 나중에 Forignkey 로 변경
   author = models.CharField(max_length= 100, default="admin")
-  selection1_image = modes.ImageField()
+  selection1_image = models.ImageField()
   selection1_des = models.CharField(max_length=20)
-  selection2_image = modes.ImageField()
+  selection2_image = models.ImageField()
   selection2_des = models.CharField(max_length=20)
   created_at = models.DateTimeField(auto_now=timezone.now())
 
