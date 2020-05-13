@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div>
+  <div>
+    {{ topic.title }}
+  </div>
+  <div>
+    <!-- 토픽 그래프 들어갈 부분 -->
+  </div>
+  <div>
+    <div>
+      <img src="{{ topic.selection1_image.url }}" />
+      {{ topic.selection1_des }}
+    </div>
+    <div>
+      <img src="{{ topic.selection2_image.url }}" />
+      {{ topic.selection2_des }}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}
