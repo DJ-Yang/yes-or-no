@@ -7,22 +7,22 @@
 
 {% block content %}
 <div>
-  <div>
+  <div class="topic-title">
     {{ topic.title }}
   </div>
-  <div>
+  <div class="topic-graph">
     <!-- 토픽 그래프 들어갈 부분 -->
   </div>
-  <div>
-    <div>
-      <button>
-        <img src="{{ topic.selection1_image.url }}" />
+  <div class="selection">
+    <div class="selecton1">
+      <button id="button1">
+        <!-- <img src="{{ topic.selection1_image.url }}" /> -->
         {{ topic.selection1_des }}
       </button>
     </div>
-    <div>
-      <button>
-      <img src="{{ topic.selection2_image.url }}" />
+    <div class="selection2">
+      <button id="button2">
+      <!-- <img src="{{ topic.selection2_image.url }}" /> -->
       {{ topic.selection2_des }}
       </button>
     </div>
@@ -31,4 +31,5 @@
 {% endblock %}
 
 {% block extra_js %}
+<script type="text/javascript" src="{% static 'js/topic.js' %}"></script>
 {% endblock %}
