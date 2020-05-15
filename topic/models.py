@@ -21,8 +21,11 @@ class Selection(models.Model):
   class Sex(models.IntegerChoices):
     MALE = 0
     FEMALE = 1
+  class Select(models.IntegerChoices):
+    YES = 0
+    NO = 1
   topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-  # 선택 타입 넣기 yes or no
+  select = models.IntegerField(choices=Select.choices, null=True, blank=True)
   selector = models.CharField(max_length=20, default="selecor")
   age = models.IntegerField(validators=[
     MinValueValidator(0), 
