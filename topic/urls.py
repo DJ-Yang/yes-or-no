@@ -6,5 +6,6 @@ app_name='topic'
 
 urlpatterns = [
     path('topic/', views.topic_list, name="topic_list"),
-    path('topic/<int:topic_id>', views.topic_detail, name="topic_detail"),
+    path('topic/<int:topic_id>', views.select, name="select"),
+    path('topic/set/selection', views.set_selection, name="set_selection"),
 ]
