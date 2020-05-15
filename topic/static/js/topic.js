@@ -32,13 +32,17 @@ function selectType(select, id, type) {
     }
   });
   $.ajax({
-        url:'/topic/set/selection',
+        url:'/topic/set/selection/',
         type: "POST",
         data: {
           topic_id : id,
           type : type,
         },
-        success:function(response){},
+        success:function(response){
+          alert('성공');
+          console.log(response);
+          location.href='result/';
+        },
         complete:function(){},
         error:function (xhr, textStatus, thrownError){}
   })

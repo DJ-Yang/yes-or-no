@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}
+<script type="text/javascript">
+var postive = "{{ result.postive }}";
+var negative = "{{ result.negative }}";
+</script>
+{% endblock %}
+
+{% block content %}
+{{ result }}
+<div id="test">
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+test = document.getElementById('test').innerText=postive;
+</script>
+
+{% endblock %}
