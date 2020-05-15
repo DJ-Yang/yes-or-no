@@ -2,13 +2,13 @@
 
 {% load static %}
 
-{% block extra_css %}
+{% block header %}
 {% endblock %}
 
 {% block content %}
 {% for topic in topics %}
 <div>
-  <a href="{% url 'topic:topic_detail' topic.id %}">{{ topic.title }}</a>
+  <a href="{% url 'topic:select' topic.id %}">{{ topic.title }}</a>
 </div>
 {% endfor %}
 {% endblock %}
