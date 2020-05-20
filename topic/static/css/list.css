@@ -1,0 +1,65 @@
+.topic-list {
+    padding-top: 50px;
+    
+    font-family: nanum, sans-serif;
+}
+.topic-list a, 
+.topic-list a:hover {
+    text-decoration: none;
+}
+.topic {
+    width: 70%;
+    height: 200px;
+    /* border: 1px solid #e0e0e0; */
+    background-color: #ffffff;
+    margin: 10px auto;
+    box-shadow: 0px 0px 30px #eee;
+}
+.topic .topic-content {
+    padding: 10px 50px;
+    color: #393A40;
+}
+.topic .topic-content .title {
+    font-size: 30px;
+}
+.topic .topic-badge {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 40px;
+}
+
+.topic .topic-thumb {
+    width: 170px;
+    height: 170px;
+}
+.topic .topic-text {
+    display: inline-block;
+    padding-left: 20px;
+    width: 70%;
+}
+.topic .topic-chart {
+    width: 100%;
+    background-color: red;
+}
+
+
+.hot-topic {
+    margin-bottom: 100px;
+}
+.hot-topic h3 {
+    width: 70%;
+    margin: 0 auto;
+}
+
+@media (max-width:768px) {
+    .topic {
+        width: 100%;
+        min-width: 310px;
+    }
+    .hot-topic h3 {
+        width: 100%;
+        min-width: 310px;
+    }
+
+}
