@@ -28,3 +28,12 @@ $('.toggle img').on('click', function(e) {
    $('.mobile-menu').animate({right:'0'}, 150);
    $('.mobile-close').addClass('on');
 });
+
+$('.login').on('click', function(e) {
+   if($('.popmenu-wrap').hasClass('hide')) {
+      $('.popmenu-wrap').removeClass('hide');
+   } else {
+      $('.popmenu-wrap').addClass('hide');
+   }
+   
+});

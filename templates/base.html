@@ -17,6 +17,11 @@
 </head>
 
 <body>
+  
+
+  <div class="mobile-close">
+
+  </div>
   <header>
     <nav>
       <div class="nav-area">
@@ -28,11 +33,11 @@
           <li><a href="#">menu2</a></li>
           <li><a href="#">menu3</a></li>
           <li class="login"><a href="#">Login</a>
-            <!-- <div class="popmenu-wrap">
+            <div class="popmenu-wrap hide">
               <div class="popmenu">
-                카카오
+                <img class="kakao" src="{% static 'img/kakao.png' %}">
               </div>
-            </div> -->
+            </div>
           </li>
         </ul>
         <span class="toggle">
@@ -40,12 +45,18 @@
         </span>
       </div>
     </nav>
-
-    <div class="mobile-close">
-
-    </div>
     <div class="mobile-menu">
-      <div class="close">닫기</div>
+      <div class="close">x</div>
+      <div class="mobile-login">
+        로그인
+      </div>
+      <div class="list">
+        <ul>
+          <li>메뉴1</li>
+          <li>메뉴2</li>
+          <li>메뉴3</li>
+        </ul>
+      </div>
     </div>
   </header>
 
