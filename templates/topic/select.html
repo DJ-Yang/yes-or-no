@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block header %}
+<link rel="stylesheet" href="{% static 'css/select.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -10,29 +11,21 @@
   <div class="topic-title">
     {{ topic.title }}
   </div>
-  <div class="topic-graph">
-    <!-- 토픽 그래프 들어갈 부분 -->
+  <div class="topic-graph-wrap">
+    <div class="label-agree">30%</div>
+    <div class="label-disagree">70%</div>
+    <div class="agree">
+    </div>
   </div>
   <div class="selection">
-    <div class="selecton1">
-      <button id="button1" onclick="
-        var selection = '{{ topic.selection1_des }}';
-        var id = '{{ topic.id }}';
-        selectType(selection, id, 0);
-        ">
-        <!-- <img src="{{ topic.selection1_image.url }}" /> -->
-        {{ topic.selection1_des }}
-      </button>
+    <div class="selection1">
+      <img src="{{ topic.selection1_image.url}}">
+      <span>{{topic.selection1_des}}</span>
     </div>
+    <div class="vs">vs</div>
     <div class="selection2">
-      <button id="button2" onclick="
-      var selection = '{{ topic.selection2_des }}';
-      var id = '{{ topic.id }}';
-      selectType(selection, id, 1);
-      ">
-      <!-- <img src="{{ topic.selection2_image.url }}" /> -->
-      {{ topic.selection2_des }}
-      </button>
+      <img src="{{ topic.selection2_image.url}}">
+      <span>{{topic.selection2_des}}</span>
     </div>
   </div>
 </div>
@@ -41,15 +34,15 @@
 {% block extra_js %}
 <!-- 버튼에 이미지 씌우기 -->
 <script type="text/javascript">
-(function addImageToButton() {
-  var image1 = "{{ topic.selection1_image.url }}";
-  var image2 = "{{ topic.selection2_image.url }}";
-  var button1 = document.getElementById('button1');
-  var button2 = document.getElementById('button2');
+  (function addImageToButton() {
+    var image1 = "http://127.0.0.1:8000{{ topic.selection1_image.url }}";
+    var image2 = "{{ topic.selection2_image.url }}";
+    var button1 = document.getElementById('button1');
+    var button2 = document.getElementById('button2');
 
-  button1.style.backgroundImage = "url(" + image1 + ")";
-  button2.style.backgroundImage = "url(" + image2 + ")";
-}());
+    button1.style.backgroundImage = "url(" + image1 + ")";
+    button2.style.backgroundImage = "url(" + image2 + ")";
+  }());
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'js/topic.js' %}?3"></script>

@@ -1,0 +1,82 @@
+.topic-title {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.topic-graph-wrap {
+    background-color: #333333;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.topic-graph-wrap .agree {
+    width: 30%;
+    height: 30px;
+    background-color: #FFDE50;
+}
+.topic-graph-wrap .label-agree {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;    
+    float: left;
+    margin-left: 10px;
+}
+.topic-graph-wrap .label-disagree {
+    font-weight: bold;    
+    float: right;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+
+.selection {
+    width: 80%;
+    margin: 100px auto;
+    min-height: 600px;
+}
+
+.selection .selection1
+,.selection .selection2 {
+    display: inline-block;
+    width: 400px;
+    height: 400px;
+}
+
+.selection .selection1 img,
+.selection .selection2 img{
+    width: 100%;
+}
+
+.selection .selection1 span,
+.selection .selection2 span{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.selection1 {
+}
+.selection2 {
+}
+
+
+.vs {
+    font-size: 70px;
+    color: #646464;
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top: -190px;
+}
+
+@media all and (max-width:1024px) {
+    .selection .selection1,
+    .vs {
+        display: block;
+        left: 0;
+        top: 0;
+    }
+}
