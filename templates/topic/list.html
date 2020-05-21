@@ -1,16 +1,50 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block header %}
+<link rel="stylesheet" href="{% static 'css/list.css' %}">
 {% endblock %}
 
 {% block content %}
-{% for topic in topics %}
-<div>
-  <a href="{% url 'topic:select' topic.id %}">{{ topic.title }}</a>
+
+<div class="topic-list">
+
+  <div class="hot-topic">
+    <h3>오늘의 토픽</h3>
+    <div class="topic">
+      <img class="topic-badge" src="{% static 'img/hot.png' %}">
+      <div class="topic-content">
+        <img class="topic-thumb" src="{% static 'img/no.png' %}">
+        <div class="topic-text">
+          <div class="title">문재인 대통령 찬반투표</div>
+          <div class="description">문재인은 정치를 잘하고 있는가과연 문재인은 정치를 잘하고 있는가</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% for topic in topics %}
+  <div class="topic">
+    <img class="topic-badge" src="{% static 'img/new.png' %}">
+    <a href="{% url 'topic:select' topic.id %}">
+      <div class="topic-content">
+        <img class="topic-thumb" src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}">
+        <div class="topic-text">
+          <div class="title">{{topic.title}}</div>
+          <div class="description">{{topic.description}}</div>
+          
+        <!-- <div class="topic-chart">
+          <div class="label">
+            50%
+          </div>
+      </div> -->
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
 
 {% block extra_js %}
