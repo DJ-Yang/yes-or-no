@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!doctype html>
 
 <html lang="ko">
@@ -35,7 +36,7 @@
           <li class="login"><a href="#">Login</a>
             <div class="popmenu-wrap hide">
               <div class="popmenu">
-                <img class="kakao" src="{% static 'img/kakao.png' %}">
+                <a href="{% provider_login_url 'kakao' %}"><img class="kakao" src="{% static 'img/kakao.png' %}"></a>
               </div>
             </div>
           </li>
