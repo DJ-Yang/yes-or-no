@@ -121,7 +121,7 @@ dmypy.json
 
 # myvenv
 myvenv
-
+myenv
 # secret
 secrets.json
 

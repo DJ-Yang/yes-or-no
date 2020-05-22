@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Integer 필드 최댓값 최솟값 설정을 위한 임포트
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -26,7 +27,7 @@ class Selection(models.Model):
     NO = 1
   topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
   select = models.IntegerField(choices=Select.choices, null=True, blank=True)
-  selector = models.CharField(max_length=20, default="selecor")
+  selector = models.ForeignKey(User, on_delete=models.CASCADE)
   age = models.IntegerField(validators=[
     MinValueValidator(0), 
     MaxValueValidator(100),
