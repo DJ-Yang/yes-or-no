@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!doctype html>
 
 <html lang="ko">
@@ -32,13 +33,17 @@
           <li><a href="#" class="select">menu1</a></li>
           <li><a href="#">menu2</a></li>
           <li><a href="#">menu3</a></li>
+          {% if user.is_active %}
+          <li class="logout"><a href="{% url 'account_logout' %}">Logout</a></li>
+          {% else %}
           <li class="login"><a href="#">Login</a>
             <div class="popmenu-wrap hide">
               <div class="popmenu">
-                <img class="kakao" src="{% static 'img/kakao.png' %}">
+                <a href="{% provider_login_url 'kakao' %}"><img class="kakao" src="{% static 'img/kakao.png' %}"></a>
               </div>
             </div>
           </li>
+          {% endif %}
         </ul>
         <span class="toggle">
           <img height="25px" src="{% static 'img/menu.png' %}">
