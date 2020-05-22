@@ -34,5 +34,4 @@ $('.login').on('click', function(e) {
    } else {
       $('.popmenu-wrap').addClass('hide');
    }
-   
 });
