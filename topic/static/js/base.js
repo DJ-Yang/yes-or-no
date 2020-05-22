@@ -17,7 +17,6 @@ $(document).on('click','nav ul li a', function(e) {
 
 // 모바일 메뉴 숨기기 기능
 $(document).on('click', function(e) {
-   console.log($(e.target).hasClass('close'));
    if ($(e.target).hasClass('close') == true || $(e.target).hasClass('mobile-close') == true) {
       $('.mobile-menu').animate({right:'-250px'}, 150);
       $('.mobile-close').removeClass('on');
