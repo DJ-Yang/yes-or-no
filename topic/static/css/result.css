@@ -1,0 +1,86 @@
+.topic-title {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+.container {
+    min-height: 900px;
+}
+
+.topic-graph-wrap {
+    background-color: #333333;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.topic-graph-wrap .agree {
+    width: 30%;
+    height: 30px;
+    background-color: #FFDE50;
+}
+.topic-graph-wrap .label-agree {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;    
+    float: left;
+    margin-left: 10px;
+}
+.topic-graph-wrap .label-disagree {
+    font-weight: bold;    
+    float: right;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+.topic-thumb {
+    width: 400px;
+    height: 400px;
+    margin: 100px auto 20px;
+}
+
+.topic-thumb img {
+    width: 100%;
+    color: rgb(255, 228, 110);
+}
+
+.topic {
+    margin-top: 100px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.topic-analysis-box {
+    margin-top: 40px;
+    width: 500px;
+    height: 500px;
+    display: inline-block;
+}
+.topic-analysis-box .title {
+    color: #646464;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+.topic-analysis-box .chart {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+._baa_ {
+    width: 70%;
+    background-color: #646464;
+    height: 150px;
+    margin: 50px auto;
+}
+
+@media all and (max-width:1200px) {
+}
+
+@media all and (max-width:992px) {
+}
+@media all and (max-width:768px) {
+    ._baa_ {
+        width: 80%;
+        margin-top: 100px; 
+    }
+}
