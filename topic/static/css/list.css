@@ -1,5 +1,7 @@
 @media all {
-
+    .container {
+        min-height: 1000px;
+    }
 
 .topic-list {
     padding-top: 50px;

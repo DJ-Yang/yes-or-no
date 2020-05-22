@@ -4,7 +4,9 @@
     font-size: 25px;
     font-weight: bold;
 }
-
+.container {
+    min-height: 900px;
+}
 
 .topic-graph-wrap {
     background-color: #333333;
@@ -33,14 +35,15 @@
 
 
 .selection {
-    width: 80%;
     margin: 100px auto;
     min-height: 600px;
+    min-width: 1100px;
 }
 
 .selection .selection1
 ,.selection .selection2 {
     display: inline-block;
+    margin: 10px 50px;
     width: 400px;
     height: 400px;
 }
@@ -49,12 +52,18 @@
 .selection .selection2 img{
     width: 100%;
 }
+.selection .selection1 img:hover,
+.selection .selection2 img:hover{
+    cursor: pointer;
+}
 
 .selection .selection1 span,
 .selection .selection2 span{
     display: block;
     width: 100%;
     text-align: center;
+    font-weight: bold;
+    font-size: 32px;
 }
 
 .selection1 {
@@ -72,11 +81,69 @@
     top: -190px;
 }
 
-@media all and (max-width:1024px) {
-    .selection .selection1,
+._baa_ {
+    width: 70%;
+    background-color: #646464;
+    height: 150px;
+    margin: 50px auto;
+}
+
+@media all and (max-width:1200px) {
+    
+    .selection {
+        min-width: 320px;
+        margin-top: 50px;
+    }
+
+    .selection .selection1
+    ,.selection .selection2 {
+        display: inline-block;
+        margin: 10px 50px;
+        width: 300px;
+        height: 300px;
+    }
+
+}
+
+@media all and (max-width:992px) {
+    
+    .selection {
+        min-width: 320px;
+        margin-top: 50px;
+    }
+
+    .selection .selection1
+    ,.selection .selection2 {
+        display: inline-block;
+        margin: 10px 20px;
+        width: 250px;
+        height: 250px;
+    }    
+}
+@media all and (max-width:768px) {
+
+    .selection {
+        min-width: 320px;
+        margin-top: 50px;
+    }
+
+    .selection .selection1
+    ,.selection .selection2 {
+        display: block;
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+    }
     .vs {
         display: block;
-        left: 0;
+        width: 100px;
+        position: relative;
         top: 0;
+        margin: 30px auto;
+        text-align: center;
+    }    
+    ._baa_ {
+        width: 80%;
+        margin-top: 100px; 
     }
 }
