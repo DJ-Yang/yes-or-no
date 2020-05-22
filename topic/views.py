@@ -42,6 +42,7 @@ def topic_result(request, topic_id):
   # data = simplejson.dumps(result)
 
   return render(request, 'topic/result.html', {
+    'topic': topic,
     'result': result,
   })
 

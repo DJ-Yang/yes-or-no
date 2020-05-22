@@ -62,7 +62,7 @@ nav .nav-area ul li a {
     right: -42px;
     top: 10px;
     width:120px;
-    height:100px;
+    height:70px;
     background:#fff;
     border-radius: 10px;
     box-shadow: 0px 0px 30px #eee;
@@ -76,7 +76,7 @@ nav .nav-area ul li a {
     content:"";
     position:absolute;
     top: -10px;
-    left: 108px;
+    left: 88px;
 }
 
 .popmenu-wrap .popmenu .kakao {
@@ -114,7 +114,18 @@ footer {
     height: 200px;
     background-color: #2E2E2E;
     margin-top: 100px;
+    color: #8f8f8f;
+    font-size: 14px;
 }
+
+footer .contents {
+    max-width: 500px;
+    min-width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
 
 @media (max-width:768px) {
     nav ul {

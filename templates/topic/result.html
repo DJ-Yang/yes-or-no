@@ -3,22 +3,112 @@
 {% load static %}
 
 {% block header %}
+<link rel="stylesheet" href="{% static 'css/result.css' %}">
 <script type="text/javascript">
-var postive = "{{ result.postive }}";
-var negative = "{{ result.negative }}";
+    var postive = "{{ result.postive }}";
+    var negative = "{{ result.negative }}";
 </script>
 {% endblock %}
 
 {% block content %}
-{{ result }}
-<div id="test">
-
+<div class="topic">
+    <div class="topic-title">
+        {{ topic.title }}
+    </div>
+    <div class="topic-graph-wrap">
+        <div class="label-agree">30%</div>
+        <div class="label-disagree">70%</div>
+        <div class="agree">
+        </div>
+    </div>
+    <div class="topic-thumb">
+        <img src="{{topic.thumb_image.url}}">
+    </div>
+</div>
+<div class="topic-analysis">
+    <div class="topic-analysis-box">
+        <div class="title">
+            분석 1
+        </div>
+        <div class="chart">
+            <canvas width="100%" height="100%" id="myChart"></canvas>
+        </div>
+    </div>
+    <div class="topic-analysis-box">
+        <div class="title">
+            분석 2
+        </div>
+        <div class="chart">
+            <canvas width="100%" height="100%" id="myChart2"></canvas>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
+
+
 {% block extra_js %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script type="text/javascript">
-test = document.getElementById('test').innerText=postive;
+    window.onload = function () {
+        var data = [{
+            data: [40, 60],
+            labels: ["1","2"],
+            backgroundColor: [
+                "#FFDE50",
+                "#646464",
+            ],
+            borderColor: "#fff"
+        }];
+        var options = {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    formatter: (value, ctx) => {
+                        let datasets = ctx.chart.data.datasets;
+                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                            let sum = datasets[0].data.reduce((a, b) => a + b, 0);
+                            let percentage = Math.round((value / sum) * 100) + '%';
+                            return percentage;
+                        } else {
+                            return percentage;
+                        }
+                    },
+                    color: '#fff',
+                }
+            },
+            tooltips: {
+                enabled: false
+            }
+        };
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: data
+            },
+            options: options
+        });
+
+        var ctx2 = document.getElementById("myChart2").getContext('2d');
+        var myChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                datasets: data
+            },
+            options: options
+        });
+
+    }
 </script>
 
 {% endblock %}
