@@ -28,9 +28,9 @@ class Selection(models.Model):
   topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
   select = models.IntegerField(choices=Select.choices, null=True, blank=True)
   selector = models.ForeignKey(User, on_delete=models.CASCADE)
-  age = models.IntegerField(validators=[
+  age_range = models.IntegerField(validators=[
     MinValueValidator(0), 
     MaxValueValidator(100),
     ])
-  sex = models.IntegerField(choices=Sex.choices)
+  gender = models.IntegerField(choices=Sex.choices)
   created_at = models.DateTimeField(auto_now=timezone.now())
