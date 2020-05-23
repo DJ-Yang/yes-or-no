@@ -55,7 +55,7 @@ def set_selection(request):
       topic = Topic.objects.get(pk=topic_id)
       user = request.user
       # age, sex 부분 유저 정보로 바꿔줘야함.
-      selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age=1, sex=1)
+      selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age_range=1, gender=1)
       if is_selection:
         selection.select = select_type
         selection.save()
