@@ -8,7 +8,6 @@
 {% block content %}
 
 <div class="topic-list">
-
   <div class="hot-topic">
     <h3>오늘의 토픽</h3>
     <div class="topic">
@@ -31,27 +30,30 @@
 
 
   {% for topic in topics %}
-  <div class="topic">
-    <img class="topic-badge" src="{% static 'img/new.png' %}">
-    <a href="{% url 'topic:select' topic.id %}">
-      <div class="topic-content">
-        <img class="topic-thumb" src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}">
-        <div class="topic-text">
-          <div class="title">{{topic.title}}</div>
-          <div class="description">{{topic.description}}</div>
-          <div class="topic-graph-wrap">
-            <div class="label-agree">45%</div>
-            <div class="label-disagree">55%</div>
-            <div class="agree">
+  <div class="default-topic">
+    <div class="topic" date="{{topic.created_at|date:'Ynj'}}">
+      <img class="topic-badge" src="{% static 'img/new.png' %}">
+      <a href="{% url 'topic:select' topic.id %}">
+        <div class="topic-content">
+          <img class="topic-thumb" src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}">
+          <div class="topic-text">
+            <div class="title">{{topic.title}}</div>
+            <div class="description">{{topic.description}}</div>
+            <div class="topic-graph-wrap">
+              <div class="label-agree">45%</div>
+              <div class="label-disagree">55%</div>
+              <div class="agree">
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
   {% endfor %}
 </div>
 {% endblock %}
 
 {% block extra_js %}
+<script src="{% static 'js/list.js' %}"></script>
 {% endblock %}
