@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Topic, Selection
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
+from django.contrib.auth.decorators import login_required
 # from django.utils import simplejson
 
 def caculate_per(objects):
@@ -34,6 +35,7 @@ def topic_select(request, topic_id):
     'topic': topic,
   })
 
+@login_required
 def topic_result(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   selections = topic.selection_set.all()
@@ -47,7 +49,7 @@ def topic_result(request, topic_id):
     'result': result,
   })
 
-
+@login_required
 def set_selection(request):
   if request.method == 'POST':
     if request.is_ajax():
