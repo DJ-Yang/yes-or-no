@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'topic.apps.TopicConfig',
+    'user.apps.UserConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -127,6 +128,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # allauth setting
 
+AUTH_USER_MODEL = 'user.User'
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -134,7 +137,8 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-ACCOUNT_ADAPTER = 'topic.adapter.MyAccountAdapter'
+ACCOUNT_ADAPTER = 'user.adapter.MyAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'user.adapter.MySocialAccountAdapter'
 
 LOGIN_REDIRECT_URL = '/topic/'
 LOGOUT_REDIRECT_URL = '/topic/'
@@ -144,7 +148,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'kakao': {
         'APP': {
             'client_id' : '9c0f252154e03204b20da14dd74d775f',
-            'redirect_uri' : 'http://127.0.0.1:8000/accounts/kakao/login/callback/',
+            'redirect_uri' : 'http://127.0.0.1:8000/auth/accounts/kakao/login/callback/',
             'response_type' : 'code',        
         }
     }

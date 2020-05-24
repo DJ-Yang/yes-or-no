@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Topic, Selection
 from django.http import HttpResponse, JsonResponse
+from allauth.socialaccount.models import SocialAccount
 # from django.utils import simplejson
 
 def caculate_per(objects):

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from user.models import User
 
 # Integer 필드 최댓값 최솟값 설정을 위한 임포트
 from django.core.validators import MinValueValidator, MaxValueValidator
