@@ -32,10 +32,10 @@ def topic_list(request):
 def topic_select(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
 
-  if request.user.is_authenticated:
-    selection = topic.selection_set.filter(selector=request.user)
-    if selection:
-      return redirect('topic:result', topic.id)
+  # if request.user.is_authenticated:
+  #   selection = topic.selection_set.filter(selector=request.user)
+  #   if selection:
+  #     return redirect('topic:result', topic.id)
 
   return render(request, 'topic/select.html', {
     'topic': topic,
@@ -69,8 +69,9 @@ def set_selection(request):
         selection.select = select_type
         selection.save()
       else:
-        selection.select = select_type
-        selection.save()
+        if not selection.select == select_type:
+          selection.select = select_type
+          selection.save()
       result = {
         'status': True
       }
