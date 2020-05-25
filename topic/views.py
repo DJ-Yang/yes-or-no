@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Topic, Selection
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
+from django.contrib.auth.decorators import login_required
+from user.models import User
 # from django.utils import simplejson
 
 def caculate_per(objects):
@@ -30,10 +32,16 @@ def topic_list(request):
 def topic_select(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
 
+  # if request.user.is_authenticated:
+  #   selection = topic.selection_set.filter(selector=request.user)
+  #   if selection:
+  #     return redirect('topic:result', topic.id)
+
   return render(request, 'topic/select.html', {
     'topic': topic,
   })
 
+@login_required
 def topic_result(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   selections = topic.selection_set.all()
@@ -47,7 +55,7 @@ def topic_result(request, topic_id):
     'result': result,
   })
 
-
+@login_required
 def set_selection(request):
   if request.method == 'POST':
     if request.is_ajax():
@@ -55,14 +63,15 @@ def set_selection(request):
       topic_id = int(request.POST.get('topic_id'))
       topic = Topic.objects.get(pk=topic_id)
       user = request.user
-      # age, sex 부분 유저 정보로 바꿔줘야함.
+      # age, gender 부분 유저 정보로 바꿔줘야함.
       selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age_range=1, gender=1)
       if is_selection:
         selection.select = select_type
         selection.save()
       else:
-        selection.select = select_type
-        selection.save()
+        if not selection.select == select_type:
+          selection.select = select_type
+          selection.save()
       result = {
         'status': True
       }
