@@ -1,0 +1,34 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <title>진짜루?</title>
+
+</head>
+
+<body>
+
+    <div class="signin-page">
+        <div class="logo">
+            <a href="{% url 'topic:list' %}"><h1>Yes or No</h1></a>
+        </div>
+        <div class="signin-box">
+            <div class="title">
+                간단하게 가입하고,<br>의견을 공유하세요!
+            </div>
+            <div class="btn-box">
+                <a href="{% provider_login_url 'kakao' %}"><img class="kakao" src="{% static 'img/kakao.png' %}"></a>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>
