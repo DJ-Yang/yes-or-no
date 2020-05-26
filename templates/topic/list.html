@@ -10,7 +10,7 @@
 <div class="topic-list">
   <div class="hot-topic">
     <h3>오늘의 토픽</h3>
-    <div class="topic">
+    <div class="topic" style="border-top:1px solid #e0e0e0;">
       <img class="topic-badge" src="{% static 'img/hot.png' %}">
       <div class="topic-content">
         <img class="topic-thumb" src="{% static 'img/no.png' %}">
@@ -29,10 +29,10 @@
   </div>
 
 
-  {% for topic in topics %}
   <div class="default-topic">
+  {% for topic in topics %}
     <div class="topic" date="{{topic.created_at|date:'Ynj'}}">
-      <img class="topic-badge" src="{% static 'img/new.png' %}">
+      <img class="topic-badge hide" src="{% static 'img/new.png' %}">
       <a href="{% url 'topic:select' topic.id %}">
         <div class="topic-content">
           <img class="topic-thumb" src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}">
