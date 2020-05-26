@@ -16,6 +16,7 @@ class Topic(models.Model):
   selection1_des = models.CharField(max_length=20)
   selection2_image = models.ImageField()
   selection2_des = models.CharField(max_length=20)
+  hot_topic = models.BooleanField(default=False)
   created_at = models.DateTimeField(auto_now=timezone.now())
 
 class Selection(models.Model):
@@ -34,3 +35,4 @@ class Selection(models.Model):
     ])
   gender = models.IntegerField(choices=Sex.choices)
   created_at = models.DateTimeField(auto_now=timezone.now())
+  updated_at = models.DateTimeField(default=timezone.now())
