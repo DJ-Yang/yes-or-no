@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from user.models import User
 from django.utils import timezone
 import datetime
+from celery.schedules import crontab
+from celery.task import periodic_task
 # from django.utils import simplejson
 
 def caculate_per(objects):
@@ -25,6 +27,8 @@ def caculate_per(objects):
 
 # 핫 토픽 설정 부분
 # updated_at 필드를 추가해서 기존에 설문에 참여했던 사람이 값을 변경했을 경우도 값에 포함될 수 있게 함.
+# 매일 오전 00시 01분에 실행되게 데코레이터 사용
+# @periodic_task(run_every=crontab(minute=0, hour=0))
 def set_hot_topic():
   start_day = timezone.now() - timezone.timedelta(days=2)
   end_day = timezone.now() - timezone.timedelta(days=1)
@@ -33,6 +37,7 @@ def set_hot_topic():
 
   for selection in today_selections:
     topic_id = selection.topic.id
+    print(topic_id)
 
 def topic_list(request):
   topics = Topic.objects.all()
