@@ -35,4 +35,4 @@ class Selection(models.Model):
     ])
   gender = models.IntegerField(choices=Sex.choices)
   created_at = models.DateTimeField(auto_now=timezone.now())
-  updated_at = models.DateTimeField(default=timezone.now())
+  updated_at = models.DateTimeField(default=timezone.now)
