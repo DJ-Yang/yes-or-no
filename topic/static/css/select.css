@@ -89,7 +89,9 @@
 
 .topic {
     width: 80%;
-    margin: 50px auto 0 ;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
 
 
