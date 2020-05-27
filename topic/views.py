@@ -28,16 +28,15 @@ def convert(topic_list):
 
 # 핫 토픽 설정 부분
 # updated_at 필드를 추가해서 기존에 설문에 참여했던 사람이 값을 변경했을 경우도 값에 포함될 수 있게 함.
-# 매일 오전 00시 01분에 실행되게 데코레이터 사용
+# 매일 오전 00시 00분에 실행되게 데코레이터 사용
 def set_hot_topic():
-  start_day = timezone.now() - timezone.timedelta(days=2)
-  end_day = timezone.now() - timezone.timedelta(days=1)
-  selections = Selection.objects.all()
-  today_selections = selections.filter(updated_at__gte=start_day, updated_at__lte=end_day)
+  yesterday = datetime.date.today() - datetime.timedelta(days=1)
+  today_selections = Selection.objects.filter(updated_at__date=yesterday)
 
   topic_list = {
   }
   hot_topic_list = []
+
   for selection in today_selections:
     if selection.topic.id in topic_list:
       topic_list[selection.topic.id] += 1
@@ -56,10 +55,9 @@ def set_hot_topic():
 
   hot_topic_id = convert(hot_topic_list)
 
-  Topic.objects.filter(id__in=hot_topic_id).update(hot_topic=True)
+  test = Topic.objects.filter(hot_topic=True).update(hot_topic=False)
 
-  hot = Topic.objects.filter(hot_topic=True)
-  print(hot)
+  Topic.objects.filter(id__in=hot_topic_id).update(hot_topic=True)
 
 def topic_list(request):
   topics = Topic.objects.all()
