@@ -1,10 +1,12 @@
 {% load static %}
+{% load socialaccount %}
 <!doctype html>
 
 <html lang="ko">
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>진짜루?</title>
 
@@ -17,7 +19,7 @@
 </head>
 
 <body>
-  
+
 
   <div class="mobile-close">
 
@@ -29,32 +31,33 @@
           <h1 class="nav-logo">YES or NO</h1>
         </a>
         <ul class="web">
-          <li><a href="#" class="select">menu1</a></li>
-          <li><a href="#">menu2</a></li>
-          <li><a href="#">menu3</a></li>
-          <li class="login"><a href="#">Login</a>
-            <div class="popmenu-wrap hide">
-              <div class="popmenu">
-                <img class="kakao" src="{% static 'img/kakao.png' %}">
-              </div>
-            </div>
+          {% if user.is_active %}
+          <li class="logout"><a href="{% url 'account_logout' %}" onclick="return confirm('정말 로그아웃 하시겠습니까?')">로그아웃</a></li>
+          {% else %}
+          <li class="login"><a href="{% url 'signin' %}">로그인/회원가입</a>
           </li>
+          {% endif %}
         </ul>
         <span class="toggle">
           <img height="25px" src="{% static 'img/menu.png' %}">
         </span>
       </div>
+
+      <div class="nav-menu">
+        <a href="#">공지사항</a>
+        <a href="#">요청하기</a>
+      </div>
     </nav>
+
     <div class="mobile-menu">
       <div class="close">x</div>
       <div class="mobile-login">
-        로그인
+        <a href="{% url 'signin' %}">로그인/회원가입</a>
       </div>
       <div class="list">
         <ul>
-          <li>메뉴1</li>
-          <li>메뉴2</li>
-          <li>메뉴3</li>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">요청하기</a></li>
         </ul>
       </div>
     </div>
@@ -67,11 +70,15 @@
   </div>
 
   <footer>
-    
+    <div class="contents">
+      <div>Copyright © 우리다 (대표 : 양동진)</div>
+      <div>사업자등록번호 : 586-27-00796</div>
+      <div style="display: inline-block;">충청북도 청주시 서원구 충대로1 </div>
+      <div style="display: inline-block;">(충북대학교 학연산공동기술연구원)</div>
+      <div style="padding-top: 10px;">개인정보취급방침 &nbsp; | &nbsp; 고객센터</div>
+    </div>
   </footer>
 
-  {% block extra_js %}
-  {% endblock %}
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -81,6 +88,8 @@
     crossorigin="anonymous"></script>
   <script src="{% static 'js/base.js' %}"></script>
 
+  {% block extra_js %}
+  {% endblock %}
 </body>
 
 </html>

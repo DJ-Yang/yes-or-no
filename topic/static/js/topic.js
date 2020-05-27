@@ -44,6 +44,9 @@ function selectType(select, id, type) {
           location.href='result/';
         },
         complete:function(){},
-        error:function (xhr, textStatus, thrownError){}
+        error:function (xhr, textStatus, thrownError)
+        {
+          console.log(xhr, textStatus, thrownError)
+        }
   })
 }

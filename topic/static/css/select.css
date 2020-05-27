@@ -1,0 +1,151 @@
+.topic-title {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+.container {
+    min-height: 900px;
+}
+
+.topic-graph-wrap {
+    background-color: #333333;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.topic-graph-wrap .agree {
+    width: 30%;
+    height: 30px;
+    background-color: #FFDE50;
+}
+.topic-graph-wrap .label-agree {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;    
+    float: left;
+    margin-left: 10px;
+}
+.topic-graph-wrap .label-disagree {
+    font-weight: bold;    
+    float: right;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+
+.selection {
+    margin: 100px auto;
+    min-height: 600px;
+    min-width: 1100px;
+}
+
+.selection .selection1
+,.selection .selection2 {
+    display: inline-block;
+    margin: 10px 50px;
+    width: 400px;
+    height: 400px;
+}
+
+.selection .selection1 img,
+.selection .selection2 img{
+    width: 100%;
+    transition: all ease 0.2s;
+}
+.selection .selection1 img:hover,
+.selection .selection2 img:hover{
+    cursor: pointer;
+    transform: scale(1.04); 
+    box-shadow: 2px 1px 5px rgba(0,0,0,0.1);
+}
+
+.selection .selection1 span,
+.selection .selection2 span{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.topic {
+    margin-top: 50px;
+}
+
+
+.vs {
+    font-size: 70px;
+    color: #646464;
+    display: inline-block;
+    position: relative;
+    left: 0px;
+    top: -190px;
+}
+
+._baa_ {
+    width: 70%;
+    background-color: #c9c9c9;
+    height: 150px;
+    margin: 150px auto;
+}
+
+@media all and (max-width:1200px) {
+    
+    .selection {
+        min-width: 320px;
+        margin-top: 50px;
+    }
+
+    .selection .selection1
+    ,.selection .selection2 {
+        display: inline-block;
+        margin: 10px 50px;
+        width: 300px;
+        height: 300px;
+    }
+
+}
+
+@media all and (max-width:992px) {
+    
+    .selection {
+        min-width: 320px;
+        margin-top: 50px;
+    }
+
+    .selection .selection1
+    ,.selection .selection2 {
+        display: inline-block;
+        margin: 10px 20px;
+        width: 250px;
+        height: 250px;
+    }    
+}
+@media all and (max-width:768px) {
+
+    .selection {
+        min-width: 320px;
+        margin-top: 50px;
+    }
+
+    .selection .selection1
+    ,.selection .selection2 {
+        display: block;
+        margin: 0 auto;
+        width: 300px;
+        height: 300px;
+    }
+    .vs {
+        display: block;
+        width: 100px;
+        position: relative;
+        top: 0;
+        margin: 30px auto;
+        text-align: center;
+    }    
+    ._baa_ {
+        width: 80%;
+        margin-top: 100px; 
+    }
+}

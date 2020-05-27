@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from user.models import User
 
 # Integer 필드 최댓값 최솟값 설정을 위한 임포트
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -16,6 +16,7 @@ class Topic(models.Model):
   selection1_des = models.CharField(max_length=20)
   selection2_image = models.ImageField()
   selection2_des = models.CharField(max_length=20)
+  hot_topic = models.BooleanField(default=False)
   created_at = models.DateTimeField(auto_now=timezone.now())
 
 class Selection(models.Model):
@@ -28,9 +29,10 @@ class Selection(models.Model):
   topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
   select = models.IntegerField(choices=Select.choices, null=True, blank=True)
   selector = models.ForeignKey(User, on_delete=models.CASCADE)
-  age = models.IntegerField(validators=[
+  age_range = models.IntegerField(validators=[
     MinValueValidator(0), 
     MaxValueValidator(100),
     ])
-  sex = models.IntegerField(choices=Sex.choices)
+  gender = models.IntegerField(choices=Sex.choices)
   created_at = models.DateTimeField(auto_now=timezone.now())
+  updated_at = models.DateTimeField(default=timezone.now)

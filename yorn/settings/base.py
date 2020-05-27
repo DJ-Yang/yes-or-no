@@ -33,6 +33,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'topic.apps.TopicConfig',
+    'user.apps.UserConfig',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +114,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -118,3 +125,38 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# allauth setting
+
+AUTH_USER_MODEL = 'user.User'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+ACCOUNT_ADAPTER = 'user.adapter.MyAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'user.adapter.MySocialAccountAdapter'
+
+LOGIN_REDIRECT_URL = '/topic/'
+LOGOUT_REDIRECT_URL = '/topic/'
+
+ACCOUNT_LOGOUT_ON_GET = True
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id' : '9c0f252154e03204b20da14dd74d775f',
+            'redirect_uri' : 'http://127.0.0.1:8000/auth/accounts/kakao/login/callback/',
+            'response_type' : 'code',        
+        }
+    }
+}
+
+CRONTAB_COMMAND_SUFFIX = '2>&1'
+CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.local'
+CRONJOBS = [
+    ('* * * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),)
+]
