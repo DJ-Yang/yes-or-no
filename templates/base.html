@@ -33,7 +33,7 @@
         <ul class="web">
           {% if user.is_active %}
           <li class="logout"><a href="{% url 'account_logout' %}" onclick="return confirm('정말 로그아웃 하시겠습니까?')">로그아웃</a></li>
-          {% else %}
+          {% else %} 
           <li class="login"><a href="{% url 'signin' %}">로그인/회원가입</a>
           </li>
           {% endif %}
@@ -44,6 +44,7 @@
       </div>
 
       <div class="nav-menu">
+        <a href="{% url 'topic:list' %}">토픽목록</a>
         <a href="#">공지사항</a>
         <a href="#">요청하기</a>
       </div>

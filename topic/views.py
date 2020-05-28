@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 from user.models import User
 from django.utils import timezone
 import datetime
-from celery.schedules import crontab
-from celery.task import periodic_task
 # from django.utils import simplejson
 
 def caculate_per(objects):
@@ -25,24 +23,44 @@ def caculate_per(objects):
 
   return result
 
+def convert(topic_list): 
+    return tuple(i[0] for i in topic_list) 
+
 # 핫 토픽 설정 부분
 # updated_at 필드를 추가해서 기존에 설문에 참여했던 사람이 값을 변경했을 경우도 값에 포함될 수 있게 함.
-# 매일 오전 00시 01분에 실행되게 데코레이터 사용
-# @periodic_task(run_every=crontab(minute=0, hour=0))
+# 매일 오전 00시 00분에 실행되게 데코레이터 사용
 def set_hot_topic():
-  start_day = timezone.now() - timezone.timedelta(days=2)
-  end_day = timezone.now() - timezone.timedelta(days=1)
-  selections = Selection.objects.all()
-  today_selections = selections.filter(updated_at__gte=start_day, updated_at__lte=end_day)
+  yesterday = datetime.date.today() - datetime.timedelta(days=1)
+  today_selections = Selection.objects.filter(updated_at__date=yesterday)
+
+  topic_list = {
+  }
+  hot_topic_list = []
 
   for selection in today_selections:
-    topic_id = selection.topic.id
-    print(topic_id)
+    if selection.topic.id in topic_list:
+      topic_list[selection.topic.id] += 1
+    else:
+      topic_list[selection.topic.id] = 1
+
+  topic_list = sorted(topic_list.items(), key=(lambda x : x[0]), reverse=True)
+
+  for topic in topic_list:
+    if len(hot_topic_list) >= 3:
+      if hot_topic_list[2][1] < topic[1]:
+        hot_topic_list[2] = topic
+    else:
+      hot_topic_list.append(topic)
+    hot_topic_list = sorted(hot_topic_list, key=(lambda x : x[1]), reverse=True)
+
+  hot_topic_id = convert(hot_topic_list)
+
+  test = Topic.objects.filter(hot_topic=True).update(hot_topic=False)
+
+  Topic.objects.filter(id__in=hot_topic_id).update(hot_topic=True)
 
 def topic_list(request):
   topics = Topic.objects.all()
-
-  set_hot_topic()
 
   return render(request, 'topic/list.html', {
     'topics': topics,

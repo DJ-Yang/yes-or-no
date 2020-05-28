@@ -59,7 +59,4 @@ $(document).ready(function() {
       $('footer').css('position','relative');
    }
 
-   console.log(container_height, header_height, screen_height)
-   
-
 });

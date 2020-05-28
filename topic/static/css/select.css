@@ -8,6 +8,15 @@
     min-height: 900px;
 }
 
+.explain {
+    text-align: center; 
+    width: 100%; 
+    margin: 20px 0 -20px 0;
+    font-family: nanum;
+    font-size: 14px;
+    color: #646464;
+}
+
 .topic-graph-wrap {
     background-color: #333333;
     width: 90%;
