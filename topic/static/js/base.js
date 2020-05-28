@@ -1,6 +1,6 @@
 // navbar 따라다니는 기준 스크롤
 $(window).scroll(function(){
-    if ($(window).scrollTop() > 80) {
+    if ($(window).scrollTop() > 100) {
        $('nav').addClass('fixed-header');
     }
     else {
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
    
 
-   let check = (container_height+header_height+100)-screen_height;
+   let check = (container_height+header_height+300)-screen_height;
 
    // console.log(container_height, header_height, screen_height);
    // console.log(check);

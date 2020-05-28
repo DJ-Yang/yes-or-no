@@ -34,10 +34,17 @@
     <div class="topic-thumb">
         <img src="{{topic.thumb_image.url}}">
     </div>
-    
-<div class="share-sns">
-    sns 공간
-</div>
+
+    <div class="share-sns">
+        <div class="title">
+            <img src="{% static 'img/share.png' %}" width="20px">
+            공유하기
+        </div>
+        <div class="button">
+            <img src="{% static 'img/kakao_share.png' %}" width="45px">
+            <img src="{% static 'img/naver_share.png' %}" width="45px">
+        </div>
+    </div>
 </div>
 <div class="topic-analysis">
     <div class="topic-analysis-box">
