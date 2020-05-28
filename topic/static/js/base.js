@@ -1,6 +1,6 @@
 // navbar 따라다니는 기준 스크롤
 $(window).scroll(function(){
-    if ($(window).scrollTop() >= 100) {
+    if ($(window).scrollTop() > 100) {
        $('nav').addClass('fixed-header');
     }
     else {
@@ -34,4 +34,29 @@ $('.login').on('click', function(e) {
    } else {
       $('.popmenu-wrap').addClass('hide');
    }
+});
+
+
+$(document).ready(function() {
+
+   let container_height = $('.container').height();
+   let header_height = $('header').height();   
+   let screen_height = $(window).height();
+
+   
+
+   let check = (container_height+header_height+300)-screen_height;
+
+   // console.log(container_height, header_height, screen_height);
+   // console.log(check);
+
+   if (check<0) {
+      $('footer').css('display','block')
+      $('footer').css('position','absolute');
+      $('footer').css('bottom','0')
+   } else {
+      $('footer').css('display','block')
+      $('footer').css('position','relative');
+   }
+
 });

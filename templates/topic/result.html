@@ -16,13 +16,34 @@
         {{ topic.title }}
     </div>
     <div class="topic-graph-wrap">
-        <div class="label-agree">30%</div>
-        <div class="label-disagree">70%</div>
-        <div class="agree">
+        <div class="label-agree" style="width:{{topic.get_count_yes}};">{{topic.get_count_yes}}</div>
+        <div class="label-disagree">{{topic.get_count_no}}</div>
+        <div class="agree" style="width: {{topic.get_count_yes}};">
         </div>
+    </div>
+    <div class="description">
+        <div class="sel1">{{topic.selection1_des}}</div>
+        <div class="sel2">{{topic.selection2_des}}</div>
+    </div>
+    <div class="edit">
+        <a href="#">
+            <img src="{% static 'img/cycle.png' %}" width="25px">
+            다시하기
+        </a>
     </div>
     <div class="topic-thumb">
         <img src="{{topic.thumb_image.url}}">
+    </div>
+
+    <div class="share-sns">
+        <div class="title">
+            <img src="{% static 'img/share.png' %}" width="20px">
+            공유하기
+        </div>
+        <div class="button">
+            <img src="{% static 'img/kakao_share.png' %}" width="45px">
+            <img src="{% static 'img/naver_share.png' %}" width="45px">
+        </div>
     </div>
 </div>
 <div class="topic-analysis">
@@ -53,59 +74,59 @@
 <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script type="text/javascript">
-        var data = [{
-            data: [40, 60],
-            labels: ["1","2"],
-            backgroundColor: [
-                "#FFDE50",
-                "#646464",
-            ],
-            borderColor: "#fff"
-        }];
-        var options = {
-            legend: {
-                display: true,
-                labels: {
-                    fontColor: 'rgb(255, 99, 132)'
-                }
-            },
-            plugins: {
-                datalabels: {
-                    formatter: function (value, ctx) {
-                        let datasets = ctx.chart.data.datasets;
-                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
-                            let sum = datasets[0].data.reduce(function(a,b) {return a+b;}, 0);
-                            let percentage = Math.round((value / sum) * 100) + '%';
-                            return percentage;
-                        } else {
-                            return percentage;
-                        }
-                    },
-                    color: '#fff',
-                }
-            },
-            tooltips: {
-                enabled: false
+    var data = [{
+        data: [40, 60],
+        labels: ["1", "2"],
+        backgroundColor: [
+            "#FFDE50",
+            "#646464",
+        ],
+        borderColor: "#fff"
+    }];
+    var options = {
+        legend: {
+            display: true,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
             }
-        };
+        },
+        plugins: {
+            datalabels: {
+                formatter: function (value, ctx) {
+                    let datasets = ctx.chart.data.datasets;
+                    if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                        let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+                        let percentage = Math.round((value / sum) * 100) + '%';
+                        return percentage;
+                    } else {
+                        return percentage;
+                    }
+                },
+                color: '#fff',
+            }
+        },
+        tooltips: {
+            enabled: false
+        }
+    };
 
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                datasets: data
-            },
-            options: options
-        });
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            datasets: data
+        },
+        options: options
+    });
 
-        var ctx2 = document.getElementById("myChart2").getContext('2d');
-        var myChart = new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                datasets: data
-            },
-            options: options
-        });
+    var ctx2 = document.getElementById("myChart2").getContext('2d');
+    var myChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            datasets: data
+        },
+        options: options
+    });
 
 </script>
 

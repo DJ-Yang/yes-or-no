@@ -7,7 +7,6 @@ $(document).ready(function() {
     
     let ymd_text = parseInt(year+month+date);
     
-    console.log(ymd_text)
     
     $.each($('.topic-list .default-topic .topic'), function(k,v) {
         let topic_ymd = parseInt($(v).attr('date'));
@@ -17,4 +16,5 @@ $(document).ready(function() {
             $(v).children('.topic-badge').hide();
         }
     })
+
 });

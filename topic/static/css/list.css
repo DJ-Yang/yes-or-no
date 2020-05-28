@@ -1,7 +1,5 @@
 @media all {
-    .container {
-            min-height: 1000px;
-        }
+        
 
     .topic-list {
         padding-top: 50px;
@@ -71,8 +69,7 @@
         height: 25px;
     }
     
-    .topic-graph-wrap .agree {
-        width: 45%;
+    .topic-graph-wrap .agree {  
         height: 25px;
         background-color: #FFDE50;
         position: relative;
