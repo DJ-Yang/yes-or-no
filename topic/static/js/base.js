@@ -1,6 +1,6 @@
 // navbar 따라다니는 기준 스크롤
 $(window).scroll(function(){
-    if ($(window).scrollTop() >= 100) {
+    if ($(window).scrollTop() > 80) {
        $('nav').addClass('fixed-header');
     }
     else {

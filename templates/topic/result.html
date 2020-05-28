@@ -16,11 +16,11 @@
         {{ topic.title }}
     </div>
     <div class="topic-graph-wrap">
-        <div class="label-agree">30%</div>
-        <div class="label-disagree">70%</div>
-        <div class="agree">
+        <div class="label-agree" style="width:{{topic.get_count_yes}};">{{topic.get_count_yes}}</div>
+        <div class="label-disagree">{{topic.get_count_no}}</div>
+        <div class="agree" style="width: {{topic.get_count_yes}};">
         </div>
-    </div>
+      </div>
     <div class="topic-thumb">
         <img src="{{topic.thumb_image.url}}">
     </div>
