@@ -116,3 +116,10 @@ def set_selection(request):
         'status': True
       }
       return JsonResponse(result)
+
+
+def user_request(request):
+  return render(request, 'topic/request.html')
+
+def notice(request):
+  return render(request, 'topic/notice.html')

@@ -37,7 +37,7 @@
 .topic-thumb {
     width: 400px;
     height: 400px;
-    margin: 100px auto 20px;
+    margin: 50px auto 40px;
 }
 
 .topic-thumb img {
@@ -51,6 +51,49 @@
     margin: 0 auto;
     padding-top: 50px;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.topic .description {
+    width: 90%;
+    margin: 0 auto;
+    min-height: 50px;
+    font-family: nanum;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.topic .description .sel1{
+    float: left;
+}
+.topic .description .sel2 {
+    float: right;
+}
+
+.edit {
+    width: 130px;
+    margin: 10px auto 0;
+    font-family: nanum;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    color: #333333;
+    border-radius: 3px;
+}
+
+
+.edit a,
+.edit a:hover,
+.edit a:visited{
+    text-decoration: none;
+    color: #333333;
+}
+
+.share-sns {
+    width: 90%;
+    margin: 0 auto 20px;
+    height: 30px;
+    background-color: #e0e0e0;
 }
 
 .topic-analysis {
@@ -146,6 +189,11 @@
     }
 }
 @media all and (max-width:768px) {
+
+    .topic .description {
+        font-size: 15px;
+    }
+    
     ._baa_ {
         width: 80%;
         margin-top: 100px; 
@@ -175,6 +223,9 @@
 }
 
 @media all and (max-width:480px) {
+    .topic .description {
+        font-size: 12px;
+    }
     .container {
         padding-left: 0 !important;
         padding-right: 0 !important;

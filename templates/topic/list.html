@@ -30,9 +30,7 @@
 
 
   <div class="default-topic">
-  {% for topic in topics %}
-  
-  
+  {% for topic in topics %}  
     <div class="topic" date="{{topic.created_at|date:'Ynj'}}">
       <img class="topic-badge hide" src="{% static 'img/new.png' %}">
       <a href="{% url 'topic:select' topic.id %}">
