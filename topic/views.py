@@ -60,7 +60,7 @@ def set_hot_topic():
   Topic.objects.filter(id__in=hot_topic_id).update(hot_topic=True)
 
 def topic_list(request):
-  topics = Topic.objects.all()
+  topics = Topic.objects.all().order_by('-created_at')
 
   return render(request, 'topic/list.html', {
     'topics': topics,
@@ -123,3 +123,6 @@ def user_request(request):
 
 def notice(request):
   return render(request, 'topic/notice.html')
+
+def notice_detail(request):
+  return render(request, 'topic/notice_detail.html')

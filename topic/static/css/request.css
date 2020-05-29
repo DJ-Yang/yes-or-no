@@ -1,0 +1,19 @@
+.request-container {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.button {
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(78,89,104,.07);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #666;
+    transition: ease-in .2s;
+}
+.button:hover {
+    background-color: rgba(78,89,104,.26);
+}

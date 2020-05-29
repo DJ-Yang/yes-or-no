@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/notice.css' %}">
+{% endblock %}
 
 {% block content %}
-notice
-{% endblock %} 
+<div class="list-container">
+    <h2 class="top">공지사항</h2>
+    <ul class="list">
+        <li class="list-row">
+            <a href="{% url 'topic:notice_detail' %}">
+                <div class="title">서비스서비스 서비스서비스 정상복구 공지</div>
+                <div class="date">2020.05.29</div>
+            </a>
+        </li>
+        <li class="list-row">
+            <a href="#">
+                <div class="title">서비스서비스 서비스서비스 정상복구 공지</div>
+                <div class="date">2020.05.29</div>
+            </a>
+        </li>
+        <li class="list-row">
+            <a href="#">
+                <div class="title">서비스서비스 서비스서비스 정상복구 공지</div>
+                <div class="date">2020.05.29</div>
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/request.css' %}">
+</script>
+{% endblock %}
 
 {% block content %}
-request
+<div class="request-container">
+    <div class="button">
+        새 토픽 요청
+    </div>
+    <div class="list">
+        request
+    </div>
+</div>
 {% endblock %} 
