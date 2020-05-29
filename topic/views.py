@@ -123,3 +123,6 @@ def user_request(request):
 
 def notice(request):
   return render(request, 'topic/notice.html')
+
+def notice_detail(request):
+  return render(request, 'topic/notice_detail.html')

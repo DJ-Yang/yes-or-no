@@ -1,12 +1,12 @@
-// navbar 따라다니는 기준 스크롤
-$(window).scroll(function(){
-    if ($(window).scrollTop() > 100) {
-       $('nav').addClass('fixed-header');
-    }
-    else {
-       $('nav').removeClass('fixed-header');
-    }
-});  
+// // navbar 따라다니는 기준 스크롤
+// $(window).scroll(function(){
+//     if ($(window).scrollTop() > 1) {
+//        $('nav').addClass('fixed-header');
+//     }
+//     else {
+//        $('nav').removeClass('fixed-header');
+//     }
+// });  
 
 // navbar 메뉴 선택시 강조옵션
 $(document).on('click','nav .nav-menu ul li a', function(e) {   
