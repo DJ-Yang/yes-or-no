@@ -14,6 +14,8 @@ body {
 .notice-detail {
     max-width: 840px;
     margin: 0 auto;
+    border-left: 4px solid #FFDE50;
+
 }
 
 .notice-detail .detail {

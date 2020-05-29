@@ -25,6 +25,7 @@
     .topic .topic-content .title {
         font-size: 30px;
         line-height: normal;
+        word-break: keep-all;
     }
     .topic .topic-badge {
         margin: 0;
@@ -37,7 +38,7 @@
         width: 170px;
         height: 170px;
         display: block;
-        border: 1px solid #e0e0e0;
+        
     }
     .topic .topic-text {
         display: block;

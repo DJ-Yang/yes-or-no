@@ -13,7 +13,7 @@
   </div>
   <div class="topic-graph-wrap">
     <div class="label-agree" style="width:{{topic.get_count_yes}};">{{topic.get_count_yes}}</div>
-    <div class="label-disagree">{{topic.get_count_no}}</div>
+    <div class="label-disagree">{% if topic.get_count_no != '0%'%}{{topic.get_count_no}}{%endif%}</div>
     <div class="agree" style="width: {{topic.get_count_yes}};">
     </div>
   </div>

@@ -70,15 +70,24 @@
 }
 
 .edit {
-    width: 130px;
+    width: 100px;
     margin: 10px auto 0;
     font-family: nanum;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 400;
     text-align: center;
-    border: 1px solid #e0e0e0;
-    color: #333333;
-    border-radius: 3px;
+
+    padding: 5px 10px;
+    border: 1px solid rgba(78,89,104,.07);
+    border-radius: 5px;
+    cursor: pointer;
+    color: #666;
+    transition: background-color ease-in .2s;
+    border-radius: 5px;
+}
+
+.edit:hover {
+    background-color: rgba(78,89,104,.07);
 }
 
 

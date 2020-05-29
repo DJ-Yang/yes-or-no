@@ -22,6 +22,8 @@ body {
 .list-container {
     max-width: 840px;
     margin: 0 auto;
+    
+    border-left: 4px solid #FFDE50;
 }
 
 .list {
@@ -40,7 +42,7 @@ body {
 }
 
 .list-row .title {
-    font-size: 17px;
+    font-size: 18px;
     font-family: nanum;
     font-weight: 500;
     line-height: 22px;
