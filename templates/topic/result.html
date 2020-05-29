@@ -44,7 +44,15 @@
             <a href="javascript:;" id="kakao-link-btn">
                 <img src="{% static 'img/kakao_share.png' %}" width="45px">
             </a>
-            <img src="{% static 'img/naver_share.png' %}" width="45px">
+            <!-- <img src="{% static 'img/naver_share.png' %}" width="45px"> -->
+            <span>
+                <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+                <script type="text/javascript">
+                var currentURL = window.location.href;
+                var buttonURL = currentURL.replace('result/', '');
+                new ShareNaver.makeButton({"type": "f" , "title":"'{{ topic.title }}'" , "url":buttonURL});
+                </script>
+            </span>
         </div>
     </div>
 </div>
