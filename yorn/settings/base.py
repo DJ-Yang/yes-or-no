@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'topic.context_processors.kakao_secret_key',
             ],
         },
     },
@@ -158,5 +159,7 @@ SOCIALACCOUNT_PROVIDERS = {
 CRONTAB_COMMAND_SUFFIX = '2>&1'
 CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.local'
 CRONJOBS = [
-    ('* * * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),)
+    ('0 0 * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),)
 ]
+
+KAKAO_APP_KEY = 'd6c3621c6252a5999c0fb101d2a2d3ab'
