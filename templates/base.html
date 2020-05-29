@@ -16,6 +16,11 @@
   {% endblock %}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="{% static 'js/kakao.js' %}"></script>
+  <script>
+      Kakao.init('d6c3621c6252a5999c0fb101d2a2d3ab');
+      console.log(Kakao.isInitialized());
+  </script>
 </head>
 
 <body>

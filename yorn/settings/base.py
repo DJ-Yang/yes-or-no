@@ -65,7 +65,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'topic.context_processors.kakao_secret_key',
             ],
         },
     },
@@ -161,5 +160,3 @@ CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.local'
 CRONJOBS = [
     ('0 0 * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),)
 ]
-
-KAKAO_APP_KEY = 'd6c3621c6252a5999c0fb101d2a2d3ab'

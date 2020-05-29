@@ -41,8 +41,18 @@
             공유하기
         </div>
         <div class="button">
-            <img src="{% static 'img/kakao_share.png' %}" width="45px">
-            <img src="{% static 'img/naver_share.png' %}" width="45px">
+            <a href="javascript:;" id="kakao-link-btn">
+                <img src="{% static 'img/kakao_share.png' %}" width="45px">
+            </a>
+            <!-- <img src="{% static 'img/naver_share.png' %}" width="45px"> -->
+            <span>
+                <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+                <script type="text/javascript">
+                var currentURL = window.location.href;
+                var buttonURL = currentURL.replace('result/', '');
+                new ShareNaver.makeButton({"type": "f" , "title":"'{{ topic.title }}'" , "url":buttonURL});
+                </script>
+            </span>
         </div>
     </div>
 </div>
@@ -127,7 +137,44 @@
         },
         options: options
     });
-
 </script>
-
+<script type="text/javascript">
+    var currentURL = window.location.href;
+    var buttonURL = currentURL.replace('result/', '');
+    Kakao.Link.createDefaultButton({
+        container: '#kakao-link-btn',
+        objectType: 'feed',
+        content: {
+          title: '{{ topic.title }}',
+          description: '{{ topic.description }}',
+        //   imageUrl: 'http://127.0.0.1:8000{{topic.thumb_image.url}}',
+          imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+          link: {
+            mobileWebUrl: buttonURL,
+            webUrl: buttonURL
+          }
+        },
+        social: {
+          likeCount: 286,
+          commentCount: 45,
+          sharedCount: 845
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: buttonURL,
+              webUrl: buttonURL
+            }
+          },
+          {
+            title: '앱으로 보기',
+            link: {
+              mobileWebUrl: buttonURL,
+              webUrl: buttonURL
+            }
+          }
+        ]
+      });
+    </script>
 {% endblock %}
