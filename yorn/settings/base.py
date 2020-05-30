@@ -147,12 +147,6 @@ LOGOUT_REDIRECT_URL = '/topic/'
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-CRONTAB_COMMAND_SUFFIX = '2>&1'
-CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.local'
-CRONJOBS = [
-    ('0 0 * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),)
-]
-
 # AWS_LOCATION = 'static'
 # AWS_REGION = get_secret("AWS_REGION")
 # AWS_STORAGE_BUCKET_NAME = get_secret("AWS_STORAGE_BUCKET_NAME")
