@@ -4,3 +4,13 @@ from yorn.settings.base import *
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao': {
+        'APP': {
+            'client_id' : '9c0f252154e03204b20da14dd74d775f',
+            'redirect_uri' : 'http://127.0.0.1:8000/auth/accounts/kakao/login/callback/',
+            'response_type' : 'code',        
+        }
+    }
+}
