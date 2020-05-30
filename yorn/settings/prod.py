@@ -9,7 +9,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'kakao': {
         'APP': {
             'client_id' : '9c0f252154e03204b20da14dd74d775f',
-            'redirect_uri' : 'http://homevalue.co.kr/auth/accounts/kakao/login/callback/',
+            'redirect_url' : 'http://homevalue.co.kr/auth/accounts/kakao/login/callback/',
             'response_type' : 'code',        
         }
     }
@@ -27,7 +27,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 # AWS_LOCATION = 'static'
 # AWS_REGION = get_secret("AWS_REGION")
