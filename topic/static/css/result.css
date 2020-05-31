@@ -120,7 +120,8 @@
 .topic-analysis {
     width: 80%;
     margin: 0 auto;
-    min-height: 400px;    
+    min-height: 600px;    
+    padding-bottom: 100px;
 }
 
 .topic-analysis-box {
@@ -136,7 +137,8 @@
     font-size: 30px;
     text-align: center;
 }
-.topic-analysis-box .chart {
+.topic-analysis-box .chart1,
+.topic-analysis-box .chart2 {
     width: 400px;
     height: 400px;
     margin: 0 auto;
@@ -146,6 +148,19 @@
     background-color: #646464;
     height: 150px;
     margin: 50px auto;
+}
+
+.chart1 ul li ,
+.chart2 ul li{
+    display: inline-block;
+    padding: 5px 0px;
+    margin: 0 5px;
+    font-family: nanum;
+    cursor: pointer;
+}
+.active {
+    font-weight: 800;
+    border-bottom: 2px solid #FFDE50;
 }
 
 @media all and (max-width:1200px) {
@@ -171,7 +186,8 @@
         font-size: 30px;
         text-align: center;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 300px;
         height: 300px;
         margin: 0 auto;
@@ -203,7 +219,8 @@
         font-size: 30px;
         text-align: center;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 220px;
         height: 220px;
         margin: 0 auto;
@@ -222,6 +239,9 @@
     .topic {
         width: 90%;
     }
+    .topic-analysis {
+        min-height: 700px;
+    }
     .topic-analysis-box {
         margin: 30px auto;
         width: 300px;
@@ -229,7 +249,8 @@
         margin: 20px auto;
         display: block;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 250px;
         height: 250px;
     }
@@ -268,7 +289,8 @@
         margin: 20px auto;
         display: block;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 250px;
         height: 250px;
     }

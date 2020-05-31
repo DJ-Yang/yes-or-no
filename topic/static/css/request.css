@@ -20,6 +20,8 @@
     cursor: pointer;
     color: #666;
     transition: ease-in .2s;
+    background-color: rgb(121, 177, 255);
+    
 }
 .button:hover {
     background-color: rgba(78,89,104,.06);
