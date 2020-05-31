@@ -8,6 +8,8 @@ $(document).ready(function() {
         if (check_new(created_at,now)) {
             $(v).children('.topic-badge').show();
         }
+
+        // image_resize($(v));
     })
 
 });
@@ -24,7 +26,6 @@ function check_new(creatd_at, now) {
 
     let diff = now.getTime()-creatd_at.getTime()
 
-    console.log(diff/hour)
 
     if (diff/hour <= 24) {
         return true;
@@ -33,3 +34,25 @@ function check_new(creatd_at, now) {
     }
     
 }
+
+// function image_resize(e) {
+//     let box = e.children().children().children('.topic-thumb');
+
+//     let box_width = box.width();
+//     let box_height = box.height();
+
+//     let img = e.children().children().children('.topic-thumb').children();
+//     let size = img.attr('size').split(',');
+    
+
+//     if (size[0]<box_width) {
+//         img.css('width',size[0])
+//     }
+//     if (size[1]<box_height) {
+//         img.css('height',size[1])
+//     }
+
+
+//     console.log(size, box_width, box_height)
+
+// }
