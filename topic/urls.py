@@ -11,5 +11,5 @@ urlpatterns = [
     path('topic/set/selection/', views.set_selection, name="set_selection"),
     path('topic/request/', views.user_request, name="request"),
     path('topic/notice/', views.notice, name="notice"),
-    path('topic/notice/detail/', views.notice_detail, name="notice_detail"),
+    path('topic/notice/detail/<int:id>', views.notice_detail, name="notice_detail"),
 ]
