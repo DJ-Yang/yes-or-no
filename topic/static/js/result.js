@@ -10,7 +10,7 @@ $(document).on('click','.chart1 ul li', function(e) {
 
 
     date = target.attr('class').split(' ')[0]
-    chart_date('date')
+    get_data(date)
     
 });
 
@@ -39,8 +39,8 @@ $(document).on('click','.chart2 ul li', function(e) {
 });
 
 $(document).ready(function() {
+    get_data('week');
     chart_all();
-    chart_date();
 });
 
 
@@ -62,4 +62,50 @@ function reset_canvas1(chart) {
     let canvas = chart.children('.canvas-container1')
     canvas.empty();
     canvas.append(' <canvas width="100%" height="100%" id="chart1" class="chart1"></canvas>');
+}
+
+
+// 날짜별 차트 데이터 갖고오는 함수 지금은 임의값
+function get_data(date) {
+    
+    label_data = get_label(date);
+    let chart_value = [];
+    for( let i=0; i<label_data.length;i++) {
+        chart_value.push(Math.floor(Math.random() * 10) + 1);
+    }
+
+    chart_date(date,label_data,chart_value);
+}
+
+// 날짜별 차트 라벨
+function get_label(date) {
+    let label_data = [];
+    let now = new Date();
+
+    if (date == 'week') {
+        for(let i=1;i<=7;i++) {
+        
+        label_data.push(now.getDate());      
+        
+        now.setDate(now.getDate()-1)
+        
+        }
+        label_data.reverse();
+    } else if (date == 'month') {
+        for(let i=1;i<=30;i++) {
+        
+            text = (now.getMonth()+1)+'.'+now.getDate()
+            label_data.push(text);
+            now.setDate(now.getDate()-1)
+            
+        }
+    } else if (date == 'year') {
+        for(let i=1;i<=365;i++) {
+            text = now.getFullYear() + '.' + (now.getMonth()+1)+'.'+now.getDate()
+            label_data.push(text);   
+            now.setDate(now.getDate()-1)
+            
+        }
+    }
+    return label_data;
 }
