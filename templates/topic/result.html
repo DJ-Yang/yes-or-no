@@ -4,6 +4,7 @@
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
+<link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
     var postive = "{{ result.postive }}";
     var negative = "{{ result.negative }}";
@@ -87,7 +88,57 @@
                 </ul>
             </div>
             <div class="canvas-container2">
-
+                <div class="all-chart">
+                    <div class="chart-title" style="display: flex;">
+                        <div class="female">여자</div>
+                        <div class="male">남자</div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">10대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">20대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">30대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">40대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">50대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                </div>
                 <!-- <canvas width="100%" height="100%" id="chart2" class="chart2"></canvas> -->
             </div>
         </div>
@@ -106,6 +157,7 @@
 
     function chart_all() {
         
+
     }
 
     function chart_gender() {
@@ -182,7 +234,7 @@
                 enabled: false
             }
         };
-        
+
         let ctx = document.getElementById("chart2-male").getContext('2d');
         console.log(ctx);
         let chart = new Chart(ctx, {
@@ -291,10 +343,10 @@
                 enabled: false
             }
         };
-        create_datechart(data,options,'pie');
+        create_datechart(data, options, 'pie');
     }
 
-    function create_datechart(data, options, type) {        
+    function create_datechart(data, options, type) {
         let ctx1 = document.getElementById("chart1").getContext('2d');
         let chart1 = new Chart(ctx1, {
             type: 'pie',

@@ -122,6 +122,7 @@
     margin: 0 auto;
     min-height: 600px;    
     padding-bottom: 100px;
+    display: flex;
 }
 
 .topic-analysis-box {
@@ -241,6 +242,7 @@
     }
     .topic-analysis {
         min-height: 700px;
+        display: block;
     }
     .topic-analysis-box {
         margin: 30px auto;
