@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'topic.apps.TopicConfig',
+    'notice.apps.NoticeConfig',
     'user.apps.UserConfig',
     'django.contrib.sites',
     'allauth',

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Topic, Selection, Notice
+from .models import Topic, Selection
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
@@ -20,7 +20,12 @@ def caculate_per(objects):
     'postive' : postive_value,
     'negative' : negative_value,
   }
-
+  # 필요 데이터
+  # 1. 연령별 데이터
+  # 2. 성별 데이터
+  # 3. 주별 데이터
+  # 4. 월별 데이터
+  # 5. 연별 데이터
   return result
 
 def convert(topic_list): 
@@ -120,14 +125,3 @@ def set_selection(request):
 
 def user_request(request):
   return render(request, 'topic/request.html')
-
-def notice(request):
-  notice = Notice.objects.all().order_by('-created_at')
-
-  context = {'notice':notice}
-  return render(request, 'topic/notice.html', context)
-
-def notice_detail(request, id):
-  notice = Notice.objects.get(pk=id)
-  context = {'notice':notice}
-  return render(request, 'topic/notice_detail.html', context)
