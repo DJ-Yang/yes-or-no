@@ -64,9 +64,9 @@
         <div class="chart1">
             <div>
                 <ul>
-                    <li class="active">주간</li>
-                    <li class="">월간</li>
-                    <li class="">연간</li>
+                    <li class="week active">주간</li>
+                    <li class="month">월간</li>
+                    <li class="year">연간</li>
                 </ul>
             </div>
             <div class="canvas-container1">
@@ -87,7 +87,8 @@
                 </ul>
             </div>
             <div class="canvas-container2">
-                <canvas width="100%" height="100%" id="chart2" class="chart2"></canvas>
+
+                <!-- <canvas width="100%" height="100%" id="chart2" class="chart2"></canvas> -->
             </div>
         </div>
     </div>
@@ -104,11 +105,11 @@
 <script type="text/javascript">
 
     function chart_all() {
-        chart_gender();
+        
     }
 
     function chart_gender() {
-        let data = [{
+        let male_data = [{
             data: [40, 60],
             labels: ["1", "2"],
             backgroundColor: [
@@ -117,7 +118,45 @@
             ],
             borderColor: "#fff"
         }];
-        let options = {
+        let male_options = {
+            responsive: false,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    formatter: function (value, ctx) {
+                        let datasets = ctx.chart.data.datasets;
+                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+                            let percentage = Math.round((value / sum) * 100) + '%';
+                            return percentage;
+                        } else {
+                            return percentage;
+                        }
+                    },
+                    color: '#fff',
+                }
+            },
+            tooltips: {
+                enabled: false
+            }
+        };
+
+        let female_data = [{
+            data: [40, 60],
+            labels: ["1", "2"],
+            backgroundColor: [
+                "#FFDE50",
+                "#646464",
+            ],
+            borderColor: "#fff"
+        }];
+        let female_options = {
+            responsive: false,
             legend: {
                 display: true,
                 labels: {
@@ -144,13 +183,22 @@
             }
         };
         
-        let ctx2 = document.getElementById("chart2").getContext('2d');
+        let ctx = document.getElementById("chart2-male").getContext('2d');
+        console.log(ctx);
+        let chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: male_data
+            },
+            options: male_options
+        });
+        let ctx2 = document.getElementById("chart2-female").getContext('2d');
         let chart2 = new Chart(ctx2, {
             type: 'pie',
             data: {
-                datasets: data
+                datasets: female_data
             },
-            options: options
+            options: female_options
         });
     }
 
@@ -162,16 +210,17 @@
             data: {
                 labels: ['10대', '20대', '30대'],
                 datasets: [{
-                    label: '남',
+                    label: '찬성',
                     backgroundColor: '#5faaff',
                     data: [56, 63, 67]
                 }, {
-                    label: '여',
+                    label: '반대',
                     backgroundColor: 'rgb(255, 114, 107)',
                     data: [1, 2, 3]
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 title: {
                     display: false,
                     // text: ''
