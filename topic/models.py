@@ -60,11 +60,3 @@ class Selection(models.Model):
   created_at = models.DateTimeField(auto_now=timezone.now())
   updated_at = models.DateTimeField(default=timezone.now)
 
-
-
-
-class Notice(models.Model):
-  title = models.CharField(max_length=30)
-  content = models.TextField()
-  created_at = models.DateTimeField(auto_now=timezone.now())
-

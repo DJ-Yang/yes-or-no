@@ -10,7 +10,7 @@
     <ul class="list">
         {% for post in notice %}
         <li class="list-row">
-            <a href="{% url 'topic:notice_detail' post.id %}">
+            <a href="{% url 'notice:notice_detail' post.id %}">
                 <div class="title">{{post.title}}</div>
                 <div class="date">{{post.created_at|date:'Y.m.d'}}</div>
             </a>
