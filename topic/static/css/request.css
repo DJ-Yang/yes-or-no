@@ -34,19 +34,24 @@
     font-family: nanum;
 }
 
+.list {
+    display: flex;
+}
+
 .list-row {
-    display: inline-block;
+    display: flex;
     min-width: 320px;
     width: 49%;
     min-height: 100px;
     background-color: #ffffff;
-    margin: 10px 0;
+    margin: 10px 5px;
     padding: 10px 20px;
     box-shadow: 2px 1px 5px rgba(0,0,0,0.1);
 }
 
 .content {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     padding-left: 10px;
 }
 
@@ -58,7 +63,8 @@
     height: 100px;
 }
 .title {
+    height: 70px;
 }
 .like {
-    
+    text-align: right;
 }
