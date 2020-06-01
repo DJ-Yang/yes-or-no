@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Topic, Selection
+from .models import Topic, Selection, Notice
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
@@ -122,7 +122,12 @@ def user_request(request):
   return render(request, 'topic/request.html')
 
 def notice(request):
-  return render(request, 'topic/notice.html')
+  notice = Notice.objects.all().order_by('-created_at')
 
-def notice_detail(request):
-  return render(request, 'topic/notice_detail.html')
+  context = {'notice':notice}
+  return render(request, 'topic/notice.html', context)
+
+def notice_detail(request, id):
+  notice = Notice.objects.get(pk=id)
+  context = {'notice':notice}
+  return render(request, 'topic/notice_detail.html', context)

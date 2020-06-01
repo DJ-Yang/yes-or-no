@@ -4,6 +4,7 @@
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
+<link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
     var postive = "{{ result.postive }}";
     var negative = "{{ result.negative }}";
@@ -28,7 +29,7 @@
     <div class="edit">
         <a href="#">
             <!-- <img src="{% static 'img/cycle.png' %}" width="25px"> -->
-            다시하기
+            다시투표하기
         </a>
     </div>
     <div class="topic-thumb">
@@ -48,9 +49,9 @@
             <span>
                 <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
                 <script type="text/javascript">
-                var currentURL = window.location.href;
-                var buttonURL = currentURL.replace('result/', '');
-                new ShareNaver.makeButton({"type": "f" , "title":"'{{ topic.title }}'" , "url":buttonURL});
+                    var currentURL = window.location.href;
+                    var buttonURL = currentURL.replace('result/', '');
+                    new ShareNaver.makeButton({ "type": "f", "title": "'{{ topic.title }}'", "url": buttonURL });
                 </script>
             </span>
         </div>
@@ -59,18 +60,87 @@
 <div class="topic-analysis">
     <div class="topic-analysis-box">
         <div class="title">
-            분석 1
+            차트1
         </div>
-        <div class="chart">
-            <canvas width="100%" height="100%" id="myChart"></canvas>
+        <div class="chart1">
+            <div>
+                <ul>
+                    <li class="week active">주간</li>
+                    <li class="month">월간</li>
+                    <li class="year">연간</li>
+                </ul>
+            </div>
+            <div class="canvas-container1">
+                <canvas width="100%" height="100%" id="chart1" class="chart1"></canvas>
+            </div>
         </div>
     </div>
     <div class="topic-analysis-box">
         <div class="title">
-            분석 2
+            차트2
         </div>
-        <div class="chart">
-            <canvas width="100%" height="100%" id="myChart2"></canvas>
+        <div class="chart2">
+            <div>
+                <ul>
+                    <li class="all active">전체</li>
+                    <li class="age">연령대</li>
+                    <li class="gender">성별</li>
+                </ul>
+            </div>
+            <div class="canvas-container2">
+                <div class="all-chart">
+                    <div class="chart-title" style="display: flex;">
+                        <div class="female">여자</div>
+                        <div class="male">남자</div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">10대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">20대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">30대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">40대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="data" data="female-10">
+                            <div class="agree"></div>
+                        </div>
+                        <div class="legend">50대</div>
+                        <div class="data" data="male-10">
+                            <div class="agree"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <canvas width="100%" height="100%" id="chart2" class="chart2"></canvas> -->
+            </div>
         </div>
     </div>
 </div>
@@ -84,97 +154,208 @@
 <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script type="text/javascript">
-    var data = [{
-        data: [40, 60],
-        labels: ["1", "2"],
-        backgroundColor: [
-            "#FFDE50",
-            "#646464",
-        ],
-        borderColor: "#fff"
-    }];
-    var options = {
-        legend: {
-            display: true,
-            labels: {
-                fontColor: 'rgb(255, 99, 132)'
+
+    function chart_all() {
+        
+
+    }
+
+    function chart_gender() {
+        let male_data = [{
+            data: [40, 60],
+            labels: ["1", "2"],
+            backgroundColor: [
+                "#FFDE50",
+                "#646464",
+            ],
+            borderColor: "#fff"
+        }];
+        let male_options = {
+            responsive: false,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    formatter: function (value, ctx) {
+                        let datasets = ctx.chart.data.datasets;
+                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+                            let percentage = Math.round((value / sum) * 100) + '%';
+                            return percentage;
+                        } else {
+                            return percentage;
+                        }
+                    },
+                    color: '#fff',
+                }
+            },
+            tooltips: {
+                enabled: false
             }
-        },
-        plugins: {
-            datalabels: {
-                formatter: function (value, ctx) {
-                    let datasets = ctx.chart.data.datasets;
-                    if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
-                        let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
-                        let percentage = Math.round((value / sum) * 100) + '%';
-                        return percentage;
-                    } else {
-                        return percentage;
-                    }
+        };
+
+        let female_data = [{
+            data: [40, 60],
+            labels: ["1", "2"],
+            backgroundColor: [
+                "#FFDE50",
+                "#646464",
+            ],
+            borderColor: "#fff"
+        }];
+        let female_options = {
+            responsive: false,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    formatter: function (value, ctx) {
+                        let datasets = ctx.chart.data.datasets;
+                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+                            let percentage = Math.round((value / sum) * 100) + '%';
+                            return percentage;
+                        } else {
+                            return percentage;
+                        }
+                    },
+                    color: '#fff',
+                }
+            },
+            tooltips: {
+                enabled: false
+            }
+        };
+
+        let ctx = document.getElementById("chart2-male").getContext('2d');
+        console.log(ctx);
+        let chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                datasets: male_data
+            },
+            options: male_options
+        });
+        let ctx2 = document.getElementById("chart2-female").getContext('2d');
+        let chart2 = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                datasets: female_data
+            },
+            options: female_options
+        });
+    }
+
+
+    function chart_age() {
+
+        new Chart(document.getElementById("chart2"), {
+            type: 'bar',
+            data: {
+                labels: ['10대', '20대', '30대', '40대', '50대'],
+                datasets: [{
+                    label: '찬성',
+                    backgroundColor: '#FFDE50',
+                    data: [20, 10, 20, 23, 15]
+                }, {
+                    label: '반대',
+                    backgroundColor: '#646464',
+                    data: [12, 24, 20, 0, 10]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: false,
+                    // text: ''
                 },
-                color: '#fff',
+                tooltips: {
+                    enabled: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: false
+                    }],
+                    yAxes: [{
+                        stacked: false
+                    }]
+                },
+                plugins: {
+                    datalabels: {
+                        align: 'top',
+                        anchor: 'end',
+                        backgroundColor: function (context) {
+                            return context.dataset.backgroundColor;
+                        },
+                        borderRadius: 4,
+                        color: 'white',
+                        formatter: function (value) {
+                            return value;
+                        }
+                    }
+                }
             }
-        },
-        tooltips: {
-            enabled: false
-        }
-    };
+        });
+    }
 
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            datasets: data
-        },
-        options: options
-    });
+    function chart_date(date) {
+        let data = [{
+            data: [100, 60],
+            labels: ["1", "2"],
+            backgroundColor: [
+                "#FFDE50",
+                "#646464",
+            ],
+            borderColor: "#fff"
+        }];
+        let options = {
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    formatter: function (value, ctx) {
+                        let datasets = ctx.chart.data.datasets;
+                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+                            let percentage = Math.round((value / sum) * 100) + '%';
+                            return percentage;
+                        } else {
+                            return percentage;
+                        }
+                    },
+                    color: '#fff',
+                }
+            },
+            tooltips: {
+                enabled: false
+            }
+        };
+        create_datechart(data, options, 'pie');
+    }
 
-    var ctx2 = document.getElementById("myChart2").getContext('2d');
-    var myChart = new Chart(ctx2, {
-        type: 'pie',
-        data: {
-            datasets: data
-        },
-        options: options
-    });
+    function create_datechart(data, options, type) {
+        let ctx1 = document.getElementById("chart1").getContext('2d');
+        let chart1 = new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                datasets: data
+            },
+            options: options
+        });
+    }
 </script>
-<script type="text/javascript">
-    var currentURL = window.location.href;
-    var buttonURL = currentURL.replace('result/', '');
-    Kakao.Link.createDefaultButton({
-        container: '#kakao-link-btn',
-        objectType: 'feed',
-        content: {
-          title: '{{ topic.title }}',
-          description: '{{ topic.description }}',
-        //   imageUrl: 'http://127.0.0.1:8000{{topic.thumb_image.url}}',
-          imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-          link: {
-            mobileWebUrl: buttonURL,
-            webUrl: buttonURL
-          }
-        },
-        social: {
-          likeCount: 286,
-          commentCount: 45,
-          sharedCount: 845
-        },
-        buttons: [
-          {
-            title: '웹으로 보기',
-            link: {
-              mobileWebUrl: buttonURL,
-              webUrl: buttonURL
-            }
-          },
-          {
-            title: '앱으로 보기',
-            link: {
-              mobileWebUrl: buttonURL,
-              webUrl: buttonURL
-            }
-          }
-        ]
-      });
-    </script>
+<script src="{% static 'js/result.js' %}"></script>
 {% endblock %}

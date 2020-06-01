@@ -70,7 +70,7 @@
 }
 
 .edit {
-    width: 100px;
+    width: 130px;
     margin: 10px auto 0;
     font-family: nanum;
     font-size: 16px;
@@ -78,7 +78,7 @@
     text-align: center;
 
     padding: 5px 10px;
-    border: 1px solid rgba(78,89,104,.07);
+    border: 1px solid rgba(78,89,104,.27);
     border-radius: 5px;
     cursor: pointer;
     color: #666;
@@ -120,7 +120,9 @@
 .topic-analysis {
     width: 80%;
     margin: 0 auto;
-    min-height: 400px;    
+    min-height: 600px;    
+    padding-bottom: 100px;
+    display: flex;
 }
 
 .topic-analysis-box {
@@ -136,7 +138,8 @@
     font-size: 30px;
     text-align: center;
 }
-.topic-analysis-box .chart {
+.topic-analysis-box .chart1,
+.topic-analysis-box .chart2 {
     width: 400px;
     height: 400px;
     margin: 0 auto;
@@ -146,6 +149,19 @@
     background-color: #646464;
     height: 150px;
     margin: 50px auto;
+}
+
+.chart1 ul li ,
+.chart2 ul li{
+    display: inline-block;
+    padding: 5px 0px;
+    margin: 0 5px;
+    font-family: nanum;
+    cursor: pointer;
+}
+.active {
+    font-weight: 800;
+    border-bottom: 2px solid #FFDE50;
 }
 
 @media all and (max-width:1200px) {
@@ -171,7 +187,8 @@
         font-size: 30px;
         text-align: center;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 300px;
         height: 300px;
         margin: 0 auto;
@@ -203,7 +220,8 @@
         font-size: 30px;
         text-align: center;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 220px;
         height: 220px;
         margin: 0 auto;
@@ -222,6 +240,10 @@
     .topic {
         width: 90%;
     }
+    .topic-analysis {
+        min-height: 700px;
+        display: block;
+    }
     .topic-analysis-box {
         margin: 30px auto;
         width: 300px;
@@ -229,7 +251,8 @@
         margin: 20px auto;
         display: block;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 250px;
         height: 250px;
     }
@@ -268,7 +291,8 @@
         margin: 20px auto;
         display: block;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 250px;
         height: 250px;
     }

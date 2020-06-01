@@ -30,32 +30,35 @@
 
 
   <div class="default-topic">
-  {% for topic in topics %}  
+    {% for topic in topics %}
     <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
       <img class="topic-badge hide" src="{% static 'img/new.png' %}">
       <a href="{% url 'topic:select' topic.id %}">
         <div class="topic-content">
-          <img class="topic-thumb" src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}">
+          <div class="topic-thumb">
+            <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
+              size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
+          </div>
           <div class="topic-text">
             <div class="title">{{topic.title}}</div>
             <div class="description">{{topic.description}}</div>
             <div class="topic-graph-wrap">
-            {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
-            
-            {% else %}
-            <div class="label-agree">{{topic.get_count_yes}}</div>
+              {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
+
+              {% else %}
+              <div class="label-agree">{{topic.get_count_yes}}</div>
               <div class="label-disagree">{{topic.get_count_no}}</div>
               <div class="agree" style="width:{{topic.get_count_yes}};">
               </div>
-            {% endif %}
+              {% endif %}
             </div>
           </div>
         </div>
       </a>
     </div>
-  {% endfor %}
-  
-</div>
+    {% endfor %}
+
+  </div>
 </div>
 {% endblock %}
 

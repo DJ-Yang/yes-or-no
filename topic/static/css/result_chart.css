@@ -1,0 +1,46 @@
+.chart-row {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.data {
+    width: 40%;
+    height: 30px;
+    background-color: #666;
+
+}
+@keyframes charge {
+    from {
+        width: 0%;
+    }
+  
+    to {
+        width: 20%;
+    }
+  }
+
+
+
+.data .agree {
+    width: 20%;
+    height: 100%;
+    background-color: #FFDE50;
+    animation-duration: 1s;
+    animation-name: charge;
+    
+}
+
+.legend {
+    width: 40px;
+    text-align: center;
+}
+
+.all-chart .chart-title {
+    display: flex;
+}
+
+.female, .male {
+    width: 50%;
+    text-align: center;
+}
