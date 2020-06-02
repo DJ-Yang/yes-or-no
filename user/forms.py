@@ -23,5 +23,11 @@ class AddForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AddForm, self).__init__(*args, **kwargs)
-        self.fields['age_range'] = forms.ChoiceField(choices=age_range)
-        self.fields['gender'] = forms.ChoiceField(choices=gender)
+        self.fields['age_range'] = forms.ChoiceField(
+            label=False,
+            choices=age_range,
+            )
+        self.fields['gender'] = forms.ChoiceField(
+            label=False,
+            choices=gender,
+            )

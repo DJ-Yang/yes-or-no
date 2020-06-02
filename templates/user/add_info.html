@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add_info.css' %}">
     <title>진짜루?</title>
 
 </head>
@@ -21,15 +21,18 @@
         </div>
         <div class="signin-box">
             <div class="title">
-                간단하게 가입하고,<br>의견을 공유하세요!
+                <span style="color: #f7e600;">Kakao</span>에서 추가정보를 <br> 받지 못했습니다.
             </div>
             <div class="btn-box">
                 <form action="{% url 'add_info' %}" method="POST">
                     {% csrf_token %}
-                    {{form.as_p}}
-                    <input type="submit">
+                    {{form}}
+                    <input type="submit" value="확 인">
                 </form>
-                
+            </div>
+            
+            <div class="sub-title">
+                수집된 정보는 통계자료에만 사용되며 <br> 다른 목적으로 사용되지 않습니다.
             </div>
             
         </div>
