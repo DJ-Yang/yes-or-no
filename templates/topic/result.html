@@ -59,9 +59,6 @@
 </div>
 <div class="topic-analysis">
     <div class="topic-analysis-box">
-        <div class="title">
-            차트1
-        </div>
         <div class="chart1">
             <div>
                 <ul>
@@ -76,9 +73,6 @@
         </div>
     </div>
     <div class="topic-analysis-box">
-        <div class="title">
-            차트2
-        </div>
         <div class="chart2">
             <div>
                 <ul>
@@ -156,7 +150,7 @@
 <script type="text/javascript">
 
     function chart_all() {
-        
+
 
     }
 
@@ -307,55 +301,140 @@
         });
     }
 
-    function chart_date(date) {
-        let data = [{
-            data: [100, 60],
-            labels: ["1", "2"],
-            backgroundColor: [
-                "#FFDE50",
-                "#646464",
-            ],
-            borderColor: "#fff"
-        }];
+    function chart_date(date, label_data, chart_value) {
+        let data = {
+            labels: label_data,
+            datasets: [{
+                data: chart_value,
+                
+                label: "찬성",
+                borderColor: "#FFDE50",
+                pointRadius: 1,
+                fill: false,
+            }, {
+                data: chart_value,
+                label: "반대",
+                borderColor: "#646464",
+                pointRadius: 1,
+                onpointRadius: 1,
+                pointBackgroundColor: "#646464",
+                fill: false
+            }]
+        }
         let options = {
-            legend: {
-                display: true,
-                labels: {
-                    fontColor: 'rgb(255, 99, 132)'
-                }
-            },
-            plugins: {
-                datalabels: {
-                    formatter: function (value, ctx) {
-                        let datasets = ctx.chart.data.datasets;
-                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
-                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
-                            let percentage = Math.round((value / sum) * 100) + '%';
-                            return percentage;
-                        } else {
-                            return percentage;
-                        }
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
                     },
-                    color: '#fff',
+                    ticks: {
+                        autoSkip: false,
+                        callback: function (value, index, values) {
+                            if (values.length == 30) {
+                                if (index == 0 || index == 14 || index == 29) {
+                                    return value;
+                                }
+                            } else if (values.length > 360) {
+                                if (index == 0 || index == 182 || index == 364) {
+                                    return value;
+                                }
+                            } else {
+                                return value;
+                            }
+                            
+                        }
+                    }
+                }],
+                // yAxes: [{
+                //     gridLines: {
+                //         display: false
+                //     }
+                // }]
+            },
+            elements: {
+                line: {
+                    tension: 0
                 }
             },
             tooltips: {
                 enabled: false
-            }
-        };
-        create_datechart(data, options, 'pie');
+            },
+            plugins: {
+                datalabels: {
+                    display: false,
+                },
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem['Label']
+                    }
+                }
+            },
+        }
+
+
+        create_datechart(data, options, 'line')
     }
 
     function create_datechart(data, options, type) {
-        let ctx1 = document.getElementById("chart1").getContext('2d');
-        let chart1 = new Chart(ctx1, {
-            type: 'pie',
-            data: {
-                datasets: data
-            },
+        var line_chart = new Chart(document.getElementById("chart1"), {
+            type: type,
+            data: data,
             options: options
         });
     }
+
+    // 기간별 차트 파이차트 부분 임시 주석
+    // function chart_date(date) {
+    //     let data = [{
+    //         data: [100, 60],
+    //         labels: ["1", "2"],
+    //         backgroundColor: [
+    //             "#FFDE50",
+    //             "#646464",
+    //         ],
+    //         borderColor: "#fff"
+    //     }];
+    //     let options = {
+    //         legend: {
+    //             display: true,
+    //             labels: {
+    //                 fontColor: 'rgb(255, 99, 132)'
+    //             }
+    //         },
+    //         plugins: {
+    //             datalabels: {
+    //                 formatter: function (value, ctx) {
+    //                     let datasets = ctx.chart.data.datasets;
+    //                     if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+    //                         let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+    //                         let percentage = Math.round((value / sum) * 100) + '%';
+    //                         return percentage;
+    //                     } else {
+    //                         return percentage;
+    //                     }
+    //                 },
+    //                 color: '#fff',
+    //             }
+    //         },
+    //         tooltips: {
+    //             enabled: false
+    //         }
+    //     };
+    //     create_datechart(data, options, 'pie');
+    // }
+
+    // function create_datechart(data, options, type) {
+    //     let ctx1 = document.getElementById("chart1").getContext('2d');
+    //     let chart1 = new Chart(ctx1, {
+    //         type: 'bar',
+    //         data: {
+    //             datasets: data
+    //         },
+    //         options: options
+    //     });
+    // }
 </script>
 <script src="{% static 'js/result.js' %}"></script>
 {% endblock %}

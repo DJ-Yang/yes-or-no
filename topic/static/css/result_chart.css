@@ -8,8 +8,8 @@
     width: 40%;
     height: 30px;
     background-color: #666;
-
 }
+
 @keyframes charge {
     from {
         width: 0%;
@@ -26,9 +26,9 @@
     width: 20%;
     height: 100%;
     background-color: #FFDE50;
-    animation-duration: 1s;
+    animation-duration: .5s;
     animation-name: charge;
-    
+    transition: width ease-in .4s;
 }
 
 .legend {
@@ -43,4 +43,24 @@
 .female, .male {
     width: 50%;
     text-align: center;
+}
+
+
+@media all and (max-width:1200px) {
+    .data {
+        height: 30px;
+    }
+    .chart-row {
+        margin: 20px 0;
+    }
+}
+
+
+@media all and (max-width:992px) {
+    .data {
+        height: 20px;
+    }
+    .chart-row {
+        margin: 10px 0;
+    }
 }

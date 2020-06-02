@@ -1,0 +1,102 @@
+
+@font-face {
+    font-family: 'nanum';
+    src:url('../fonts/NanumSquareR.woff') format('woff');
+    font-weight: normal;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.logo a:visited {
+    color: #FFDE50;
+}
+
+.signin-page {
+    max-width: 500px;
+    min-width: 320px;
+    width: 95%;
+    margin: 100px auto;
+}
+
+.logo {
+    font-size:30px;
+    color: #FFDE50;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.signin-box {
+    max-width: 500px;
+    min-width: 320px;
+    width: 100%;
+    height: 400px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.signin-box .title {
+    font-size: 30px;
+    font-family: nanum;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.signin-box .btn-box {
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+select {
+    width: 100px;
+    margin: 20px 0;
+    padding: 10px 10px;
+    font-size: 17px;
+    font-family: nanum;
+    outline: none;
+    border: 1px solid #dadada;
+}
+
+select option {
+    line-height: 100px;
+}
+
+select:focus {
+    border: 1px solid #FFDE50;
+}
+
+input[type=submit] {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 40px;
+    border: 1.2px solid #dadada;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-family: nanum;
+    transition: background-color ease-in .2s;
+    outline: none;
+    
+}
+input[type=submit]:hover {
+    background-color: #FFDE50;
+    border-color: #FFDE50;
+    color: #575757;
+}
+input[type=submit]:foucs {
+    outline: none;
+}
+.sub-title {
+    font-size: 14px;
+    color: rgb(160, 160, 160);
+    text-align: center;
+
+}
