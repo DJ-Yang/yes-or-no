@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.models import BaseUserManager as DefaultUserManager
-
+import json
 
 class UserManager(DefaultUserManager):
     def get_or_create_kakao_user(self, user_pk, extra_data):
+
         user = User.objects.get(pk=user_pk)        
         print('manager',user)
         user.user_type = 'K'
