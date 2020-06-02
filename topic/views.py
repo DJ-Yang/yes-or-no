@@ -12,20 +12,34 @@ def caculate_per(objects):
   total = objects.count()
   postive = objects.filter(select=0)
   negative = objects.filter(select=1)
+  male_postive = postive.filter(gender=0)
+  female_postive = postive.filter(gender=1)
+  male_negative = negative.filter(gender=0)
+  female_negative = negative.filter(gender=1)
 
+  # 일일 투표 데이터 비율
   postive_value = postive.count()/total*100
   negative_value = negative.count()/total*100
+  
+  # 성별 데이터
+  # male_postive_value = male_postive.count()/postive.count()*100
+  # female_postive_value = female_postive.count()/postive.count()*100
+  # male_negative_value = male_negative.count()/negative.count()*100
+  # female_negative_value = female_negative.count()/negative.count()*100
+
+  # 연령별 데이터
+  
+  # 주별 데이터
+  
+  # 월별 데이터
+  
+  # 연별 데이터
 
   result = {
     'postive' : postive_value,
     'negative' : negative_value,
   }
-  # 필요 데이터
-  # 1. 연령별 데이터
-  # 2. 성별 데이터
-  # 3. 주별 데이터
-  # 4. 월별 데이터
-  # 5. 연별 데이터
+
   return result
 
 def convert(topic_list): 
