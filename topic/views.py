@@ -317,7 +317,7 @@ def topic_select(request, topic_id):
   })
 
 @login_required(login_url='/auth/signin/')
-@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info')
+@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
 def topic_result(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   selections = topic.selection_set.all()

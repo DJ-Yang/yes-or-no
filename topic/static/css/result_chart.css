@@ -99,10 +99,10 @@
 
 @media all and (max-width:1200px) {
     .data {
-        height: 30px;
+        height: 25px;
     }
     .chart-row {
-        margin: 20px 0;
+        margin: 10px 0;
     }
 }
 
@@ -112,6 +112,6 @@
         height: 20px;
     }
     .chart-row {
-        margin: 10px 0;
+        margin: 5px 0;
     }
 }
