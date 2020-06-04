@@ -136,3 +136,15 @@ LOGIN_REDIRECT_URL = '/topic/'
 LOGOUT_REDIRECT_URL = '/topic/'
 
 ACCOUNT_LOGOUT_ON_GET = True
+
+CRONTAB_COMMAND_SUFFIX = '2>&1'
+# CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.local'
+# CRONJOBS = [
+#     ('* * * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
+#     ('* * * * *', 'topic.views.create_daily_data', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
+# ]
+CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.prod'
+CRONJOBS = [
+    ('0 0 * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
+    ('23 59 * * *', 'topic.views.create_daily_data', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
+]
