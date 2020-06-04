@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Topic, Selection, DailyData
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from user.models import User
 from django.utils import timezone
 import datetime
@@ -268,9 +268,6 @@ def set_hot_topic():
   yesterday = datetime.date.today() - datetime.timedelta(days=1)
   today_selections = Selection.objects.filter(updated_at__date=yesterday)
 
-  print(1)
-  print('adda')
-
   topic_list = {
   }
   hot_topic_list = []
@@ -320,6 +317,7 @@ def topic_select(request, topic_id):
   })
 
 @login_required(login_url='/auth/signin/')
+@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
 def topic_result(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   selections = topic.selection_set.all()
@@ -337,6 +335,7 @@ def topic_result(request, topic_id):
   })
 
 @login_required(login_url='/auth/signin/')
+@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
 def set_selection(request):
   if request.method == 'POST':
     if request.is_ajax():
