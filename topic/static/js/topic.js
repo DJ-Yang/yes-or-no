@@ -39,8 +39,6 @@ function selectType(select, id, type) {
           type : type,
         },
         success:function(response){
-          console.log(response);
-          console.log('gpgpt');
           alert('성공');
           console.log(response);
           location.href='result/';

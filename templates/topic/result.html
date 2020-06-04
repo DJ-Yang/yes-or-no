@@ -45,6 +45,45 @@
             <a href="javascript:;" id="kakao-link-btn">
                 <img src="{% static 'img/kakao_share.png' %}" width="45px">
             </a>
+            <script type="text/javascript">
+                var currentURL = window.location.href;
+                var buttonURL = currentURL.replace('result/', '');
+                Kakao.Link.createDefaultButton({
+                    container: '#kakao-link-btn',
+                    objectType: 'feed',
+                    content: {
+                        title: '{{ topic.title }}',
+                        description: '{{ topic.description }}',
+                        //   imageUrl: 'http://127.0.0.1:8000{{ topic.thumb_image.url }}',
+                        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                        link: {
+                            mobileWebUrl: buttonURL,
+                            webUrl: buttonURL
+                        }
+                    },
+                    social: {
+                        likeCount: 286,
+                        commentCount: 45,
+                        sharedCount: 845
+                    },
+                    buttons: [
+                        {
+                            title: '웹으로 보기',
+                            link: {
+                                mobileWebUrl: buttonURL,
+                                webUrl: buttonURL
+                            }
+                        },
+                        {
+                            title: '앱으로 보기',
+                            link: {
+                                mobileWebUrl: buttonURL,
+                                webUrl: buttonURL
+                            }
+                        }
+                    ]
+                });
+            </script>
             <!-- <img src="{% static 'img/naver_share.png' %}" width="45px"> -->
             <span>
                 <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
@@ -185,7 +224,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- <canvas width="100%" height="100%" id="chart2" class="chart2"></canvas> -->
             </div>
@@ -203,7 +242,7 @@
     src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script type="text/javascript">
 
- 
+
     function chart_gender() {
         let male_data = [{
             data: [40, 60],
@@ -304,15 +343,15 @@
         new Chart(document.getElementById("chart2"), {
             type: 'bar',
             data: {
-                labels: ['10대', '20대', '30대', '40대', '50대'],
+                labels: ['10대', '20대', '30대', '40대', '50대','60대'],
                 datasets: [{
                     label: '찬성',
                     backgroundColor: '#FFDE50',
-                    data: [20, 10, 20, 23, 15]
+                    data: [20, 10, 20, 23, 15,5]
                 }, {
                     label: '반대',
                     backgroundColor: '#646464',
-                    data: [12, 24, 20, 0, 10]
+                    data: [12, 24, 20, 0, 10,15]
                 }]
             },
             options: {
