@@ -171,8 +171,11 @@ footer .contents {
     }
     .mobile-menu .mobile-login {
         font-size: 20px;
-        padding: 10px 0 29px 10px;
+        padding: 20px 0 19px 10px;
         border-bottom: 1px solid #333333;
+    }
+    .mobile-menu .mobile-login .logout {
+        font-size: 20px;
     }
     .mobile-menu .list  ul li {
         padding: 15px 10px;
