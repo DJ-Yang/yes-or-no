@@ -43,6 +43,9 @@ nav .nav-area .nav-logo {
     float:left;
     padding-left: 30px;
     font-size:30px;
+    font-weight: 600;
+    font-family: nanum;
+    letter-spacing: 5px;
     color: #FFDE50;
 }
 nav .nav-area ul li {

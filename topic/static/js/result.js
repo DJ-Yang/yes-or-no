@@ -44,16 +44,17 @@ $(document).ready(function() {
 });
 
 
+let all_chat_html = $('.canvas-container2').html();
 function reset_canvas2(chart, flag) {
     let canvas = chart.children('.canvas-container2')
     canvas.empty();
 
     if (flag == 'gender') {
-        canvas.append('<canvas style="width: 180px; height: 180px; margin: 0 auto;" id="chart2-male" class="chart"></canvas><canvas style="width: 180px; height: 180px; margin: 0 auto;" id="chart2-female" class="chart"></canvas>');
+        canvas.append('<div class="gender">남자</div><canvas style="width: 180px; height: 180px; margin: 0 auto;" id="chart2-male" class="chart"></canvas><div class="gender">여자</div><canvas style="width: 180px; height: 180px; margin: 0 auto;" id="chart2-female" class="chart"></canvas>');
     } else if (flag == 'age') {
-        canvas.append('<canvas width="100%" height="100%" id="chart2" class="chart2"></canvas>');
+        canvas.append('<canvas width="100%" hepoweight="100%" id="chart2" class="chart2"></canvas>');
     } else if (flag == 'all') {
-        text = ' <div class="all-chart">                    <div class="chart-title" style="display: flex;">                        <div class="female">여자</div>                        <div class="male">남자</div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">10대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">20대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">30대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">40대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">50대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                </div>'
+        text = all_chat_html;
         canvas.append(text);
     }
 }
@@ -92,13 +93,13 @@ function get_label(date) {
         }
         label_data.reverse();
     } else if (date == 'month') {
-        for(let i=1;i<=30;i++) {
-        
-            text = (now.getMonth()+1)+'.'+now.getDate()
+        for(let i=1;i<=12;i++) {        
+            text = (now.getMonth()+1);
             label_data.push(text);
-            now.setDate(now.getDate()-1)
-            
+            now.setMonth(now.getMonth()-1)          
+            console.log(now)  
         }
+        label_data.reverse()
     } else if (date == 'year') {
         for(let i=1;i<=365;i++) {
             text = now.getFullYear() + '.' + (now.getMonth()+1)+'.'+now.getDate()
@@ -107,5 +108,76 @@ function get_label(date) {
             
         }
     }
-    return label_data;
+    return label_data;  
 }
+
+
+// 전체차트 hover  이벤트
+$(document).on('mouseenter','.chart-row .data div', function(e) {
+    let tooltip = $('.all-chart-tooltip')
+    let color = $('.all-chart-tooltip .square')
+    tooltip.css('top',e.pageY);
+    tooltip.css('left',e.pageX);
+    tooltip.show();
+
+
+    if ($(e.target).hasClass('agree')) {
+        color.css('background-color','#FFDE50')
+        $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[2]+'%')
+    } else if ($(e.target).hasClass('disagree')) {
+        color.css('background-color','#666')
+        $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[3]+'%')
+    }
+});
+
+// 모바일 환경 툴팁
+$(document).on("touchstart",'.chart-row .data div', function(e){
+    let tooltip = $('.all-chart-tooltip')
+    let color = $('.all-chart-tooltip .square')
+    tooltip.css('top',e.pageY);
+    tooltip.css('left',e.pageX);
+    tooltip.show();
+
+
+    if ($(e.target).hasClass('agree')) {
+        color.css('background-color','#FFDE50')
+        $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[2]+'%')
+    } else if ($(e.target).hasClass('disagree')) {
+        color.css('background-color','#666')
+        $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[3]+'%')
+    }   
+ });
+
+ 
+$(document).on('mouseleave','.chart-row .data', function(e) {
+    $('.all-chart-tooltip').hide();
+});
+
+
+
+
+// 전체차트 value 지정
+
+function chart_all() {
+    $.each($('.data-female'), function(k,v) {
+        let data = $(v).attr('data').split('-')
+
+        let agree = data[2];
+        let disagree = data[3];
+
+        $(v).children('.agree').css('width',agree);
+        $(v).children('.disagree').css('width',disagree);
+
+    });
+
+    $.each($('.data-male'), function(k,v) {
+        let data = $(v).attr('data').split('-')
+
+        let agree = data[2];
+        let disagree = data[3];
+
+        $(v).children('.agree').css('width',agree);
+        $(v).children('.disagree').css('width',disagree);
+    });
+}
+

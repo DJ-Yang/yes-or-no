@@ -299,9 +299,11 @@ def set_hot_topic():
 
 def topic_list(request):
   topics = Topic.objects.all().order_by('-created_at')
+  hot = Topic.objects.filter(hot_topic=True)
 
   return render(request, 'topic/list.html', {
     'topics': topics,
+    'hot':hot,
   })
 
 def topic_select(request, topic_id):
