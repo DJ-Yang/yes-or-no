@@ -39,10 +39,9 @@ function selectType(select, id, type) {
           type : type,
         },
         success:function(response){
-          console.log(response);
-          console.log('gpgpt');
-          alert('성공');
-          console.log(response);
+          if (typeof(response) !== 'object'){
+            alert('나이 또는 성별 정보가 필요합니다.');
+          }
           location.href='result/';
         },
         complete:function(){},
