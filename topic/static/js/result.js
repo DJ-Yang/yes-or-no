@@ -111,16 +111,53 @@ function get_label(date) {
 }
 
 
-// // 전체차트 hover  이벤트
-// $(document).on('mouseenter','.chart-row .data', function(e) {
-//     console.log(e.target);
-    
-//     $('.all-chart-tooltip').css('top',e.pageY);
-//     $('.all-chart-tooltip').css('left',e.pageX);
-//     $('.all-chart-tooltip').show();
-// });
+// 전체차트 hover  이벤트
+$(document).on('mouseenter','.chart-row .data div', function(e) {
+    let tooltip = $('.all-chart-tooltip')
+    let color = $('.all-chart-tooltip .square')
+    tooltip.css('top',e.pageY);
+    tooltip.css('left',e.pageX);
+    tooltip.show();
 
 
-// $(document).on('mouseleave','.chart-row .data', function(e) {
-//     $('.all-chart-tooltip').hide();
-// });
+    if ($(e.target).hasClass('agree')) {
+        color.css('background-color','#FFDE50')
+        $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[2]+'%')
+    } else if ($(e.target).hasClass('disagree')) {
+        color.css('background-color','#666')
+        $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[3]+'%')
+    }
+
+
+});
+
+
+$(document).on('mouseleave','.chart-row .data', function(e) {
+    $('.all-chart-tooltip').hide();
+});
+
+
+// 전체차트 value 지정
+
+function chart_all() {
+    $.each($('.data-female'), function(k,v) {
+        let data = $(v).attr('data').split('-')
+
+        let agree = data[2];
+        let disagree = data[3];
+
+        $(v).children('.agree').css('width',agree);
+        $(v).children('.disagree').css('width',disagree);
+
+    });
+
+    $.each($('.data-male'), function(k,v) {
+        let data = $(v).attr('data').split('-')
+
+        let agree = data[2];
+        let disagree = data[3];
+
+        $(v).children('.agree').css('width',agree);
+        $(v).children('.disagree').css('width',disagree);
+    });
+}
