@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Topic, Selection
+from .models import Topic, Selection, DailyData
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required
@@ -8,14 +8,147 @@ from django.utils import timezone
 import datetime
 # from django.utils import simplejson
 
-def caculate_per(objects):
+def create_daily_data():
+  topics = Topic.objects.all()
+  
+  for topic in topics:
+    selections = topic.selection_set.all()
+    total = selections.count()
+    postive = selections.filter(select=0)
+    negative = selections.filter(select=1)
+    postive_male = postive.filter(gender=0)
+    postive_female = postive.filter(gender=1)
+    negative_male = negative.filter(gender=0)
+    negative_female = negative.filter(gender=1)
+    postive_10age = postive.filter(age_range='10')
+    postive_10age_male = postive_10age.filter(gender=0)
+    postive_10age_female = postive_10age.filter(gender=1)
+    postive_20age = postive.filter(age_range='20')
+    postive_20age_male = postive_20age.filter(gender=0)
+    postive_20age_female = postive_20age.filter(gender=1)
+    postive_30age = postive.filter(age_range='30')
+    postive_30age_male = postive_30age.filter(gender=0)
+    postive_30age_female = postive_30age.filter(gender=1)
+    postive_40age = postive.filter(age_range='40')
+    postive_40age_male = postive_40age.filter(gender=0)
+    postive_40age_female = postive_40age.filter(gender=1)
+    postive_50age = postive.filter(age_range='50')
+    postive_50age_male = postive_50age.filter(gender=0)
+    postive_50age_female = postive_50age.filter(gender=1)
+    postive_60age = postive.filter(age_range='60')
+    postive_60age_male = postive_60age.filter(gender=0)
+    postive_60age_female = postive_60age.filter(gender=1)
+    negative_10age = negative.filter(age_range='10')
+    negative_10age_male = negative_10age.filter(gender=0)
+    negative_10age_female = negative_10age.filter(gender=1)
+    negative_20age = negative.filter(age_range='20')
+    negative_20age_male = negative_20age.filter(gender=0)
+    negative_20age_female = negative_20age.filter(gender=1)
+    negative_30age = negative.filter(age_range='30')
+    negative_30age_male = negative_30age.filter(gender=0)
+    negative_30age_female = negative_30age.filter(gender=1)
+    negative_40age = negative.filter(age_range='40')
+    negative_40age_male = negative_40age.filter(gender=0)
+    negative_40age_female = negative_40age.filter(gender=1)
+    negative_50age = negative.filter(age_range='50')
+    negative_50age_male = negative_50age.filter(gender=0)
+    negative_50age_female = negative_50age.filter(gender=1)
+    negative_60age = negative.filter(age_range='60')
+    negative_60age_male = negative_60age.filter(gender=0)
+    negative_60age_female = negative_60age.filter(gender=1)
+
+
+    data = DailyData()
+    data.topic = topic
+    data.postive_count = postive.count()
+    data.negative_count = negative.count()
+    data.postive_male_count = postive_male.count()
+    data.postive_female_count = postive_female.count()
+    data.negative_male_count = negative_male.count()
+    data.negative_female_count = negative_female.count()
+    data.postive_10age_count = postive_10age.count()
+    data.postive_10age_male_count = postive_10age_male.count()
+    data.postive_10age_female_count = postive_10age_female.count()
+    data.postive_20age_count = postive_20age.count()
+    data.postive_20age_male_count = postive_20age_male.count()
+    data.postive_20age_female_count = postive_20age_female.count()
+    data.postive_30age_count = postive_30age.count()
+    data.postive_30age_male_count = postive_30age_male.count()
+    data.postive_30age_female_count = postive_30age_female.count()
+    data.postive_40age_count = postive_40age.count()
+    data.postive_40age_male_count = postive_40age_male.count()
+    data.postive_40age_female_count = postive_40age_female.count()
+    data.postive_50age_count = postive_50age.count()
+    data.postive_50age_male_count = postive_50age_male.count()
+    data.postive_50age_female_count = postive_50age_female.count()
+    data.postive_60age_count = postive_60age.count()
+    data.postive_60age_male_count = postive_60age_male.count()
+    data.postive_60age_female_count = postive_60age_female.count()
+    data.negative_10age_count = negative_10age.count()
+    data.negative_10age_male_count = negative_10age_male.count()
+    data.negative_10age_female_count = negative_10age_female.count()
+    data.negative_20age_count = negative_20age.count()
+    data.negative_20age_male_count = negative_20age_male.count()
+    data.negative_20age_female_count = negative_20age_female.count()
+    data.negative_30age_count = negative_30age.count()
+    data.negative_30age_male_count = negative_30age_male.count()
+    data.negative_30age_female_count = negative_30age_female.count()
+    data.negative_40age_count = negative_40age.count()
+    data.negative_40age_male_count = negative_40age_male.count()
+    data.negative_40age_female_count = negative_40age_female.count()
+    data.negative_50age_count = negative_50age.count()
+    data.negative_50age_male_count = negative_50age_male.count()
+    data.negative_50age_female_count = negative_50age_female.count()
+    data.negative_60age_count = negative_60age.count()
+    data.negative_60age_male_count = negative_60age_male.count()
+    data.negative_60age_female_count = negative_60age_female.count()
+
+    data.save()
+
+def caculate_per(objects, topic):
   total = objects.count()
   postive = objects.filter(select=0)
   negative = objects.filter(select=1)
-  male_postive = postive.filter(gender=0)
-  female_postive = postive.filter(gender=1)
-  male_negative = negative.filter(gender=0)
-  female_negative = negative.filter(gender=1)
+  postive_male = postive.filter(gender=0)
+  postive_female = postive.filter(gender=1)
+  negative_male = negative.filter(gender=0)
+  negative_female = negative.filter(gender=1)
+  postive_10age = postive.filter(age_range='10')
+  postive_10age_male = postive_10age.filter(gender=0)
+  postive_10age_female = postive_10age.filter(gender=1)
+  postive_20age = postive.filter(age_range='20')
+  postive_20age_male = postive_20age.filter(gender=0)
+  postive_20age_female = postive_20age.filter(gender=1)
+  postive_30age = postive.filter(age_range='30')
+  postive_30age_male = postive_30age.filter(gender=0)
+  postive_30age_female = postive_30age.filter(gender=1)
+  postive_40age = postive.filter(age_range='40')
+  postive_40age_male = postive_40age.filter(gender=0)
+  postive_40age_female = postive_40age.filter(gender=1)
+  postive_50age = postive.filter(age_range='50')
+  postive_50age_male = postive_50age.filter(gender=0)
+  postive_50age_female = postive_50age.filter(gender=1)
+  postive_60age = postive.filter(age_range='60')
+  postive_60age_male = postive_60age.filter(gender=0)
+  postive_60age_female = postive_60age.filter(gender=1)
+  negative_10age = negative.filter(age_range='10')
+  negative_10age_male = negative_10age.filter(gender=0)
+  negative_10age_female = negative_10age.filter(gender=1)
+  negative_20age = negative.filter(age_range='20')
+  negative_20age_male = negative_20age.filter(gender=0)
+  negative_20age_female = negative_20age.filter(gender=1)
+  negative_30age = negative.filter(age_range='30')
+  negative_30age_male = negative_30age.filter(gender=0)
+  negative_30age_female = negative_30age.filter(gender=1)
+  negative_40age = negative.filter(age_range='40')
+  negative_40age_male = negative_40age.filter(gender=0)
+  negative_40age_female = negative_40age.filter(gender=1)
+  negative_50age = negative.filter(age_range='50')
+  negative_50age_male = negative_50age.filter(gender=0)
+  negative_50age_female = negative_50age.filter(gender=1)
+  negative_60age = negative.filter(age_range='60')
+  negative_60age_male = negative_60age.filter(gender=0)
+  negative_60age_female = negative_60age.filter(gender=1)
 
   # 일일 투표 데이터 비율
   postive_value = postive.count()/total*100
@@ -98,12 +231,13 @@ def topic_select(request, topic_id):
     'topic': topic,
   })
 
-@login_required
+@login_required(login_url='/auth/signin/')
 def topic_result(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   selections = topic.selection_set.all()
 
-  result = caculate_per(selections)
+  # result = caculate_per(selections, topic)
+  result={}
 
   # data = simplejson.dumps(result)
 
@@ -112,7 +246,7 @@ def topic_result(request, topic_id):
     'result': result,
   })
 
-@login_required
+@login_required(login_url='/auth/signin/')
 def set_selection(request):
   if request.method == 'POST':
     if request.is_ajax():
