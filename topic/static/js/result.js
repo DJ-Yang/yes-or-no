@@ -53,7 +53,7 @@ function reset_canvas2(chart, flag) {
     } else if (flag == 'age') {
         canvas.append('<canvas width="100%" hepoweight="100%" id="chart2" class="chart2"></canvas>');
     } else if (flag == 'all') {
-        text = ' <div class="all-chart">                    <div class="chart-title" style="display: flex;">                        <div class="female">여자</div>                        <div class="male">남자</div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">10대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">20대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">30대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">40대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">50대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                </div>'
+        text = ' <div class="all-chart">                    <div class="chart-title" style="display: flex;">                        <div class="female">여자</div>                        <div class="male">남자</div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">10대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">20대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">30대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">40대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>                    <div class="chart-row">                        <div class="data" data="female-10">                            <div class="agree"></div>                        </div>                        <div class="legend">50대</div>                        <div class="data" data="male-10">                            <div class="agree"></div>                        </div>                    </div>      <div class="chart-row"><div class="data" data="female-60"><div class="agree"></div></div><div class="legend">60대</div><div class="data" data="male-60"><div class="agree"></div></div></div>          </div>'
         canvas.append(text);
     }
 }
@@ -98,6 +98,7 @@ function get_label(date) {
             now.setMonth(now.getMonth()-1)          
             console.log(now)  
         }
+        label_data.reverse()
     } else if (date == 'year') {
         for(let i=1;i<=365;i++) {
             text = now.getFullYear() + '.' + (now.getMonth()+1)+'.'+now.getDate()
@@ -106,5 +107,20 @@ function get_label(date) {
             
         }
     }
-    return label_data;
+    return label_data;  
 }
+
+
+// // 전체차트 hover  이벤트
+// $(document).on('mouseenter','.chart-row .data', function(e) {
+//     console.log(e.target);
+    
+//     $('.all-chart-tooltip').css('top',e.pageY);
+//     $('.all-chart-tooltip').css('left',e.pageX);
+//     $('.all-chart-tooltip').show();
+// });
+
+
+// $(document).on('mouseleave','.chart-row .data', function(e) {
+//     $('.all-chart-tooltip').hide();
+// });
