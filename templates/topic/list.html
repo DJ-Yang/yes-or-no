@@ -10,29 +10,9 @@
 <div class="topic-list">
   <div class="hot-topic">
     <h3>오늘의 토픽</h3>
-    <div class="topic" style="border-top:1px solid #e0e0e0;">
-      <img class="topic-badge" src="{% static 'img/hot.png' %}">
-      <div class="topic-content">
-        <img class="topic-thumb" src="{% static 'img/no.png' %}">
-        <div class="topic-text">
-          <div class="title">문재인 대통령 지지율 찬반 투표!</div>
-          <div class="description">문재인 대통령은 잘 하고있는가에 대한 설명을 적는 공간 재잘재잘</div>
-          <div class="topic-graph-wrap">
-            <div class="label-agree">45%</div>
-            <div class="label-disagree">55%</div>
-            <div class="agree">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="default-topic">
-    {% for topic in topics %}
+    {% for topic in hot %}
     <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
-      <img class="topic-badge hide" src="{% static 'img/new.png' %}">
+      <img class="topic-badge" src="{% static 'img/hot.png' %}">
       <a href="{% url 'topic:select' topic.id %}">
         <div class="topic-content">
           <div class="topic-thumb">
@@ -44,7 +24,7 @@
             <div class="description">{{topic.description}}</div>
             <div class="topic-graph-wrap">
               {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
-
+  
               {% else %}
               <div class="label-agree">{{topic.get_count_yes}}</div>
               <div class="label-disagree">{{topic.get_count_no}}</div>
@@ -57,8 +37,39 @@
       </a>
     </div>
     {% endfor %}
-
   </div>
+
+
+<div class="default-topic">
+  {% for topic in topics %}
+  <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
+    <img class="topic-badge hide" src="{% static 'img/new.png' %}">
+    <a href="{% url 'topic:select' topic.id %}">
+      <div class="topic-content">
+        <div class="topic-thumb">
+          <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
+            size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
+        </div>
+        <div class="topic-text">
+          <div class="title">{{topic.title}}</div>
+          <div class="description">{{topic.description}}</div>
+          <div class="topic-graph-wrap">
+            {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
+
+            {% else %}
+            <div class="label-agree">{{topic.get_count_yes}}</div>
+            <div class="label-disagree">{{topic.get_count_no}}</div>
+            <div class="agree" style="width:{{topic.get_count_yes}};">
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+
+</div>
 </div>
 {% endblock %}
 

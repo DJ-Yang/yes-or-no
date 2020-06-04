@@ -20,7 +20,10 @@
     }
   }
 
-
+.gender {
+    margin-top: 10px;
+    text-align: center;
+}
 
 .data .agree {
     width: 20%;

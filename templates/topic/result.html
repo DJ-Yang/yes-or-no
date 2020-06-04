@@ -64,7 +64,7 @@
                 <ul>
                     <li class="week active">주간</li>
                     <li class="month">월간</li>
-                    <li class="year">연간</li>
+                    <!-- <li class="year">연간</li> -->
                 </ul>
             </div>
             <div class="canvas-container1">
@@ -306,7 +306,7 @@
             labels: label_data,
             datasets: [{
                 data: chart_value,
-                
+
                 label: "찬성",
                 borderColor: "#FFDE50",
                 pointRadius: 1,
@@ -330,18 +330,12 @@
                     ticks: {
                         autoSkip: false,
                         callback: function (value, index, values) {
-                            if (values.length == 30) {
-                                if (index == 0 || index == 14 || index == 29) {
-                                    return value;
-                                }
-                            } else if (values.length > 360) {
-                                if (index == 0 || index == 182 || index == 364) {
-                                    return value;
-                                }
+                            if (values.length > 7) {
+                                return value
                             } else {
-                                return value;
+                                return value
                             }
-                            
+
                         }
                     }
                 }],

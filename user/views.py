@@ -25,4 +25,4 @@ def add_info(request):
         else:
             form = AddForm
             context = {'form':form}
-            return render(request, 'user/add_info.html', context)
+        return render(request, 'user/add_info.html', context)
