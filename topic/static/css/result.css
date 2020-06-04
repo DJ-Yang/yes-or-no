@@ -103,6 +103,11 @@
     margin: 20px auto 20px;
     text-align: center;
 }
+.share-sns a,
+.share-sns a:hover,
+.share-sns a:visited{
+    text-decoration: none;
+}
 .share-sns .title {
     font-family: nanum;
     font-size: 16px;
