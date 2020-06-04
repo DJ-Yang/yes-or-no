@@ -20,7 +20,7 @@ class UserManager(DefaultUserManager):
         return user
 
     def save_age_range(self, age_range):
-        age = ''
+        age = 0
         if age_range == '15~19':
             age = 10
         elif age_range == '20~29':
@@ -72,7 +72,9 @@ class User(AbstractBaseUser,PermissionsMixin):
     age_range = models.IntegerField(validators=[
     MinValueValidator(0), 
     MaxValueValidator(100),
-    ])
+    ],
+    null=True,
+    )
 
     is_active = models.BooleanField(default=True)    
     is_admin = models.BooleanField(default=False)    
