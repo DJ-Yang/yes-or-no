@@ -53,7 +53,7 @@
         <div class="topic-text">
           <div class="title">{{topic.title}}</div>
           <div class="description">{{topic.description}}</div>
-          <div class="topic-graph-wrap">
+          <div class="topic-graph-wrap{% if topic.selection_set.count == 0%} nodata{% endif %}">
             {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
 
             {% else %}

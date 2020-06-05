@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Topic(models.Model):
-  title = models.CharField(max_length=100)
+  title = models.CharField(max_length=45)
   thumb_image = models.ImageField()
   description = models.TextField()
   # 임시로 CharField적용 나중에 Forignkey 로 변경
