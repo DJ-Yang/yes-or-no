@@ -343,15 +343,17 @@
         new Chart(document.getElementById("chart2"), {
             type: 'bar',
             data: {
-                labels: ['10대', '20대', '30대', '40대', '50대','60대'],
+                labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
                 datasets: [{
                     label: '찬성',
                     backgroundColor: '#FFDE50',
-                    data: [20, 10, 20, 23, 15,5]
+                    borderColor: '#FFDE50',
+                    data: [20, 10, 20, 23, 15, 5]
                 }, {
                     label: '반대',
                     backgroundColor: '#646464',
-                    data: [12, 24, 20, 0, 10,15]
+                    borderColor: '#646464',
+                    data: [12, 24, 20, 0, 10, 15]
                 }]
             },
             options: {
@@ -366,10 +368,22 @@
                 responsive: true,
                 scales: {
                     xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
                         stacked: false
                     }],
                     yAxes: [{
-                        stacked: false
+
+                        gridLines: {
+                            display: false
+                        },
+                        stacked: false,
+                        ticks: {
+                            max: 100,
+                            min: 0,
+                            stepSize: 20
+                        }
                     }]
                 },
                 plugins: {
@@ -398,12 +412,14 @@
 
                 label: "찬성",
                 borderColor: "#FFDE50",
+                backgroundColor: "#FFDE50",
                 pointRadius: 1,
                 fill: false,
             }, {
                 data: chart_value,
                 label: "반대",
                 borderColor: "#646464",
+                backgroundColor: "#646464",
                 pointRadius: 1,
                 onpointRadius: 1,
                 pointBackgroundColor: "#646464",

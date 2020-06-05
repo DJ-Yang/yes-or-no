@@ -87,6 +87,13 @@
     text-align: center;
 }
 
+.all-chart {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #e0e0e0;
+    /* border-left: 1px solid #e0e0e0; */
+    /* border-right: 1px solid #e0e0e0; */
+}
+
 .all-chart .chart-title {
     display: flex;
 }
@@ -95,7 +102,6 @@
     width: 50%;
     text-align: center;
 }
-
 
 @media all and (max-width:1200px) {
     .data {
