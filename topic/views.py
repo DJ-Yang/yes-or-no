@@ -8,6 +8,9 @@ from django.utils import timezone
 import datetime
 # from django.utils import simplejson
 
+def convert(topic_list): 
+    return tuple(i[0] for i in topic_list) 
+
 def create_daily_data():
   topics = Topic.objects.all()
   
@@ -255,11 +258,25 @@ def today_caculate_per(objects, topic):
     'negative_60age_female' : negative_60age_female_value,
   }
 
-  print(result)
   return result
 
-def convert(topic_list): 
-    return tuple(i[0] for i in topic_list) 
+# 데일리 데이터 정리해서 보내는 부분
+def today_dailydata(objects):
+  start_day = datetime.date.today() - datetime.timedelta(days=7)
+  end_day = datetime.date.today()
+  dailydatas = objects.dailydata_set.filter(created_at__gte=start_day, created_at__lte=end_day)
+
+  daily_data = {}
+  for data in dailydatas:
+    total = data.postive_count + data.negative_count
+    postive_per = (data.postive_count/total*100) if not (total == 0) else 0
+    negative_per = (data.negative_count/total*100) if not (total == 0) else 0
+    daily_data[data.created_at.date().strftime("%Y-%m-%d")] = {
+      'postive' : postive_per,
+      'negative' : negative_per,
+    }
+  return daily_data
+
 
 # 핫 토픽 설정 부분
 # updated_at 필드를 추가해서 기존에 설문에 참여했던 사람이 값을 변경했을 경우도 값에 포함될 수 있게 함.
@@ -322,6 +339,8 @@ def topic_result(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   selections = topic.selection_set.all()
 
+  data = today_dailydata(topic)
+
   if selections:
     result = today_caculate_per(selections, topic)
   else:
@@ -332,6 +351,7 @@ def topic_result(request, topic_id):
   return render(request, 'topic/result.html', {
     'topic': topic,
     'result': result,
+    'data': data,
   })
 
 @login_required(login_url='/auth/signin/')
