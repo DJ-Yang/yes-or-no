@@ -104,4 +104,4 @@ class DailyData(models.Model):
   negative_60age_count = models.IntegerField(null=True)
   negative_60age_male_count = models.IntegerField(null=True)
   negative_60age_female_count = models.IntegerField(null=True)
-  created_at = models.DateTimeField(auto_now=timezone.now())
+  created_at = models.DateTimeField(default=timezone.now)
