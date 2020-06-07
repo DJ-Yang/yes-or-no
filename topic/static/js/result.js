@@ -1,21 +1,21 @@
-// chart2
-$(document).on('click','.chart1 ul li', function(e) {
-
-    let target = $(e.target);
-
-    $('.chart1 ul li').removeClass('active')
-    target.addClass('active')
-
-    reset_canvas1(target.parent().parent().parent());
-
-
-    date = target.attr('class').split(' ')[0]
-    get_data(date)
-    
-});
-
-
 // chart1
+// $(document).on('click','.chart1 ul li', function(e) {
+
+//     let target = $(e.target);
+
+//     $('.chart1 ul li').removeClass('active')
+//     target.addClass('active')
+
+//     reset_canvas1(target.parent().parent().parent());
+
+
+//     date = target.attr('class').split(' ')[0]
+//     get_data(date)
+    
+// });
+
+
+// chart2
 $(document).on('click','.chart2 ul li', function(e) {
 
     let target = $(e.target);
