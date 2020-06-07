@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block header %}
-<meta property="og:image" content='http://homevale.co.kr{{ topic.thumb_image.url }}'>
+<meta property="og:image" content="http://homevale.co.kr{{ topic.thumb_image.url })">
+<meta property="og:title" contnet="{{ topic.title }}">
+<meta property="og:description" conetnt="{{ topic.description }}">
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
 <link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
