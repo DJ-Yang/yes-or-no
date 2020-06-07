@@ -3,13 +3,52 @@
 
 {% block header %}
 <link rel="stylesheet" href="{% static 'css/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 {% endblock %}
 
 {% block content %}
 
+
 <div class="topic-list">
-  <div class="hot-topic">
-    <h3>오늘의 토픽</h3>
+  <div>핫 토픽</div>
+  
+    
+  <div class="hot-time">
+    1
+  </div>
+  <div class="owl-carousel owl-theme">
+    {% for topic in hot %}
+    <div class="item">
+      <div class="topic-content">
+        <div class="topic-thumb">
+          <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
+            size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
+        </div>
+        <div class="topic-text">
+          <div class="title">{{topic.title}}</div>
+          <div class="description">{{topic.description}}</div>
+          <div class="topic-graph-wrap">
+            {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
+
+            {% else %}
+            <div class="label-agree">{{topic.get_count_yes}}</div>
+            <div class="label-disagree">{{topic.get_count_no}}</div>
+            <div class="agree" style="width:{{topic.get_count_yes}};">
+            </div>
+            {% endif %}
+          </div>
+          <div style="font-size: 13px;">
+            {{topic.selection_set.count}}명 참여
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+
+  <!-- <div class="hot-topic">
     {% for topic in hot %}
     <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
       <img class="topic-badge" src="{% static 'img/hot.png' %}">
@@ -24,7 +63,7 @@
             <div class="description">{{topic.description}}</div>
             <div class="topic-graph-wrap">
               {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
-  
+
               {% else %}
               <div class="label-agree">{{topic.get_count_yes}}</div>
               <div class="label-disagree">{{topic.get_count_no}}</div>
@@ -37,7 +76,7 @@
       </a>
     </div>
     {% endfor %}
-  </div>
+  </div> -->
 
 
 <div class="default-topic">
@@ -56,23 +95,40 @@
           <div class="topic-graph-wrap{% if topic.selection_set.count == 0%} nodata{% endif %}">
             {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
 
-            {% else %}
-            <div class="label-agree">{{topic.get_count_yes}}</div>
-            <div class="label-disagree">{{topic.get_count_no}}</div>
-            <div class="agree" style="width:{{topic.get_count_yes}};">
+              {% else %}
+              <div class="label-agree">{{topic.get_count_yes}}</div>
+              <div class="label-disagree">{{topic.get_count_no}}</div>
+              <div class="agree" style="width:{{topic.get_count_yes}};">
+              </div>
+              {% endif %}
             </div>
-            {% endif %}
+            <div style="font-size: 13px;">
+              {{topic.selection_set.count}}명 참여
+            </div>
           </div>
         </div>
-      </div>
-    </a>
-  </div>
-  {% endfor %}
+      </a>
+    </div>
+    {% endfor %}
 
-</div>
+  </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script>
+  $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: false,
+    autoplay:false,
+    // autoplayTimeout:3000,
+    // autoplayHoverPause:true,
+    // autoplaySpeed:1000,
+    items:1,
+  })
+</script>
 <script src="{% static 'js/list.js' %}"></script>
 {% endblock %}

@@ -61,7 +61,6 @@
     }
     .topic .topic-chart {
         width: 100%;
-        background-color: red;
     }
 
 
@@ -105,6 +104,77 @@
         background-color: #bbbbbb;
     }
 
+    /* 캐러셀 부분 */
+
+    .owl-carousel {
+        width: 70% !important;
+        margin: 0 auto;
+    }
+
+    .owl-carousel .item {
+        background-color: #ffffff;        
+        box-shadow: 2px 1px 5px rgba(0,0,0,0.1);
+    }
+
+    .item .topic-content {
+        display: flex;
+        align-items: center;
+        min-height: 170px;
+        width: 100%;
+    }
+
+    .item .topic-thumb {
+        flex-basis: 170px;
+        width: 170px;
+        height: 170px;
+        display: block;    
+
+    }
+    .item .topic-thumb img {
+        width: 100%;
+        height: inherit;
+    }
+    .item .topic-text {
+        display: block;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 80%;
+    }
+    .item .topic-text .title{
+        font-size: 25px;
+        font-family: nanum;
+        line-height: 28px;
+    }
+    .item .topic-content .description {
+        padding-top: 10px;
+        font-size: 14px;
+        color: #646464;
+        line-height: 16px;
+        word-break: keep-all;
+    }
+    .owl-theme .owl-dots .owl-dot.active span, 
+    .owl-theme .owl-dots .owl-dot:hover span 
+    {
+        background-color: #FFDE50 !important;
+    }
+    .owl-stage-outer { 
+        box-shadow: 2px 1px 5px rgba(0,0,0,0.1);
+    }
+
+
+    .hot-time {
+        position: relative;
+        width: 70%;
+        margin: 0 auto;
+        font-size: 13px;
+        color: rgb(119, 119, 119);
+    }
+}
+
+@media (max-width:992px) {
+    .owl-carousel {
+        width: 100% !important;
+    }
 }
 
 @media (max-width:768px) {
@@ -151,6 +221,10 @@
         font-weight: 600;
     }
 
+    .owl-carousel {
+        width: 100% !important;
+        margin: 0 auto;
+    }
 }
 
 @media all and (max-width:480px) {
@@ -209,5 +283,8 @@
         width: 90%;
         height: 110px;
     }
-    
+    .owl-carousel {
+        width: 100% !important;
+        margin: 0 auto;
+    }
 }

@@ -160,8 +160,10 @@ $(document).on('mouseleave','.chart-row .data', function(e) {
 
 function chart_all() {
     $.each($('.data-female'), function(k,v) {
-        let data = $(v).attr('data').split('-')
 
+        $(v).attr('data',chart_all_female[k]);
+        let data = $(v).attr('data').split('-')
+        
         let agree = data[2];
         let disagree = data[3];
 
@@ -171,8 +173,11 @@ function chart_all() {
     });
 
     $.each($('.data-male'), function(k,v) {
-        let data = $(v).attr('data').split('-')
 
+        $(v).attr('data',chart_all_male[k]);
+
+        let data = $(v).attr('data').split('-')
+        
         let agree = data[2];
         let disagree = data[3];
 
