@@ -36,7 +36,7 @@
         <img id="sel2" src="{{ topic.selection2_image.url}}">
       </div>
     </div>
-    <div id="sel1" class="submit" onclick="clickSelection(this.id)">
+    <div id="" class="submit" onclick="clickSelection(this.id)">
       선택하기
     </div>
 
@@ -50,6 +50,10 @@
 <!-- selection 선택시 함수 -->
 <script>
   function clickSelection(e) {
+
+    if (e=='') 
+      alert('사진을 클릭해주세요.');   
+    
 
     let target = e;
     let selection;
