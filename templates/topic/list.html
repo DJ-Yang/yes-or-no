@@ -11,15 +11,13 @@
 
 
 <div class="topic-list">
-  <div>핫 토픽</div>
-  
-    
-  <div class="hot-time">
-    1
-  </div>
-  <div class="owl-carousel owl-theme">
+
+
+
+  <!-- <div class="owl-carousel owl-theme">
     {% for topic in hot %}
     <div class="item">
+      <img class="topic-badge" src="{% static 'img/hot.png' %}">
       <div class="topic-content">
         <div class="topic-thumb">
           <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
@@ -45,10 +43,13 @@
       </div>
     </div>
     {% endfor %}
-  </div>
-  
+  </div> -->
 
-  <!-- <div class="hot-topic">
+
+  <div class="hot-topic">
+    <h3>오늘의 토픽</h3>
+    <!-- <div class="hot-time">
+    </div> -->
     {% for topic in hot %}
     <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
       <img class="topic-badge" src="{% static 'img/hot.png' %}">
@@ -71,29 +72,34 @@
               </div>
               {% endif %}
             </div>
+            <div style="font-size: 13px; padding-top: 5px;">
+              {{topic.selection_set.count}}명 참여
+            </div>
           </div>
         </div>
       </a>
     </div>
     {% endfor %}
-  </div> -->
+  </div>
 
 
-<div class="default-topic">
-  {% for topic in topics %}
-  <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
-    <img class="topic-badge hide" src="{% static 'img/new.png' %}">
-    <a href="{% url 'topic:check_selection' topic.id %}">
-      <div class="topic-content">
-        <div class="topic-thumb">
-          <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
-            size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
-        </div>
-        <div class="topic-text">
-          <div class="title">{{topic.title}}</div>
-          <div class="description">{{topic.description}}</div>
-          <div class="topic-graph-wrap{% if topic.selection_set.count == 0%} nodata{% endif %}">
-            {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
+  <div class="default-topic">
+    
+    <h3>최신 토픽</h3>
+    {% for topic in topics %}
+    <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
+      <img class="topic-badge hide" src="{% static 'img/new.png' %}">
+      <a href="{% url 'topic:check_selection' topic.id %}">
+        <div class="topic-content">
+          <div class="topic-thumb">
+            <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
+              size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
+          </div>
+          <div class="topic-text">
+            <div class="title">{{topic.title}}</div>
+            <div class="description">{{topic.description}}</div>
+            <div class="topic-graph-wrap{% if topic.selection_set.count == 0%} nodata{% endif %}">
+              {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
 
               {% else %}
               <div class="label-agree">{{topic.get_count_yes}}</div>
@@ -102,7 +108,7 @@
               </div>
               {% endif %}
             </div>
-            <div style="font-size: 13px;">
+            <div style="font-size: 13px; padding-top: 5px;">
               {{topic.selection_set.count}}명 참여
             </div>
           </div>
@@ -123,11 +129,11 @@
     loop: true,
     margin: 10,
     nav: false,
-    autoplay:false,
+    autoplay: false,
     // autoplayTimeout:3000,
     // autoplayHoverPause:true,
     // autoplaySpeed:1000,
-    items:1,
+    items: 1,
   })
 </script>
 <script src="{% static 'js/list.js' %}"></script>

@@ -153,9 +153,6 @@ $(document).on('mouseleave','.chart-row .data', function(e) {
     $('.all-chart-tooltip').hide();
 });
 
-
-
-
 // 전체차트 value 지정
 
 function chart_all() {
