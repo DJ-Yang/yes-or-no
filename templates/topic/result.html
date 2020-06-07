@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block header %}
+<meta property="og:image" content='http://homevale.co.kr{{ topic.thumb_image.url }}'>
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
 <link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
@@ -59,7 +60,7 @@
         <div class="sel2">{{topic.selection2_des}}</div>
     </div>
     <div class="edit">
-        <a href="#">
+        <a href="{% url 'topic:select' topic.id %}">
             <!-- <img src="{% static 'img/cycle.png' %}" width="25px"> -->
             다시투표하기
         </a>
@@ -80,50 +81,55 @@
             <script type="text/javascript">
                 var currentURL = window.location.href;
                 var buttonURL = currentURL.replace('result/', '');
+                var commentcount = parseInt('{{ selections.count }}');
                 Kakao.Link.createDefaultButton({
                     container: '#kakao-link-btn',
                     objectType: 'feed',
                     content: {
                         title: '{{ topic.title }}',
                         description: '{{ topic.description }}',
-                        imageUrl: 'http://127.0.0.1:8000{{ topic.thumb_image.url }}',
-                        // imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                        imageUrl: 'http://homevalue.co.kr{{ topic.thumb_image.url }}',
                         link: {
                             mobileWebUrl: buttonURL,
                             webUrl: buttonURL
                         }
                     },
                     social: {
-                        likeCount: 286,
-                        commentCount: 45,
-                        sharedCount: 845
+                        commentCount: commentcount,
+                        // sharedCount: 845
+                        // 나중에 공유하기 callback parameter이용해서 공유 횟수 볼 수 있게 하기
                     },
                     buttons: [
                         {
-                            title: '웹으로 보기',
+                            title: '나도 투표하기',
                             link: {
                                 mobileWebUrl: buttonURL,
                                 webUrl: buttonURL
                             }
                         },
-                        {
-                            title: '앱으로 보기',
-                            link: {
-                                mobileWebUrl: buttonURL,
-                                webUrl: buttonURL
-                            }
-                        }
                     ]
                 });
             </script>
-            <!-- <img src="{% static 'img/naver_share.png' %}" width="45px"> -->
+            <a href="javascript:;" id="naver-link-btn" onclick="share();">
+                <img src="{% static 'img/naver_share.png' %}" width="45px">
+            </a>
             <span>
-                <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+                <script>
+                    var currentURL = window.location.href;
+                    var buttonURL = currentURL.replace('result/', '');
+                    function share() {
+                      var url = buttonURL;
+                      var title = '{{ topic.title }}';
+                      var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+                      document.location = shareURL;
+                    }
+                  </script>
+                <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
                 <script type="text/javascript">
                     var currentURL = window.location.href;
                     var buttonURL = currentURL.replace('result/', '');
                     new ShareNaver.makeButton({ "type": "f", "title": "'{{ topic.title }}'", "url": buttonURL });
-                </script>
+                </script> -->
             </span>
         </div>
     </div>
