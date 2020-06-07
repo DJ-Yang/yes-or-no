@@ -12,6 +12,10 @@ $(document).ready(function() {
         // image_resize($(v));
     })
 
+    let month = now.getMonth()+1;
+    let day = now.getDate();
+    $('.hot-time').html(month+'월'+day+'일 00:00 기준')
+
 });
 
 
