@@ -8,6 +8,38 @@
 <script type="text/javascript">
     var postive = "{{ result.postive }}";
     var negative = "{{ result.negative }}";
+
+
+    var data = "{{result}}"
+
+    data = data.replace(/&#x27;/gi, '"');
+    
+    console.log(typeof(data))
+
+    json_data = JSON.parse(data);
+    
+    console.log(json_data)
+
+    let chart_gender_female_data = [json_data['negative_female'],json_data['positive_female']];
+    let chart_gender_male_data = [json_data['negative_male'],json_data['positive_male']];
+    let chart_age_postive = [json_data['positive_10age'],json_data['positive_20age'],json_data['positive_20age'],json_data['positive_30age'],json_data['positive_40age'],json_data['positive_50age'],json_data['positive_60age']];
+    let chart_age_negative = [json_data['negative_10age'],json_data['negative_20age'],json_data['negative_20age'],json_data['negative_30age'],json_data['negative_40age'],json_data['negative_50age'],json_data['negative_60age']];
+    let chart_all_female_10 = 'female-10-'+json_data['positive_10age_female']+'-'+json_data['negative_10age_female'];
+    let chart_all_female_20 = 'female-20-'+json_data['positive_20age_female']+'-'+json_data['negative_20age_female'];
+    let chart_all_female_30 = 'female-30-'+json_data['positive_30age_female']+'-'+json_data['negative_30age_female'];
+    let chart_all_female_40 = 'female-40-'+json_data['positive_40age_female']+'-'+json_data['negative_40age_female'];
+    let chart_all_female_50 = 'female-50-'+json_data['positive_50age_female']+'-'+json_data['negative_50age_female'];
+    let chart_all_female_60 = 'female-60-'+json_data['positive_60age_female']+'-'+json_data['negative_60age_female'];
+    let chart_all_male_10 = 'male-10-'+json_data['positive_10age_male']+'-'+json_data['negative_10age_male'];
+    let chart_all_male_20 = 'male-20-'+json_data['positive_20age_male']+'-'+json_data['negative_20age_male'];
+    let chart_all_male_30 = 'male-30-'+json_data['positive_30age_male']+'-'+json_data['negative_30age_male'];
+    let chart_all_male_40 = 'male-40-'+json_data['positive_40age_male']+'-'+json_data['negative_40age_male'];
+    let chart_all_male_50 = 'male-50-'+json_data['positive_50age_male']+'-'+json_data['negative_50age_male'];
+    let chart_all_male_60 = 'male-60-'+json_data['positive_60age_male']+'-'+json_data['negative_60age_male'];
+    
+    let chart_all_female = [chart_all_female_10,chart_all_female_20,chart_all_female_30,chart_all_female_40,chart_all_female_50, chart_all_female_60];
+    let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
+
 </script>
 {% endblock %}
 
@@ -245,7 +277,7 @@
 
     function chart_gender() {
         let male_data = [{
-            data: [40, 60],
+            data: chart_gender_male_data,
             labels: ["1", "2"],
             backgroundColor: [
                 "#FFDE50",
@@ -282,7 +314,7 @@
         };
 
         let female_data = [{
-            data: [40, 60],
+            data: chart_gender_female_data,
             labels: ["1", "2"],
             backgroundColor: [
                 "#FFDE50",
@@ -348,12 +380,12 @@
                     label: '찬성',
                     backgroundColor: '#FFDE50',
                     borderColor: '#FFDE50',
-                    data: [20, 10, 20, 23, 15, 5]
+                    data: chart_age_postive
                 }, {
                     label: '반대',
                     backgroundColor: '#646464',
                     borderColor: '#646464',
-                    data: [12, 24, 20, 0, 10, 15]
+                    data: chart_age_negative
                 }]
             },
             options: {
