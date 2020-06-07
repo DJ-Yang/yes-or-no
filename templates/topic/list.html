@@ -13,7 +13,7 @@
     {% for topic in hot %}
     <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
       <img class="topic-badge" src="{% static 'img/hot.png' %}">
-      <a href="{% url 'topic:select' topic.id %}">
+      <a href="{% url 'topic:check_selection' topic.id %}">
         <div class="topic-content">
           <div class="topic-thumb">
             <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
@@ -44,7 +44,7 @@
   {% for topic in topics %}
   <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
     <img class="topic-badge hide" src="{% static 'img/new.png' %}">
-    <a href="{% url 'topic:select' topic.id %}">
+    <a href="{% url 'topic:check_selection' topic.id %}">
       <div class="topic-content">
         <div class="topic-thumb">
           <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"

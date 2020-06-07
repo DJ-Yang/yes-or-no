@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block header %}
+<meta property="og:image" content='{{ topic.thumb_image.url }}'>
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
 <link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
@@ -27,7 +28,7 @@
         <div class="sel2">{{topic.selection2_des}}</div>
     </div>
     <div class="edit">
-        <a href="#">
+        <a href="{% url 'topic:select' topic.id %}">
             <!-- <img src="{% static 'img/cycle.png' %}" width="25px"> -->
             다시투표하기
         </a>
@@ -48,13 +49,14 @@
             <script type="text/javascript">
                 var currentURL = window.location.href;
                 var buttonURL = currentURL.replace('result/', '');
+                var commentcount = parseInt('{{ selections.count }}');
                 Kakao.Link.createDefaultButton({
                     container: '#kakao-link-btn',
                     objectType: 'feed',
                     content: {
                         title: '{{ topic.title }}',
                         description: '{{ topic.description }}',
-                        imageUrl: 'http://127.0.0.1:8000{{ topic.thumb_image.url }}',
+                        imageUrl: 'http://homevalue.co.kr{{ topic.thumb_image.url }}',
                         // imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
                         link: {
                             mobileWebUrl: buttonURL,
@@ -62,30 +64,35 @@
                         }
                     },
                     social: {
-                        likeCount: 286,
-                        commentCount: 45,
-                        sharedCount: 845
+                        commentCount: commentcount,
+                        // sharedCount: 845
+                        // 나중에 공유하기 callback parameter이용해서 공유 횟수 볼 수 있게 하기
                     },
                     buttons: [
                         {
-                            title: '웹으로 보기',
+                            title: '나도 투표하기',
                             link: {
                                 mobileWebUrl: buttonURL,
                                 webUrl: buttonURL
                             }
                         },
-                        {
-                            title: '앱으로 보기',
-                            link: {
-                                mobileWebUrl: buttonURL,
-                                webUrl: buttonURL
-                            }
-                        }
                     ]
                 });
             </script>
-            <!-- <img src="{% static 'img/naver_share.png' %}" width="45px"> -->
+            <!-- <form id="myform">
+                URL입력:  <input type="text" id="url" value="https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&oquery=%EB%84%A4%EC%9D%B4%EB%B2%84+%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%84%BC%ED%84%B0&ie=utf8&query=%EB%84%A4%EC%9D%B4%EB%B2%84+%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%84%BC%ED%84%B0"><br/>
+                Title입력:  <input type="text" id="title" value="네이버개발자센터 검색결과"><br/>
+            </form>
+            <img src="{% static 'img/naver_share.png' %}" width="45px"> -->
             <span>
+                <!-- <script>
+                    function share() {
+                      var url = encodeURI(encodeURIComponent(myform.url.value));
+                      var title = encodeURI(myform.title.value);
+                      var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+                      document.location = shareURL;
+                    }
+                  </script> -->
                 <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
                 <script type="text/javascript">
                     var currentURL = window.location.href;
