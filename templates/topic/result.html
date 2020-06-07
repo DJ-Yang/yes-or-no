@@ -14,31 +14,31 @@
     var data = "{{result}}"
 
     data = data.replace(/&#x27;/gi, '"');
-    
-    console.log(typeof(data))
+
+    console.log(typeof (data))
 
     json_data = JSON.parse(data);
-    
+
     console.log(json_data)
 
-    let chart_gender_female_data = [json_data['negative_female'],json_data['positive_female']];
-    let chart_gender_male_data = [json_data['negative_male'],json_data['positive_male']];
-    let chart_age_postive = [json_data['positive_10age'],json_data['positive_20age'],json_data['positive_20age'],json_data['positive_30age'],json_data['positive_40age'],json_data['positive_50age'],json_data['positive_60age']];
-    let chart_age_negative = [json_data['negative_10age'],json_data['negative_20age'],json_data['negative_20age'],json_data['negative_30age'],json_data['negative_40age'],json_data['negative_50age'],json_data['negative_60age']];
-    let chart_all_female_10 = 'female-10-'+json_data['positive_10age_female']+'-'+json_data['negative_10age_female'];
-    let chart_all_female_20 = 'female-20-'+json_data['positive_20age_female']+'-'+json_data['negative_20age_female'];
-    let chart_all_female_30 = 'female-30-'+json_data['positive_30age_female']+'-'+json_data['negative_30age_female'];
-    let chart_all_female_40 = 'female-40-'+json_data['positive_40age_female']+'-'+json_data['negative_40age_female'];
-    let chart_all_female_50 = 'female-50-'+json_data['positive_50age_female']+'-'+json_data['negative_50age_female'];
-    let chart_all_female_60 = 'female-60-'+json_data['positive_60age_female']+'-'+json_data['negative_60age_female'];
-    let chart_all_male_10 = 'male-10-'+json_data['positive_10age_male']+'-'+json_data['negative_10age_male'];
-    let chart_all_male_20 = 'male-20-'+json_data['positive_20age_male']+'-'+json_data['negative_20age_male'];
-    let chart_all_male_30 = 'male-30-'+json_data['positive_30age_male']+'-'+json_data['negative_30age_male'];
-    let chart_all_male_40 = 'male-40-'+json_data['positive_40age_male']+'-'+json_data['negative_40age_male'];
-    let chart_all_male_50 = 'male-50-'+json_data['positive_50age_male']+'-'+json_data['negative_50age_male'];
-    let chart_all_male_60 = 'male-60-'+json_data['positive_60age_male']+'-'+json_data['negative_60age_male'];
-    
-    let chart_all_female = [chart_all_female_10,chart_all_female_20,chart_all_female_30,chart_all_female_40,chart_all_female_50, chart_all_female_60];
+    let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
+    let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
+    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
+    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
+    let chart_all_female_10 = 'female-10-' + json_data['positive_10age_female'] + '-' + json_data['negative_10age_female'];
+    let chart_all_female_20 = 'female-20-' + json_data['positive_20age_female'] + '-' + json_data['negative_20age_female'];
+    let chart_all_female_30 = 'female-30-' + json_data['positive_30age_female'] + '-' + json_data['negative_30age_female'];
+    let chart_all_female_40 = 'female-40-' + json_data['positive_40age_female'] + '-' + json_data['negative_40age_female'];
+    let chart_all_female_50 = 'female-50-' + json_data['positive_50age_female'] + '-' + json_data['negative_50age_female'];
+    let chart_all_female_60 = 'female-60-' + json_data['positive_60age_female'] + '-' + json_data['negative_60age_female'];
+    let chart_all_male_10 = 'male-10-' + json_data['positive_10age_male'] + '-' + json_data['negative_10age_male'];
+    let chart_all_male_20 = 'male-20-' + json_data['positive_20age_male'] + '-' + json_data['negative_20age_male'];
+    let chart_all_male_30 = 'male-30-' + json_data['positive_30age_male'] + '-' + json_data['negative_30age_male'];
+    let chart_all_male_40 = 'male-40-' + json_data['positive_40age_male'] + '-' + json_data['negative_40age_male'];
+    let chart_all_male_50 = 'male-50-' + json_data['positive_50age_male'] + '-' + json_data['negative_50age_male'];
+    let chart_all_male_60 = 'male-60-' + json_data['positive_60age_male'] + '-' + json_data['negative_60age_male'];
+
+    let chart_all_female = [chart_all_female_10, chart_all_female_20, chart_all_female_30, chart_all_female_40, chart_all_female_50, chart_all_female_60];
     let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
 
 </script>
@@ -118,12 +118,12 @@
                     var currentURL = window.location.href;
                     var buttonURL = currentURL.replace('result/', '');
                     function share() {
-                      var url = buttonURL;
-                      var title = '{{ topic.title }}';
-                      var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
-                      document.location = shareURL;
+                        var url = buttonURL;
+                        var title = '{{ topic.title }}';
+                        var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+                        document.location = shareURL;
                     }
-                  </script>
+                </script>
                 <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
                 <script type="text/javascript">
                     var currentURL = window.location.href;
@@ -145,7 +145,8 @@
                 </ul>
             </div>
             <div class="canvas-container1">
-                <canvas width="100%" height="100%" id="chart1" class="chart1"></canvas>
+                <span style="display: block; text-align: center; padding-top: 80px; color:grey;">데이터 수집 중입니다.</span>
+                <!-- <canvas width="100%" height="100%" id="chart1" class="chart1"></canvas> -->
             </div>
         </div>
     </div>
@@ -286,8 +287,9 @@
             data: chart_gender_male_data,
             labels: ["1", "2"],
             backgroundColor: [
-                "#FFDE50",
+
                 "#646464",
+                "#FFDE50",
             ],
             borderColor: "#fff"
         }];
@@ -323,8 +325,9 @@
             data: chart_gender_female_data,
             labels: ["1", "2"],
             backgroundColor: [
-                "#FFDE50",
                 "#646464",
+                "#FFDE50",
+
             ],
             borderColor: "#fff"
         }];
