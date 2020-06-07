@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block header %}
-<meta property="og:image" content='{{ topic.thumb_image.url }}'>
+<meta property="og:image" content='http://homevale.co.kr{{ topic.thumb_image.url }}'>
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
 <link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
@@ -57,7 +57,6 @@
                         title: '{{ topic.title }}',
                         description: '{{ topic.description }}',
                         imageUrl: 'http://homevalue.co.kr{{ topic.thumb_image.url }}',
-                        // imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
                         link: {
                             mobileWebUrl: buttonURL,
                             webUrl: buttonURL
