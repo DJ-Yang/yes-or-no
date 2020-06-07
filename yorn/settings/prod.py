@@ -3,7 +3,7 @@ from yorn.settings.base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'homevalue.co.kr', 'www.homevale.co.kr']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'topic-talk.com', 'www.topic-talk.com']
 
 SOCIALACCOUNT_PROVIDERS = {
     'kakao': {

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block header %}
-<meta property="og:image" content="http://homevale.co.kr{{ topic.thumb_image.url })">
+<meta property="og:image" content="https://yorn-bucket.s3.ap-northeast-2.amazonaws.com{{ topic.thumb_image.url })">
 <meta property="og:title" contnet="{{ topic.title }}">
 <meta property="og:description" conetnt="{{ topic.description }}">
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
@@ -90,7 +90,7 @@
                     content: {
                         title: '{{ topic.title }}',
                         description: '{{ topic.description }}',
-                        imageUrl: 'http://homevalue.co.kr{{ topic.thumb_image.url }}',
+                        imageUrl: 'https://yorn-bucket.s3.ap-northeast-2.amazonaws.com{{ topic.thumb_image.url }}',
                         link: {
                             mobileWebUrl: buttonURL,
                             webUrl: buttonURL
