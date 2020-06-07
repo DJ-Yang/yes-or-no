@@ -120,7 +120,7 @@
         display: flex;
         align-items: center;
         min-height: 170px;
-        width: 90%;
+        width: 100%;
     }
 
     .item .topic-thumb {
@@ -137,7 +137,8 @@
     .item .topic-text {
         display: block;
         padding-left: 20px;
-        width: 90%;
+        padding-right: 20px;
+        width: 80%;
     }
     .item .topic-text .title{
         font-size: 25px;
@@ -148,7 +149,7 @@
         padding-top: 10px;
         font-size: 14px;
         color: #646464;
-        line-height: 14px;
+        line-height: 16px;
         word-break: keep-all;
     }
     .owl-theme .owl-dots .owl-dot.active span, 
@@ -165,8 +166,8 @@
         position: relative;
         width: 70%;
         margin: 0 auto;
-        font-size: 11px;
-        color: #393A40;
+        font-size: 13px;
+        color: rgb(119, 119, 119);
     }
 }
 
