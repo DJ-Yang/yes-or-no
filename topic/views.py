@@ -361,6 +361,7 @@ def topic_result(request, topic_id):
   return render(request, 'topic/result.html', {
     'topic': topic,
     'result': result,
+    'selections': selections,
     'data': data,
   })
 
