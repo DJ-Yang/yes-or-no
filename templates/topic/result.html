@@ -27,7 +27,7 @@
         <div class="sel2">{{topic.selection2_des}}</div>
     </div>
     <div class="edit">
-        <a href="#">
+        <a href="{% url 'topic:select' topic.id %}">
             <!-- <img src="{% static 'img/cycle.png' %}" width="25px"> -->
             다시투표하기
         </a>
