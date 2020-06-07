@@ -6,6 +6,7 @@
 }
 .container {
     min-height: 900px;
+    max-width: 900px;
 }
 
 .topic-graph-wrap {
@@ -35,24 +36,105 @@
 
 .topic-thumb {
     width: 400px;
-    
-    margin: 100px auto 20px;
+    height: 400px;
+    margin: 50px auto 40px;
 }
 
 .topic-thumb img {
     width: 100%;
+    height: 100%;
     color: rgb(255, 228, 110);
 }
 
 .topic {
-    margin-top: 100px;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 50px;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.topic .description {
+    width: 90%;
+    margin: 0 auto;
+    min-height: 50px;
+    font-family: nanum;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.topic .description .sel1{
+    float: left;
+}
+.topic .description .sel2 {
+    float: right;
+}
+
+.edit {
+    width: 130px;
+    margin: 10px auto 0;
+    font-family: nanum;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+
+    padding: 5px 10px;
+    border: 1px solid rgba(78,89,104,.27);
+    border-radius: 5px;
+    cursor: pointer;
+    color: #666;
+    transition: background-color ease-in .2s;
+    border-radius: 5px;
+}
+
+.edit:hover {
+    background-color: rgba(78,89,104,.07);
+}
+
+
+.edit a,
+.edit a:hover,
+.edit a:visited{
+    text-decoration: none;
+    color: #333333;
+}
+
+.share-sns {
+    width: 90%;
+    margin: 20px auto 20px;
+    text-align: center;
+}
+.share-sns a,
+.share-sns a:hover,
+.share-sns a:visited{
+    text-decoration: none;
+}
+.share-sns .title {
+    font-family: nanum;
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 10px;
+}
+.share-sns .button img {
+    margin: 0 10px;
+}
+.share-sns .button {
+    display: inline-block;
+    padding: 0px 10px;
+}
+
+.topic-analysis {
+    width: 80%;
+    margin: 0 auto;
+    min-height: 600px;    
+    padding-bottom: 100px;
+    display: flex;
 }
 
 .topic-analysis-box {
     margin-top: 40px;
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
+    margin-left: 30px;
     display: inline-block;
 }
 .topic-analysis-box .title {
@@ -61,11 +143,18 @@
     font-size: 30px;
     text-align: center;
 }
-.topic-analysis-box .chart {
+.topic-analysis-box .chart1,
+.topic-analysis-box .chart2 {
     width: 400px;
     height: 400px;
     margin: 0 auto;
 }
+
+.age-chart-wrap {
+    width: 400px;
+    height: 400px;
+}
+
 ._baa_ {
     width: 70%;
     background-color: #646464;
@@ -73,16 +162,35 @@
     margin: 50px auto;
 }
 
+.chart1 ul li ,
+.chart2 ul li{
+    font-size: 18px;
+    display: inline-block;
+    padding: 5px 0px;
+    margin: 0 5px;
+    font-family: nanum;
+    cursor: pointer;
+}
+.active {
+    font-weight: 800;
+    border-bottom: 2px solid #FFDE50;
+}
+
 @media all and (max-width:1200px) {
     .topic-thumb {
         width: 350px;
+        height: 350px;
         margin: 50px auto 20px;
+    }
+    .topic-thumb img {
+        width: 100%;
+        height: 100%;
     }
     .topic-analysis-box {
         margin-top: 40px;
         margin-left: 40px;
-        width: 380px;
-        height: 380px;
+        width: 320px;
+        height: 320px;
         display: inline-block;
     }
     .topic-analysis-box .title {
@@ -91,10 +199,15 @@
         font-size: 30px;
         text-align: center;
     }
-    .topic-analysis-box .chart {
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
         width: 300px;
         height: 300px;
         margin: 0 auto;
+    }
+    .age-chart-wrap {
+        width: 300px;
+        height: 300px;
     }
 
 }
@@ -102,13 +215,19 @@
 @media all and (max-width:992px) {
     .topic-thumb {
         width: 350px; 
+        width: 350px; 
         margin: 50px auto 20px;
+    }
+    .topic-thumb img{
+        height: 100%;
+        width: 100%;
     }
     .topic-analysis-box {
         margin-top: 40px;
         margin-left: 40px;
-        width: 280px;
-        height: 280px;
+        width: 240px;
+        height: 240px;
+        margin-left: 20px;
         display: inline-block;
     }
     .topic-analysis-box .title {
@@ -117,16 +236,33 @@
         font-size: 30px;
         text-align: center;
     }
-    .topic-analysis-box .chart {
-        width: 200px;
-        height: 200px;
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
+        width: 220px;
+        height: 220px;
         margin: 0 auto;
+    }
+    .age-chart-wrap {
+        width: 220px;
+        height: 220px;
     }
 }
 @media all and (max-width:768px) {
+
+    .topic .description {
+        font-size: 15px;
+    }
+    
     ._baa_ {
         width: 80%;
         margin-top: 100px; 
+    }
+    .topic {
+        width: 90%;
+    }
+    .topic-analysis {
+        min-height: 700px;
+        display: block;
     }
     .topic-analysis-box {
         margin: 30px auto;
@@ -135,12 +271,78 @@
         margin: 20px auto;
         display: block;
     }
-    .topic-analysis-box .chart {
-        width: 250px;
-        height: 250px;
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
+        width: 500px;
+        height: 500px;
     }
     .topic-thumb {
-        width: 300px;
-        height: ;
+        width: 350px;
+        height: 350px;
+    }
+    .topic-thumb img {
+        width: 100%;
+        height: 100%;
+    }
+    .age-chart-wrap {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media all and (max-width:480px) {
+    .topic .description {
+        font-size: 12px;
+    }
+    .container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    ._baa_ {
+        width: 100%;
+        margin-top: 100px; 
+    }
+    .topic {
+        padding-top: 0;
+        width: 100%;
+    }
+    .topic .topic-title {
+        margin-top: 0;
+    }
+    .topic .topic-graph-wrap {
+        width: 90%;
+    }
+    .topic-analysis {
+        width: 90%;
+    }
+    .topic-analysis-box {
+        margin: 30px auto;
+        width: 100%;
+        margin: 20px auto;
+        display: block;
+    }
+    .topic-analysis-box .chart1,
+    .topic-analysis-box .chart2 {
+        width: 100%;
+        /* height: 250px; */
+    }
+    .topic-thumb {
+        width: 250px;
+        height: 250px;
+        margin: 10px auto;
+    }
+    .topic-thumb img {
+        width: 100%;
+        height: 100%;
+    }
+    .topic-analysis-box .chart2 {
+        margin-top: 150px;
+    }
+    .age-chart-wrap {
+        width: 100%;
+        height: 100%;
+        max-width: 480px;
+        max-height: 380px;
+        min-height: 480px;
     }
 }

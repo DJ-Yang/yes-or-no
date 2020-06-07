@@ -3,10 +3,46 @@
 {% load static %}
 
 {% block header %}
+<meta property="og:image" content="https://yorn-bucket.s3.ap-northeast-2.amazonaws.com{{ topic.thumb_image.url })">
+<meta property="og:title" contnet="{{ topic.title }}">
+<meta property="og:description" conetnt="{{ topic.description }}">
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
+<link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
     var postive = "{{ result.postive }}";
     var negative = "{{ result.negative }}";
+
+
+    var data = "{{result}}"
+
+    data = data.replace(/&#x27;/gi, '"');
+
+    console.log(typeof (data))
+
+    json_data = JSON.parse(data);
+
+    console.log(json_data)
+
+    let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
+    let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
+    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
+    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
+    let chart_all_female_10 = 'female-10-' + json_data['positive_10age_female'] + '-' + json_data['negative_10age_female'];
+    let chart_all_female_20 = 'female-20-' + json_data['positive_20age_female'] + '-' + json_data['negative_20age_female'];
+    let chart_all_female_30 = 'female-30-' + json_data['positive_30age_female'] + '-' + json_data['negative_30age_female'];
+    let chart_all_female_40 = 'female-40-' + json_data['positive_40age_female'] + '-' + json_data['negative_40age_female'];
+    let chart_all_female_50 = 'female-50-' + json_data['positive_50age_female'] + '-' + json_data['negative_50age_female'];
+    let chart_all_female_60 = 'female-60-' + json_data['positive_60age_female'] + '-' + json_data['negative_60age_female'];
+    let chart_all_male_10 = 'male-10-' + json_data['positive_10age_male'] + '-' + json_data['negative_10age_male'];
+    let chart_all_male_20 = 'male-20-' + json_data['positive_20age_male'] + '-' + json_data['negative_20age_male'];
+    let chart_all_male_30 = 'male-30-' + json_data['positive_30age_male'] + '-' + json_data['negative_30age_male'];
+    let chart_all_male_40 = 'male-40-' + json_data['positive_40age_male'] + '-' + json_data['negative_40age_male'];
+    let chart_all_male_50 = 'male-50-' + json_data['positive_50age_male'] + '-' + json_data['negative_50age_male'];
+    let chart_all_male_60 = 'male-60-' + json_data['positive_60age_male'] + '-' + json_data['negative_60age_male'];
+
+    let chart_all_female = [chart_all_female_10, chart_all_female_20, chart_all_female_30, chart_all_female_40, chart_all_female_50, chart_all_female_60];
+    let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
+
 </script>
 {% endblock %}
 
@@ -16,30 +52,223 @@
         {{ topic.title }}
     </div>
     <div class="topic-graph-wrap">
-        <div class="label-agree">30%</div>
-        <div class="label-disagree">70%</div>
-        <div class="agree">
+        <div class="label-agree" style="width:{{topic.get_count_yes}};">{{topic.get_count_yes}}</div>
+        <div class="label-disagree">{% if topic.get_count_no != '0%'%}{{topic.get_count_no}}{%endif%}</div>
+        <div class="agree" style="width: {{topic.get_count_yes}};">
         </div>
+    </div>
+    <div class="description">
+        <div class="sel1">{{topic.selection1_des}}</div>
+        <div class="sel2">{{topic.selection2_des}}</div>
+    </div>
+    <div class="edit">
+        <a href="{% url 'topic:select' topic.id %}">
+            <!-- <img src="{% static 'img/cycle.png' %}" width="25px"> -->
+            다시투표하기
+        </a>
     </div>
     <div class="topic-thumb">
         <img src="{{topic.thumb_image.url}}">
     </div>
+
+    <div class="share-sns">
+        <div class="title">
+            <img src="{% static 'img/share.png' %}" width="20px">
+            공유하기
+        </div>
+        <div class="button">
+            <a href="javascript:;" id="kakao-link-btn">
+                <img src="{% static 'img/kakao_share.png' %}" width="45px">
+            </a>
+            <script type="text/javascript">
+                var currentURL = window.location.href;
+                var buttonURL = currentURL.replace('result/', '');
+                var commentcount = parseInt('{{ selections.count }}');
+                Kakao.Link.createDefaultButton({
+                    container: '#kakao-link-btn',
+                    objectType: 'feed',
+                    content: {
+                        title: '{{ topic.title }}',
+                        description: '{{ topic.description }}',
+                        imageUrl: 'https://yorn-bucket.s3.ap-northeast-2.amazonaws.com{{ topic.thumb_image.url }}',
+                        link: {
+                            mobileWebUrl: buttonURL,
+                            webUrl: buttonURL
+                        }
+                    },
+                    social: {
+                        commentCount: commentcount,
+                        // sharedCount: 845
+                        // 나중에 공유하기 callback parameter이용해서 공유 횟수 볼 수 있게 하기
+                    },
+                    buttons: [
+                        {
+                            title: '나도 투표하기',
+                            link: {
+                                mobileWebUrl: buttonURL,
+                                webUrl: buttonURL
+                            }
+                        },
+                    ]
+                });
+            </script>
+            <a href="javascript:;" id="naver-link-btn" onclick="share();">
+                <img src="{% static 'img/naver_share.png' %}" width="45px">
+            </a>
+            <span>
+                <script>
+                    var currentURL = window.location.href;
+                    var buttonURL = currentURL.replace('result/', '');
+                    function share() {
+                        var url = buttonURL;
+                        var title = '{{ topic.title }}';
+                        var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+                        document.location = shareURL;
+                    }
+                </script>
+                <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+                <script type="text/javascript">
+                    var currentURL = window.location.href;
+                    var buttonURL = currentURL.replace('result/', '');
+                    new ShareNaver.makeButton({ "type": "f", "title": "'{{ topic.title }}'", "url": buttonURL });
+                </script> -->
+            </span>
+        </div>
+    </div>
 </div>
 <div class="topic-analysis">
     <div class="topic-analysis-box">
-        <div class="title">
-            분석 1
-        </div>
-        <div class="chart">
-            <canvas width="100%" height="100%" id="myChart"></canvas>
+        <div class="chart1">
+            <div>
+                <ul>
+                    <li class="week active">주간</li>
+                    <li class="month">월간</li>
+                    <!-- <li class="year">연간</li> -->
+                </ul>
+            </div>
+            <div class="canvas-container1">
+                <span style="display: block; text-align: center; padding-top: 80px; color:grey;">데이터 수집 중입니다.</span>
+                <!-- <canvas width="100%" height="100%" id="chart1" class="chart1"></canvas> -->
+            </div>
         </div>
     </div>
     <div class="topic-analysis-box">
-        <div class="title">
-            분석 2
+
+        <div class="all-chart-tooltip">
+            <div class="square"></div>
+            <div class="value"></div>
         </div>
-        <div class="chart">
-            <canvas width="100%" height="100%" id="myChart2"></canvas>
+        <div class="chart2">
+            <div>
+                <ul>
+                    <li class="all active">전체</li>
+                    <li class="age">연령대</li>
+                    <li class="gender">성별</li>
+                </ul>
+            </div>
+            <div class="canvas-container2">
+                <!-- data 속성의 내용은 성별-연령-찬-반 을 나타냄 
+                    js에서 split으로 나눠서 값지정
+                -->
+                <div class="all-chart">
+                    <div class="chart-title" style="display: flex;">
+                        <div class="female">여자</div>
+                        <div class="male">남자</div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="bar-female">
+                            <div class="data data-female" data="female-10-40-20">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                        <div class="legend">10대</div>
+                        <div class="bar-male">
+                            <div class="data data-male" data="male-10-20-30">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="bar-female">
+                            <div class="data data-female" data="female-20-10-40">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                        <div class="legend">20대</div>
+                        <div class="bar-male">
+                            <div class="data data-male" data="male-20-60-40">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="bar-female">
+                            <div class="data data-female" data="female-30-30-20">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                        <div class="legend">30대</div>
+                        <div class="bar-male">
+                            <div class="data data-male" data="male-30-20-30">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="bar-female">
+                            <div class="data data-female" data="female-40-10-10">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                        <div class="legend">40대</div>
+                        <div class="bar-male">
+                            <div class="data data-male" data="male-40-20-50">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="bar-female">
+                            <div class="data data-female" data="female-50-10-10">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                        <div class="legend">50대</div>
+                        <div class="bar-male">
+                            <div class="data data-male" data="male-50-20-30">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-row">
+                        <div class="bar-female">
+                            <div class="data data-female" data="female-60-10-70">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                        <div class="legend">60대</div>
+                        <div class="bar-male">
+                            <div class="data data-male" data="male-60-20-40">
+                                <div class="agree"></div>
+                                <div class="disagree"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <canvas width="100%" height="100%" id="chart2" class="chart2"></canvas> -->
+            </div>
         </div>
     </div>
 </div>
@@ -53,16 +282,21 @@
 <script type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script type="text/javascript">
-        var data = [{
-            data: [40, 60],
-            labels: ["1","2"],
+
+
+    function chart_gender() {
+        let male_data = [{
+            data: chart_gender_male_data,
+            labels: ["1", "2"],
             backgroundColor: [
-                "#FFDE50",
+
                 "#646464",
+                "#FFDE50",
             ],
             borderColor: "#fff"
         }];
-        var options = {
+        let male_options = {
+            responsive: false,
             legend: {
                 display: true,
                 labels: {
@@ -74,7 +308,7 @@
                     formatter: function (value, ctx) {
                         let datasets = ctx.chart.data.datasets;
                         if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
-                            let sum = datasets[0].data.reduce(function(a,b) {return a+b;}, 0);
+                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
                             let percentage = Math.round((value / sum) * 100) + '%';
                             return percentage;
                         } else {
@@ -89,24 +323,260 @@
             }
         };
 
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
+        let female_data = [{
+            data: chart_gender_female_data,
+            labels: ["1", "2"],
+            backgroundColor: [
+                "#646464",
+                "#FFDE50",
+
+            ],
+            borderColor: "#fff"
+        }];
+        let female_options = {
+            responsive: false,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            plugins: {
+                datalabels: {
+                    formatter: function (value, ctx) {
+                        let datasets = ctx.chart.data.datasets;
+                        if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+                            let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+                            let percentage = Math.round((value / sum) * 100) + '%';
+                            return percentage;
+                        } else {
+                            return percentage;
+                        }
+                    },
+                    color: '#fff',
+                }
+            },
+            tooltips: {
+                enabled: false
+            }
+        };
+
+        let ctx = document.getElementById("chart2-male").getContext('2d');
+        console.log(ctx);
+        let chart = new Chart(ctx, {
             type: 'pie',
             data: {
-                datasets: data
+                datasets: male_data
             },
-            options: options
+            options: male_options
         });
-
-        var ctx2 = document.getElementById("myChart2").getContext('2d');
-        var myChart = new Chart(ctx2, {
+        let ctx2 = document.getElementById("chart2-female").getContext('2d');
+        let chart2 = new Chart(ctx2, {
             type: 'pie',
             data: {
-                datasets: data
+                datasets: female_data
             },
+            options: female_options
+        });
+    }
+
+
+    function chart_age() {
+
+        new Chart(document.getElementById("chart2"), {
+            type: 'bar',
+            data: {
+                labels: ['10대', '20대', '30대', '40대', '50대', '60대'],
+                datasets: [{
+                    label: '찬성',
+                    backgroundColor: '#FFDE50',
+                    borderColor: '#FFDE50',
+                    data: chart_age_postive
+                }, {
+                    label: '반대',
+                    backgroundColor: '#646464',
+                    borderColor: '#646464',
+                    data: chart_age_negative
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                title: {
+                    display: false,
+                    // text: ''
+                },
+                tooltips: {
+                    enabled: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        stacked: false
+                    }],
+                    yAxes: [{
+
+                        gridLines: {
+                            display: false
+                        },
+                        stacked: false,
+                        ticks: {
+                            max: 100,
+                            min: 0,
+                            stepSize: 20
+                        }
+                    }]
+                },
+                plugins: {
+                    datalabels: {
+                        align: 'top',
+                        anchor: 'end',
+                        backgroundColor: function (context) {
+                            return context.dataset.backgroundColor;
+                        },
+                        borderRadius: 4,
+                        color: 'white',
+                        formatter: function (value) {
+                            return value;
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function chart_date(date, label_data, chart_value) {
+        let data = {
+            labels: label_data,
+            datasets: [{
+                data: chart_value,
+
+                label: "찬성",
+                borderColor: "#FFDE50",
+                backgroundColor: "#FFDE50",
+                pointRadius: 1,
+                fill: false,
+            }, {
+                data: chart_value,
+                label: "반대",
+                borderColor: "#646464",
+                backgroundColor: "#646464",
+                pointRadius: 1,
+                onpointRadius: 1,
+                pointBackgroundColor: "#646464",
+                fill: false
+            }]
+        }
+        let options = {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        autoSkip: false,
+                        callback: function (value, index, values) {
+                            if (values.length > 7) {
+                                return value
+                            } else {
+                                return value
+                            }
+
+                        }
+                    }
+                }],
+                // yAxes: [{
+                //     gridLines: {
+                //         display: false
+                //     }
+                // }]
+            },
+            elements: {
+                line: {
+                    tension: 0
+                }
+            },
+            tooltips: {
+                enabled: false
+            },
+            plugins: {
+                datalabels: {
+                    display: false,
+                },
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem['Label']
+                    }
+                }
+            },
+        }
+
+
+        create_datechart(data, options, 'line')
+    }
+
+    function create_datechart(data, options, type) {
+        var line_chart = new Chart(document.getElementById("chart1"), {
+            type: type,
+            data: data,
             options: options
         });
+    }
 
+    // 기간별 차트 파이차트 부분 임시 주석
+    // function chart_date(date) {
+    //     let data = [{
+    //         data: [100, 60],
+    //         labels: ["1", "2"],
+    //         backgroundColor: [
+    //             "#FFDE50",
+    //             "#646464",
+    //         ],
+    //         borderColor: "#fff"
+    //     }];
+    //     let options = {
+    //         legend: {
+    //             display: true,
+    //             labels: {
+    //                 fontColor: 'rgb(255, 99, 132)'
+    //             }
+    //         },
+    //         plugins: {
+    //             datalabels: {
+    //                 formatter: function (value, ctx) {
+    //                     let datasets = ctx.chart.data.datasets;
+    //                     if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
+    //                         let sum = datasets[0].data.reduce(function (a, b) { return a + b; }, 0);
+    //                         let percentage = Math.round((value / sum) * 100) + '%';
+    //                         return percentage;
+    //                     } else {
+    //                         return percentage;
+    //                     }
+    //                 },
+    //                 color: '#fff',
+    //             }
+    //         },
+    //         tooltips: {
+    //             enabled: false
+    //         }
+    //     };
+    //     create_datechart(data, options, 'pie');
+    // }
+
+    // function create_datechart(data, options, type) {
+    //     let ctx1 = document.getElementById("chart1").getContext('2d');
+    //     let chart1 = new Chart(ctx1, {
+    //         type: 'bar',
+    //         data: {
+    //             datasets: data
+    //         },
+    //         options: options
+    //     });
+    // }
 </script>
-
+<script src="{% static 'js/result.js' %}"></script>
 {% endblock %}

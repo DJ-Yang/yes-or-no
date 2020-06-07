@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/notice_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="notice-detail">
+
+    <h2 class="top">공지사항</h2>
+
+    <div class="detail">
+        <div class="detail-header">
+            <div class="title">
+                서비스서비스 서비스서비스 정상복구 공지
+            </div>
+            <div class="date">
+                2020.05.29
+            </div>
+        </div>
+        <div class="detail-body">
+            안녕하세요 어디누구누구 입니다.
+        </div>
+        <div class="detail-footer">
+            <a href="{% url 'notice:notice' %}">
+                <div class="button">
+                    목록으로 돌아가기
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -2,18 +2,18 @@
     "id": 1364166390,
     "connected_at": "2020-05-22T08:07:28Z",
     "properties": {
-        "nickname": "박상협"
+        "nickname": "\ubc15\uc0c1\ud611"
     },
     "kakao_account": {
-        "profile_needs_agreement": False,
+        "profile_needs_agreement": false,
         "profile": {
-            "nickname": "박상협"
+            "nickname": "\ubc15\uc0c1\ud611"
         },
-        "has_age_range": True,
-        "age_range_needs_agreement": False,
+        "has_age_range": false,
+        "age_range_needs_agreement": false,
         "age_range": "20~29",
-        "has_gender": True,
-        "gender_needs_agreement": False,
+        "has_gender": false,
+        "gender_needs_agreement": false,
         "gender": "male"
     }
 }
