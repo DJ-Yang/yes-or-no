@@ -19,18 +19,25 @@
   </div>
 
   <div class="explain">
-    사진을 클릭해서 투표해주세요!
+    사진을 클릭한 후 버튼을 눌러주세요.
   </div>
   <div class="selection">
 
     <div class="selection1">
-      <span>{{topic.selection1_des}}</span>
-      <img id="sel1" src="{{ topic.selection1_image.url}}" onclick="clickSelection(this.id)">
+      <span class="sel1-des">{{topic.selection1_des}}</span>
+      <div class="img-wrapper">
+        <img id="sel1" src="{{ topic.selection1_image.url}}">
+      </div>
     </div>
     <div class="vs">vs</div>
     <div class="selection2">
       <span class="sel2-des">{{topic.selection2_des}}</span>
-      <img id="sel2" src="{{ topic.selection2_image.url}}" onclick="clickSelection(this.id)">
+      <div class="img-wrapper">
+        <img id="sel2" src="{{ topic.selection2_image.url}}">
+      </div>
+    </div>
+    <div id="sel1" class="submit" onclick="clickSelection(this.id)">
+      선택하기
     </div>
 
     <div class="_baa_"></div>

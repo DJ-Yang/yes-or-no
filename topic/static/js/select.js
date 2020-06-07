@@ -17,3 +17,23 @@
 //     $('.vs').css('top',sel2_top+10);
 //     $('.vs').css('display','inline-block')    
 // });
+
+
+$(document).on('click','.selection img', function(e) {
+
+    if (this.id == 'sel1') {
+        console.log(this.id)
+        $('#sel2').parent().parent().removeClass('selected');
+        $('#sel1').parent().parent().addClass('selected');
+        $('.sel2-des').css('background-color','#333333');
+        // $('.sel1-des').css('background-color','#FFDE50');
+    } else {
+        console.log(this.id)
+        $('#sel1').parent().parent().removeClass('selected');
+        $('#sel2').parent().parent().addClass('selected');
+        $('.sel1-des').css('background-color','#333333');
+        // $('.sel2-des').css('background-color','f0ff20');
+    }
+
+    $('.submit').attr('id',this.id)
+})
