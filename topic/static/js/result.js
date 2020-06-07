@@ -52,7 +52,7 @@ function reset_canvas2(chart, flag) {
     if (flag == 'gender') {
         canvas.append('<div class="gender">남자</div><canvas style="width: 180px; height: 180px; margin: 0 auto;" id="chart2-male" class="chart"></canvas><div class="gender">여자</div><canvas style="width: 180px; height: 180px; margin: 0 auto;" id="chart2-female" class="chart"></canvas>');
     } else if (flag == 'age') {
-        canvas.append('<div class="age-chart-wrap"><canvas width="100%" height="100%" id="chart2" class="chart2"></canvas></div>');
+        canvas.append('<div class="age-chart-wrap"><canvas width="100%" height="100%" id="chart2" class="chart-age"></canvas></div>');
     } else if (flag == 'all') {
         text = all_chat_html;
         canvas.append(text);
