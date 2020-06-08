@@ -120,8 +120,8 @@
                     var currentURL = window.location.href;
                     var buttonURL = currentURL.replace('result/', '');
                     function share() {
-                        var url = buttonURL;
-                        var title = '{{ topic.title }}';
+                        var url = encodeURI(encodeURIComponent(buttonURL));
+                        var title =  encodeURI('{{ topic.title }}');
                         var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
                         document.location = shareURL;
                     }
