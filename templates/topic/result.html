@@ -25,8 +25,8 @@
 
     let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
     let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
-    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
-    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
+    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
+    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
     let chart_all_female_10 = 'female-10-' + json_data['positive_10age_female'] + '-' + json_data['negative_10age_female'];
     let chart_all_female_20 = 'female-20-' + json_data['positive_20age_female'] + '-' + json_data['negative_20age_female'];
     let chart_all_female_30 = 'female-30-' + json_data['positive_30age_female'] + '-' + json_data['negative_30age_female'];
@@ -154,7 +154,7 @@
     </div>
     <div class="topic-analysis-box">
 
-        <div class="all-chart-tooltip">
+        <div class="all-chart-tooltip hide">
             <div class="square"></div>
             <div class="value"></div>
         </div>
@@ -165,6 +165,12 @@
                     <li class="age">연령대</li>
                     <li class="gender">성별</li>
                 </ul>
+                <div class="chart-legend">
+                    <div class="color-agree"></div>
+                    <div>찬성</div>
+                    <div class="color-disagree"></div>
+                    <div>반대</div>
+                </div>
             </div>
             <div class="canvas-container2">
                 <!-- data 속성의 내용은 성별-연령-찬-반 을 나타냄 
@@ -289,7 +295,6 @@
             data: chart_gender_male_data,
             labels: ["1", "2"],
             backgroundColor: [
-
                 "#646464",
                 "#FFDE50",
             ],
@@ -400,6 +405,9 @@
                 }]
             },
             options: {
+                legend: {
+                    display: false,
+                },
                 maintainAspectRatio: false,
                 title: {
                     display: false,
@@ -414,25 +422,32 @@
                         gridLines: {
                             display: false
                         },
-                        stacked: false
+                        stacked: false,
+                        ticks: {
+                        }
                     }],
                     yAxes: [{
-
                         gridLines: {
                             display: false
                         },
                         stacked: false,
                         ticks: {
-                            max: 100,
+                            max: 110,
                             min: 0,
-                            stepSize: 20
-                        }
+                            stepSize: 20,
+                            callback: function (label, index, labels) {
+                                if (index == 0) {
+                                    return '';
+                                }
+                                return label;
+                            }
+                        },
                     }]
                 },
                 plugins: {
                     datalabels: {
                         align: 'top',
-                        anchor: 'end',
+                        anchor: 'bottom',
                         backgroundColor: function (context) {
                             return context.dataset.backgroundColor;
                         },

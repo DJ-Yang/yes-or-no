@@ -39,7 +39,7 @@ $(document).on('click','.chart2 ul li', function(e) {
 });
 
 $(document).ready(function() {
-    get_data('week');
+    // get_data('week');
     chart_all();
 });
 
@@ -71,6 +71,7 @@ function get_data(date) {
     
     label_data = get_label(date);
     let chart_value = [];
+    console.log(label_data)
     for( let i=0; i<label_data.length;i++) {
         chart_value.push(Math.floor(Math.random() * 10) + 1);
     }
@@ -123,9 +124,11 @@ $(document).on('mouseenter','.chart-row .data div', function(e) {
 
     if ($(e.target).hasClass('agree')) {
         color.css('background-color','#FFDE50')
+        tooltip.css('display','flex');
         $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[2]+'%')
     } else if ($(e.target).hasClass('disagree')) {
         color.css('background-color','#666')
+        tooltip.css('display','flex');
         $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[3]+'%')
     }
 });

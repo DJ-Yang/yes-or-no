@@ -1,17 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.urls import reverse
 from .forms import AddForm
 from .models import User
 
 
 def signin(request):
-    return render(request, 'user/signin.html')
+    
+    if request.GET.get('next',''):
+        return render(request, 'user/signin.html')
+    else:
+        print(request.META.get('HTTP_REFERER'))
+        _next = request.META.get('HTTP_REFERER')
+        _next = _next.split('/',maxsplit=3)[3]
+
+        print(_next)
+
+        url = '/auth/signin/?next=/%s' % _next
+        print(url)
+        return HttpResponseRedirect(url)
 
 
 def add_info(request):
 
     wrong_flag = User.objects.get(pk=request.user.id)
     # 계속 수정해야할때 들어가야되서 일부러 not 넣어둠 나중에 지워야함.
-    if not wrong_flag.gender and wrong_flag.age_range:        
+    if wrong_flag.gender and not (wrong_flag.age_range == 0):
         return redirect('topic:list')
     else:
         if request.method == 'POST':

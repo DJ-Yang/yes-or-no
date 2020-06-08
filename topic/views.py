@@ -215,48 +215,48 @@ def today_caculate_per(objects, topic):
   # 주별, 월별, 연별(보류) 데이터 다른 함수로 만들기
 
   result = {
-    'positive' : positive_value,
-    'negative' : negative_value,
-    'positive_male' : positive_male_value,
-    'positive_female' : positive_female_value,
-    'negetive_male' : negative_male_value,
-    'negative_female' : negative_female_value,
-    'positive_10age' : positive_10age_value,
-    'positive_20age' : positive_20age_value,
-    'positive_30age' : positive_30age_value,
-    'positive_40age' : positive_40age_value,
-    'positive_50age' : positive_50age_value,
-    'positive_60age' : positive_60age_value,
-    'negative_10age' : negative_10age_value,
-    'negative_20age' : negative_20age_value,
-    'negative_30age' : negative_30age_value,
-    'negative_40age' : negative_40age_value,
-    'negative_50age' : negative_50age_value,
-    'negative_60age' : negative_60age_value,
-    'positive_10age_male' : positive_10age_male_value,
-    'positive_10age_female' : positive_10age_female_value,
-    'negative_10age_male' : negative_10age_male_value,
-    'negative_10age_female' : negative_10age_female_value,
-    'positive_20age_male' : positive_20age_male_value,
-    'positive_20age_female' : positive_20age_female_value,
-    'negative_20age_male' : negative_20age_male_value,
-    'negative_20age_female' : negative_20age_female_value,
-    'positive_30age_male' : positive_30age_male_value,
-    'positive_30age_female' : positive_30age_female_value,
-    'negative_30age_male' : negative_30age_male_value,
-    'negative_30age_female' : negative_30age_female_value,
-    'positive_40age_male' : positive_40age_male_value,
-    'positive_40age_female' : positive_40age_female_value,
-    'negative_40age_male' : negative_40age_male_value,
-    'negative_40age_female' : negative_40age_female_value,
-    'positive_50age_male' : positive_50age_male_value,
-    'positive_50age_female' : positive_50age_female_value,
-    'negative_50age_male' : negative_50age_male_value,
-    'negative_50age_female' : negative_50age_female_value,
-    'positive_60age_male' : positive_60age_male_value,
-    'positive_60age_female' : positive_60age_female_value,
-    'negative_60age_male' : negative_60age_male_value,
-    'negative_60age_female' : negative_60age_female_value,
+    'positive' : int(positive_value),
+    'negative' : int(negative_value),
+    'positive_male' : int(positive_male_value),
+    'positive_female' : int(positive_female_value),
+    'negative_male' : int(negative_male_value),
+    'negative_female' : int(negative_female_value),
+    'positive_10age' : int(positive_10age_value),
+    'positive_20age' : int(positive_20age_value),
+    'positive_30age' : int(positive_30age_value),
+    'positive_40age' : int(positive_40age_value),
+    'positive_50age' : int(positive_50age_value),
+    'positive_60age' : int(positive_60age_value),
+    'negative_10age' : int(negative_10age_value),
+    'negative_20age' : int(negative_20age_value),
+    'negative_30age' : int(negative_30age_value),
+    'negative_40age' : int(negative_40age_value),
+    'negative_50age' : int(negative_50age_value),
+    'negative_60age' : int(negative_60age_value),
+    'positive_10age_male' : int(positive_10age_male_value),
+    'positive_10age_female' : int(positive_10age_female_value),
+    'negative_10age_male' : int(negative_10age_male_value),
+    'negative_10age_female' : int(negative_10age_female_value),
+    'positive_20age_male' : int(positive_20age_male_value),
+    'positive_20age_female' : int(positive_20age_female_value),
+    'negative_20age_male' : int(negative_20age_male_value),
+    'negative_20age_female' : int(negative_20age_female_value),
+    'positive_30age_male' : int(positive_30age_male_value),
+    'positive_30age_female' : int(positive_30age_female_value),
+    'negative_30age_male' : int(negative_30age_male_value),
+    'negative_30age_female' : int(negative_30age_female_value),
+    'positive_40age_male' : int(positive_40age_male_value),
+    'positive_40age_female' : int(positive_40age_female_value),
+    'negative_40age_male' : int(negative_40age_male_value),
+    'negative_40age_female' : int(negative_40age_female_value),
+    'positive_50age_male' : int(positive_50age_male_value),
+    'positive_50age_female' : int(positive_50age_female_value),
+    'negative_50age_male' : int(negative_50age_male_value),
+    'negative_50age_female' : int(negative_50age_female_value),
+    'positive_60age_male' : int(positive_60age_male_value),
+    'positive_60age_female' : int(positive_60age_female_value),
+    'negative_60age_male' : int(negative_60age_male_value),
+    'negative_60age_female' : int(negative_60age_female_value),
   }
 
   return result
@@ -322,14 +322,12 @@ def topic_list(request):
   })
 
 def check_selection(request, topic_id):
-  user = request.user
   topic = Topic.objects.get(pk=topic_id)
-  selection = topic.selection_set.filter(selector=user)
-
-  if selection:
-    return redirect('topic:result', topic.id)
-  else:
-    return redirect('topic:select', topic.id)
+  user = request.user
+  if user.is_authenticated:
+    if topic.selection_set.filter(selector=user).exists():
+      return redirect('topic:result', topic.id)
+  return redirect('topic:select', topic.id)
 
 def topic_select(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
@@ -376,8 +374,8 @@ def set_selection(request):
       topic_id = int(request.POST.get('topic_id'))
       topic = Topic.objects.get(pk=topic_id)
       user = request.user
-      # age, gender 부분 유저 정보로 바꿔줘야함.
-      selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age_range=10, gender=1)
+      u_gender = 0 if (user.gender == 'male') else 1
+      selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age_range=user.age_range, gender=u_gender)
       if is_selection:
         selection.select = select_type
         selection.updated_at = timezone.now()
