@@ -149,7 +149,7 @@ CRONJOBS = [
     ('59 23 * * *', 'topic.views.create_daily_data', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
 ]
 
-# # 임시 스태틱 루트 설정
+# 임시 스태틱 루트 설정
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
