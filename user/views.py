@@ -1,10 +1,23 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.urls import reverse
 from .forms import AddForm
 from .models import User
 
 
 def signin(request):
-    return render(request, 'user/signin.html')
+    
+    if request.GET.get('next',''):
+        return render(request, 'user/signin.html')
+    else:
+        print(request.META.get('HTTP_REFERER'))
+        _next = request.META.get('HTTP_REFERER')
+        _next = _next.split('/',maxsplit=3)[3]
+
+        print(_next)
+
+        url = '/auth/signin/?next=/%s' % _next
+        print(url)
+        return HttpResponseRedirect(url)
 
 
 def add_info(request):
