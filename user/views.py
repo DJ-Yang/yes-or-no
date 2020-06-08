@@ -11,7 +11,7 @@ def add_info(request):
 
     wrong_flag = User.objects.get(pk=request.user.id)
     # 계속 수정해야할때 들어가야되서 일부러 not 넣어둠 나중에 지워야함.
-    if not wrong_flag.gender and wrong_flag.age_range:        
+    if wrong_flag.gender and not (wrong_flag.age_range == 0):
         return redirect('topic:list')
     else:
         if request.method == 'POST':
