@@ -165,6 +165,12 @@
                     <li class="age">연령대</li>
                     <li class="gender">성별</li>
                 </ul>
+                <div class="chart-legend">
+                    <div class="color-agree"></div>
+                    <div>찬성</div>
+                    <div class="color-disagree"></div>
+                    <div>반대</div>
+                </div>
             </div>
             <div class="canvas-container2">
                 <!-- data 속성의 내용은 성별-연령-찬-반 을 나타냄 
@@ -399,6 +405,9 @@
                 }]
             },
             options: {
+                legend: {
+                    display:false,
+                },
                 maintainAspectRatio: false,
                 title: {
                     display: false,
