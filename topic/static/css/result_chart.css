@@ -53,6 +53,10 @@
     box-shadow: 2px 1px 5px rgba(0,0,0,0.1);
 }
 
+.hide {
+    display: none;
+}
+
 .all-chart-tooltip .square {
     width: 15px;
     height: 15px;
