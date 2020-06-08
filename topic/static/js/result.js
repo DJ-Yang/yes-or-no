@@ -39,7 +39,7 @@ $(document).on('click','.chart2 ul li', function(e) {
 });
 
 $(document).ready(function() {
-    get_data('week');
+    // get_data('week');
     chart_all();
 });
 
@@ -71,6 +71,7 @@ function get_data(date) {
     
     label_data = get_label(date);
     let chart_value = [];
+    console.log(label_data)
     for( let i=0; i<label_data.length;i++) {
         chart_value.push(Math.floor(Math.random() * 10) + 1);
     }
