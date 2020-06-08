@@ -25,8 +25,8 @@
 
     let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
     let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
-    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
-    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
+    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
+    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
     let chart_all_female_10 = 'female-10-' + json_data['positive_10age_female'] + '-' + json_data['negative_10age_female'];
     let chart_all_female_20 = 'female-20-' + json_data['positive_20age_female'] + '-' + json_data['negative_20age_female'];
     let chart_all_female_30 = 'female-30-' + json_data['positive_30age_female'] + '-' + json_data['negative_30age_female'];
@@ -289,7 +289,6 @@
             data: chart_gender_male_data,
             labels: ["1", "2"],
             backgroundColor: [
-
                 "#646464",
                 "#FFDE50",
             ],
