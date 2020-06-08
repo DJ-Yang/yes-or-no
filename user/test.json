@@ -1,19 +1,119 @@
 {
-    "id": 1364166390,
-    "connected_at": "2020-05-22T08:07:28Z",
-    "properties": {
-        "nickname": "\ubc15\uc0c1\ud611"
-    },
-    "kakao_account": {
-        "profile_needs_agreement": false,
-        "profile": {
-            "nickname": "\ubc15\uc0c1\ud611"
-        },
-        "has_age_range": false,
-        "age_range_needs_agreement": false,
-        "age_range": "20~29",
-        "has_gender": false,
-        "gender_needs_agreement": false,
-        "gender": "male"
-    }
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\Dongjin\\AppData\\Roaming",
+    "COLORTERM": "truecolor",
+    "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-V7M2LRK",
+    "COMSPEC": "C:\\Windows\\system32\\cmd.exe",
+    "COMMONPROGRAMFILES(X86)": "C:\\Program Files (x86)\\Common Files",
+    "COMMONPROGRAMW6432": "C:\\Program Files\\Common Files",
+    "DRIVERDATA": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EXEPATH": "C:\\Program Files\\Git\\bin",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "GIT_ASKPASS": "c:\\Users\\Dongjin\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
+    "HOME": "C:\\Users\\Dongjin",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\Dongjin",
+    "LANG": "ko_KR.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\Dongjin\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-V7M2LRK",
+    "MSYSTEM": "MINGW64",
+    "NUMBER_OF_PROCESSORS": "8",
+    "OLDPWD": "C:/Users/Dongjin/Desktop/sanghyup/yorn/yorn",
+    "OS": "Windows_NT",
+    "ONEDRIVE": "C:\\Users\\Dongjin\\OneDrive",
+    "ONEDRIVECONSUMER": "C:\\Users\\Dongjin\\OneDrive",
+    "PATH": "C;C:\\Users\\Dongjin\\Desktop\\sanghyup\\yorn\\myenv\\Scripts;C:\\Program Files\\Git\\mingw64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Dongjin\\bin;C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.7.10-hotspot\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\Git\\cmd;C:\\Users\\Dongjin\\AppData\\Local\\Programs\\Python\\Python38\\Scripts;C:\\Users\\Dongjin\\AppData\\Local\\Programs\\Python\\Python38;C:\\Users\\Dongjin\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Dongjin\\AppData\\Local\\Programs\\Microsoft VS Code\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
+    "PLINK_PROTOCOL": "ssh",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "9e0d",
+    "PROGRAMFILES": "C:\\Program Files",
+    "PS1": "(myenv) \\[\\033]0;$TITLEPREFIX:$PWD\\007\\]\\n\\[\\033[32m\\]\\u@\\h \\[\\033[35m\\]$MSYSTEM \\[\\033[33m\\]\\w\\[\\033[36m\\]`__git_ps1`\\[\\033[0m\\]\\n$ ",
+    "PSMODULEPATH": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "PWD": "C:/Users/Dongjin/Desktop/sanghyup/yorn",
+    "PROGRAMDATA": "C:\\ProgramData",
+    "PROGRAMFILES(X86)": "C:\\Program Files (x86)",
+    "PROGRAMW6432": "C:\\Program Files",
+    "SESSIONNAME": "Console",
+    "SHLVL": "1",
+    "SYSTEMDRIVE": "C:",
+    "SYSTEMROOT": "C:\\Windows",
+    "TEMP": "C:\\Users\\Dongjin\\AppData\\Local\\Temp",
+    "TERM": "cygwin",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.45.1",
+    "TMP": "C:\\Users\\Dongjin\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-V7M2LRK",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-V7M2LRK",
+    "USERNAME": "Dongjin",
+    "USERPROFILE": "C:\\Users\\Dongjin",
+    "VIRTUAL_ENV": "C:\\Users\\Dongjin\\Desktop\\sanghyup\\yorn\\myenv",
+    "VSCODE_GIT_ASKPASS_MAIN": "c:\\Users\\Dongjin\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js",
+    "VSCODE_GIT_ASKPASS_NODE": "C:\\Users\\Dongjin\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-4a454e5bd3-sock",
+    "WINDIR": "C:\\Windows",
+    "_": "\\Users\\Dongjin\\Desktop\\sanghyup\\yorn\\myenv/Scripts/python",
+    "ASL.LOG": "Destination=file",
+    "DJANGO_SETTINGS_MODULE": "yorn.settings.local",
+    "RUN_MAIN": "true",
+    "SERVER_NAME": "scskls.softcamp.co.kr",
+    "GATEWAY_INTERFACE": "CGI/1.1",
+    "SERVER_PORT": "8000",
+    "REMOTE_HOST": "",
+    "CONTENT_LENGTH": "",
+    "SCRIPT_NAME": "",
+    "SERVER_PROTOCOL": "HTTP/1.1",
+    "SERVER_SOFTWARE": "WSGIServer/0.2",
+    "REQUEST_METHOD": "GET",
+    "PATH_INFO": "/auth/signin/",
+    "QUERY_STRING": "",
+    "REMOTE_ADDR": "127.0.0.1",
+    "CONTENT_TYPE": "text/plain",
+    "HTTP_HOST": "127.0.0.1:8000",
+    "HTTP_CONNECTION": "keep-alive",
+    "HTTP_UPGRADE_INSECURE_REQUESTS": "1",
+    "HTTP_USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+    "HTTP_ACCEPT": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+    "HTTP_SEC_FETCH_SITE": "same-origin",
+    "HTTP_SEC_FETCH_MODE": "navigate",
+    "HTTP_SEC_FETCH_USER": "?1",
+    "HTTP_SEC_FETCH_DEST": "document",
+    "HTTP_REFERER": "http://127.0.0.1:8000/topic/",
+    "HTTP_ACCEPT_ENCODING": "gzip, deflate, br",
+    "HTTP_ACCEPT_LANGUAGE": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+    "HTTP_COOKIE": "csrftoken=8CpNx7V6nTqspTOpASApg33loXghiFSxGcfsCJcDL32GnHFbWhixzmnr3fvEX0K8; messages="0c8d7e1c1d9e00d742ef7cf815f40a74d717a710$[
+        [\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"Successfully signed in as \\\\ubc15\\\\uc0c1\\\\ud611.\\"
+        ]\\054[\\"__json_message\\"\\0540\\05425\\054\\"You have signed out.\\"
+        ]
+    ]"",
+    "wsgi.input": <django.core.handlers.wsgi.LimitedStream object at 0x000001CD34229D90>,
+    "wsgi.errors": <_io.TextIOWrapper name="<stderr>" mode="w" encoding="utf-8">,
+    "wsgi.version": (1,
+    0),
+    "wsgi.run_once": False,
+    "wsgi.url_scheme": "http",
+    "wsgi.multithread": True,
+    "wsgi.multiprocess": False,
+    "wsgi.file_wrapper": <class "wsgiref.util.FileWrapper">,
+    "CSRF_COOKIE": "8CpNx7V6nTqspTOpASApg33loXghiFSxGcfsCJcDL32GnHFbWhixzmnr3fvEX0K8"
 }
