@@ -406,7 +406,7 @@
             },
             options: {
                 legend: {
-                    display:false,
+                    display: false,
                 },
                 maintainAspectRatio: false,
                 title: {
@@ -422,25 +422,32 @@
                         gridLines: {
                             display: false
                         },
-                        stacked: false
+                        stacked: false,
+                        ticks: {
+                        }
                     }],
                     yAxes: [{
-
                         gridLines: {
                             display: false
                         },
                         stacked: false,
                         ticks: {
-                            max: 100,
+                            max: 110,
                             min: 0,
-                            stepSize: 20
-                        }
+                            stepSize: 20,
+                            callback: function (label, index, labels) {
+                                if (index == 0) {
+                                    return '';
+                                }
+                                return label;
+                            }
+                        },
                     }]
                 },
                 plugins: {
                     datalabels: {
                         align: 'top',
-                        anchor: 'end',
+                        anchor: 'bottom',
                         backgroundColor: function (context) {
                             return context.dataset.backgroundColor;
                         },

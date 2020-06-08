@@ -124,6 +124,7 @@ $(document).on('mouseenter','.chart-row .data div', function(e) {
 
     if ($(e.target).hasClass('agree')) {
         color.css('background-color','#FFDE50')
+        tool
         $('.all-chart-tooltip .value').text($(e.target).parent().attr('data').split('-')[2]+'%')
     } else if ($(e.target).hasClass('disagree')) {
         color.css('background-color','#666')
