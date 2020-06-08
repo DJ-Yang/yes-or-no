@@ -325,11 +325,9 @@ def check_selection(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
   user = request.user
   if user.is_authenticated:
-    selection = topic.selection_set.filter(selector=user)
-    if selection:
+    if topic.selection_set.filter(selector=user).exists():
       return redirect('topic:result', topic.id)
-  else:
-    return redirect('topic:select', topic.id)
+  return redirect('topic:select', topic.id)
 
 def topic_select(request, topic_id):
   topic = Topic.objects.get(pk=topic_id)
