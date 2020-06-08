@@ -322,12 +322,12 @@ def topic_list(request):
   })
 
 def check_selection(request, topic_id):
-  user = request.user
   topic = Topic.objects.get(pk=topic_id)
-  selection = topic.selection_set.filter(selector=user)
-
-  if selection:
-    return redirect('topic:result', topic.id)
+  user = request.user
+  if user.is_authenticated:
+    selection = topic.selection_set.filter(selector=user)
+    if selection:
+      return redirect('topic:result', topic.id)
   else:
     return redirect('topic:select', topic.id)
 
