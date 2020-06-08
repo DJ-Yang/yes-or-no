@@ -376,8 +376,8 @@ def set_selection(request):
       topic_id = int(request.POST.get('topic_id'))
       topic = Topic.objects.get(pk=topic_id)
       user = request.user
-      # age, gender 부분 유저 정보로 바꿔줘야함.
-      selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age_range=10, gender=1)
+      u_gender = 0 if (user.gender == 'male') else 1
+      selection, is_selection = Selection.objects.get_or_create(topic=topic, selector=user, age_range=user.age_range, gender=u_gender)
       if is_selection:
         selection.select = select_type
         selection.updated_at = timezone.now()
