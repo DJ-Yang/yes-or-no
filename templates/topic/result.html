@@ -16,11 +16,7 @@
 
     data = data.replace(/&#x27;/gi, '"');
 
-    console.log(typeof (data))
-
     json_data = JSON.parse(data);
-
-    console.log(json_data)
 
     let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
     let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
@@ -118,7 +114,9 @@
             <script type="text/javascript">
                 var currentURL = window.location.href;
                 var buttonURL = currentURL.replace('result/', '');
-                new ShareNaver.makeButton({ "type": "f", "url": buttonURL });
+                var shareURL = encodeURI(encodeURIComponent(buttonURL));
+                var title = encodeURI('{{ topic.title }}');
+                new ShareNaver.makeButton({ "type": "f", "url": shareURL, "title": title });
             </script>
         </div>
     </div>
