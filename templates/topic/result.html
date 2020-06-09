@@ -48,11 +48,6 @@
 
 </script>
 <script type="text/javascript">
-    var currentURL = window.location.href;
-    var shareurl = currentURL.replace('result/', '');
-    document.getElementById("url").value = shareurl;
-</script>
-<script type="text/javascript">
     function share() {
         var url = encodeURI(encodeURIComponent(myform.url.value));
         var title = encodeURI(myform.title.value);
@@ -134,7 +129,12 @@
             <form id="myform" class="hide">
                 <input type="text" id="url" value=""><br/>
                 <input type="text" id="title" value="{{ topic.title }}"><br/>
-            </form> 
+            </form>
+            <script type="text/javascript">
+                var currentURL = window.location.href;
+                var shareurl = currentURL.replace('result/', '');
+                document.getElementById("url").value = shareurl;
+            </script>
             <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
             <script type="text/javascript">
                 new ShareNaver.makeButton({ "type": "f"});
