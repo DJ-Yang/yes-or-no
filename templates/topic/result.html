@@ -39,6 +39,16 @@
     let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
 
 </script>
+<script>
+    function share() {
+        var currentURL = window.location.href;
+        var buttonURL = currentURL.replace('result/', '');
+        var url = encodeURI(encodeURIComponent(buttonURL));
+        var title = encodeURI('{{ topic.title }}');
+        var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
+        document.location = shareURL;
+    }
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -107,17 +117,13 @@
                     ]
                 });
             </script>
-            <!-- <a href="javascript:void(0);" id="naver-link-btn" onclick="share();">
+            <a href="javascript:void(0);" id="naver-link-btn" onclick="share();">
                 <img src="{% static 'img/naver_share.png' %}" width="45px">
-            </a> -->
-            <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+            </a>
+            <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
             <script type="text/javascript">
-                var currentURL = window.location.href;
-                var buttonURL = currentURL.replace('result/', '');
-                var shareURL = encodeURI(encodeURIComponent(buttonURL));
-                var title = encodeURI('{{ topic.title }}');
-                new ShareNaver.makeButton({ "type": "f", "url": shareURL, "title": title });
-            </script>
+                new ShareNaver.makeButton({ "type": "f"});
+            </script> -->
         </div>
     </div>
 </div>
