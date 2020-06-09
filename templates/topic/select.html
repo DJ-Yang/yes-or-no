@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block header %}
+<meta property="og:title" content="{{ topic.title }}" />
+<meta property="og:image" content="{{ topic.thumb_image.url }}" />
+<meta property="og:description" content="{{ topic.description }}" />
 <link rel="stylesheet" href="{% static 'css/select.css' %}">
 {% endblock %}
 
