@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block header %}
+<meta property="og:title" content="{{ topic.title }}" />
+<meta property="og:image" content="{{ topic.thumb_image.url }}" />
+<meta property="og:description" content="{{ topic.description }}" />
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
 <link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 <script type="text/javascript">
@@ -39,10 +42,8 @@
 </script>
 <script>
     function share() {
-        var currentURL = window.location.href;
-        var buttonURL = currentURL.replace('result/', '');
-        var url = encodeURI(encodeURIComponent(buttonURL));
-        var title = encodeURI(encodeURIComponent('{{ topic.title }}'));
+        var url = encodeURI(encodeURIComponent(myform.url.value));
+        var title = encodeURI(myform.title.value);
         var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
         window.open(shareURL);
     }
@@ -118,6 +119,15 @@
             <a href="javascript:void(0);" id="naver-link-btn" onclick="share();">
                 <img src="{% static 'img/naver_share.png' %}" width="45px">
             </a>
+            <form id="myform" class="hide">
+                <input type="text" id="url" value=""><br/>
+                <input type="text" id="title" value="{{ topic.title }}"><br/>
+                <script type="text/javascript">
+                    var currentURL = window.location.href;
+                    var shareurl = currentURL.replace('result/', '');
+                    document.getElementById("url").value = shareurl;
+                </script>
+            </form> 
             <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
             <script type="text/javascript">
                 new ShareNaver.makeButton({ "type": "f"});
