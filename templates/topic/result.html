@@ -2,12 +2,19 @@
 
 {% load static %}
 
-{% block header %}
+{% block head_meta %}
+<meta name="description" content="{{ topic.description }}" />
 <meta property="og:title" content="{{ topic.title }}" />
 <meta property="og:image" content="{{ topic.thumb_image.url }}" />
 <meta property="og:description" content="{{ topic.description }}" />
+{% endblock %}
+
+{% block head_link %}
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
 <link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
+{% endblock %}
+
+{% block head_script %}
 <script type="text/javascript">
     var postive = "{{ result.postive }}";
     var negative = "{{ result.negative }}";
@@ -40,7 +47,12 @@
     let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
 
 </script>
-<script>
+<script type="text/javascript">
+    var currentURL = window.location.href;
+    var shareurl = currentURL.replace('result/', '');
+    document.getElementById("url").value = shareurl;
+</script>
+<script type="text/javascript">
     function share() {
         var url = encodeURI(encodeURIComponent(myform.url.value));
         var title = encodeURI(myform.title.value);
@@ -122,11 +134,6 @@
             <form id="myform" class="hide">
                 <input type="text" id="url" value=""><br/>
                 <input type="text" id="title" value="{{ topic.title }}"><br/>
-                <script type="text/javascript">
-                    var currentURL = window.location.href;
-                    var shareurl = currentURL.replace('result/', '');
-                    document.getElementById("url").value = shareurl;
-                </script>
             </form> 
             <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
             <script type="text/javascript">
