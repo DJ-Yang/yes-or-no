@@ -90,6 +90,14 @@
     float: right;
 }
 
+.topic .user-selection {
+    margin: 0 auto;
+    font-family: nanum;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+}
+
 .edit {
     width: 130px;
     margin: 10px auto 0;
