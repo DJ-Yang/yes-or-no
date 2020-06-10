@@ -5,19 +5,16 @@ from .models import User
 
 
 def signin(request):
-    
-    if request.GET.get('next',''):
-        return render(request, 'user/signin.html')
-    else:
-        print(request.META.get('HTTP_REFERER'))
-        _next = request.META.get('HTTP_REFERER')
-        _next = _next.split('/',maxsplit=3)[3]
+    # add_info error로 임시로 막음
+    # if request.GET.get('next',''):
+    return render(request, 'user/signin.html')
+    # else:
+    #     _next = request.META.get('HTTP_REFERER')
+    #     _next = _next.split('/',maxsplit=3)[3]
 
-        print(_next)
-
-        url = '/auth/signin/?next=/%s' % _next
-        print(url)
-        return HttpResponseRedirect(url)
+    #     url = '/auth/signin/?next=/%s' % _next
+    #     print(url)
+    #     return HttpResponseRedirect(url)
 
 
 def add_info(request):
