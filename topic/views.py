@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Topic, Selection, DailyData
 from django.http import HttpResponse, JsonResponse
 from allauth.socialaccount.models import SocialAccount
@@ -322,7 +322,7 @@ def topic_list(request):
   })
 
 def check_selection(request, topic_id):
-  topic = Topic.objects.get(pk=topic_id)
+  topic = get_object_or_404(Topic, pk=topic_id)
   user = request.user
   if user.is_authenticated:
     if topic.selection_set.filter(selector=user).exists():
@@ -330,7 +330,7 @@ def check_selection(request, topic_id):
   return redirect('topic:select', topic.id)
 
 def topic_select(request, topic_id):
-  topic = Topic.objects.get(pk=topic_id)
+  topic = get_object_or_404(Topic, pk=topic_id)
 
   # result.html 에 수정 버튼이 생기면 주석을 풀어줄 것
   # if request.user.is_authenticated:
@@ -345,8 +345,16 @@ def topic_select(request, topic_id):
 @login_required(login_url='/auth/signin/')
 @user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
 def topic_result(request, topic_id):
-  topic = Topic.objects.get(pk=topic_id)
+  topic = get_object_or_404(Topic, pk=topic_id)
   selections = topic.selection_set.all()
+  user = request.user
+
+  if not selections.filter(selector=user):
+    return redirect('topic:select', topic.id)
+  else:
+    selection = selections.filter(selector=user)
+    user_selection = (topic.selection1_des) if selection == 0 else topic.selection2_des
+
 
   data = today_dailydata(topic)
 
@@ -363,6 +371,7 @@ def topic_result(request, topic_id):
     'result': result,
     'selections': selections,
     'data': data,
+    'user_selection': user_selection,
   })
 
 @login_required(login_url='/auth/signin/')

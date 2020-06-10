@@ -22,13 +22,13 @@
 $(document).on('click','.selection img', function(e) {
 
     if (this.id == 'sel1') {
-        $('#sel2').parent().parent().removeClass('selected');
-        $('#sel1').parent().parent().addClass('selected');
+        $('#sel2').parent().parent().addClass('selected');
+        $('#sel1').parent().parent().removeClass('selected');
         $('.sel2-des').css('background-color','#333333');
         // $('.sel1-des').css('background-color','#FFDE50');
     } else {
-        $('#sel1').parent().parent().removeClass('selected');
-        $('#sel2').parent().parent().addClass('selected');
+        $('#sel1').parent().parent().addClass('selected');
+        $('#sel2').parent().parent().removeClass('selected');
         $('.sel1-des').css('background-color','#333333');
         // $('.sel2-des').css('background-color','f0ff20');
     }
