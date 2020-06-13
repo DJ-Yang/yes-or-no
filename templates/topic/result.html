@@ -72,6 +72,9 @@
         <div class="sel1">{{topic.selection1_des}}</div>
         <div class="sel2">{{topic.selection2_des}}</div>
     </div>
+    <div class="user-selection">
+        나의 선택은 '{{ user_selection }}'
+    </div>
     <div class="edit">
         <a href="{% url 'topic:select' topic.id %}">
             <!-- <img src="{% static 'img/cycle.png' %}" width="25px"> -->
