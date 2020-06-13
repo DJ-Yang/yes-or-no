@@ -174,7 +174,3 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = "https://%s/media/" % AWS_S3_CUSTOM_DOMAIN
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'yorn.settings.storage_backends.MediaStorage'
-
-# Root Setting
-STATIC_ROOT = '%s/static' % STORAGE_PATH
-MEDIA_ROOT = '%s/media' % STORAGE_PATH
