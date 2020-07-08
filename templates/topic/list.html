@@ -7,18 +7,73 @@
 
 {% block head_link %}
 <link rel="stylesheet" href="{% static 'css/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
 {% endblock %}
 
 {% block head_script %}
-{% endblock %}
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/list.js' %}"></script>
+{% endblock %}{% block content %}
 
-{% block content %}
 <div class="hot-topic">
-  <div class="thumb-box">
-    <img class="thumb-img" src="{% static 'img/test3.jpg' %}">
+  <div class="owl-carousel owl-theme">
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test.jpg')">
+      </div>
+      <div class="hot-topic-contents">
+        <div class="hot-topic-title">
+          문재인 대통령에대한 나의 생각은?
+        </div>
+        <div class="hot-topic-subtitle">
+          2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
+          제시해주세요!
+        </div>
+        <div class="voting-btn">
+          투표하기
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test.jpg')">
+      </div>
+      <div class="hot-topic-contents">
+        <div class="hot-topic-title">
+          문재인 대통령에대한 나의 생각은?
+        </div>
+        <div class="hot-topic-subtitle">
+          2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
+          제시해주세요!
+        </div>
+          <div class="voting-btn">
+            투표하기
+          </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test3.jpg')"></div>
+    </div>
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test3.jpg')"></div>
+    </div>
   </div>
-  <div class="thumb-overlay"></div>
 </div>
+<script>
+  $('.owl-carousel').owlCarousel({
+    items: 1,
+    loop: true,
+    margin: 10,
+    nav: false,
+    dots: true,
+    autoplay: false,
+    autoplayTimeout: 1000,
+    autoplayHoverPause: true
+  })
+
+</script>
 
 
 <div class="list-title">
@@ -52,12 +107,13 @@
   </div>
   <div class="topic-card">
     <div class="topic-contents">
+
       <div class="topic-thumb"><img src="{% static 'img/test3.jpg' %}"></div>
       <div class="topic-title">제목</div>
       <div class="topic-subtitle">설명</div>
       <div class="participant">100명 참여</div>
     </div>
-  </div>  
+  </div>
   <div class="topic-card">
     <div class="topic-contents">
       <div class="topic-thumb"><img src="{% static 'img/test3.jpg' %}"></div>
