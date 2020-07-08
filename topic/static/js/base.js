@@ -1,47 +1,20 @@
-// // navbar 따라다니는 기준 스크롤
-// $(window).scroll(function(){
-//     if ($(window).scrollTop() > 1) {
-//        $('nav').addClass('fixed-header');
-//     }
-//     else {
-//        $('nav').removeClass('fixed-header');
-//     }
-// });  
+function menuSwitch(e) {
+   console.log(e.id);
 
-// navbar 메뉴 선택시 강조옵션
-$(document).on('click','nav .nav-menu ul li a', function(e) {   
-   let menu = $(e.target);
-   $('nav ul li a').removeClass('select');
-   menu.addClass('select');
-})
+   if (e.id == 'close') {
+      $('.side-menu').css('left',-300); 
+   } else if (e.id == 'open') {
+      $('.side-menu').css('left','0'); 
+      $('.')
+   }   
+}
 
-// 모바일 메뉴 숨기기 기능
-$(document).on('click', function(e) {
-   if ($(e.target).hasClass('close') == true || $(e.target).hasClass('mobile-close') == true) {
-      $('.mobile-menu').animate({right:'-250px'}, 150);
-      $('.mobile-close').removeClass('on');
-   }
-})
-// 모바일 메뉴 펼치기
-$('.toggle img').on('click', function(e) {
-   $('.mobile-menu').animate({right:'0'}, 150);
-   $('.mobile-close').addClass('on');
-});
 
-$('.login').on('click', function(e) {
-   if($('.popmenu-wrap').hasClass('hide')) {
-      $('.popmenu-wrap').removeClass('hide');
-   } else {
-      $('.popmenu-wrap').addClass('hide');
-   }
-});
 
 
 $(document).ready(function() {
-
    check_footer_postion();
-
-   
+  
 });
 
 $(window).resize(function (){
