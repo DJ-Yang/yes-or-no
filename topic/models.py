@@ -8,15 +8,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Topic(models.Model):
   thumb_image = models.ImageField()
   title = models.CharField(max_length=45)
-  # 임시로 CharField적용 나중에 Forignkey 로 변경
-  author = models.CharField(max_length= 100, default="admin")
+  author = models.ForeignKey(User, related_name="topics", on_delete=models.CASCADE)
   content = models.TextField()
   # 후에 게시판을 나누게 될 경우 고려
   # category = models.IntegerField()
-  selection_amount = models.IntegerField(validators=[
-    MinValueValidator(2), 
-    MaxValueValidator(4),
-    ])
+  selection_amount = models.IntegerField(default=0)
   hot_topic = models.BooleanField(default=False)
   created_at = models.DateTimeField(auto_now=timezone.now())
 
@@ -47,12 +43,17 @@ class Selection(models.Model):
   description = models.CharField(max_length=20)
   created_at = models.DateTimeField(auto_now=timezone.now())
 
+  def save(self, *args, **kwargs):
+    topic = self.topic
+    topic.selection_amount += 1
+    topic.save()
+    super().save(*args, **kwargs)
+
 class Pick(models.Model):
   class Sex(models.IntegerChoices):
     MALE = 0
     FEMALE = 1
-  # 임시로 CharField적용 나중에 Forignkey 로 변경
-  picker = models.CharField(max_length= 100, default="admin")
+  author = models.ForeignKey(User, related_name="picks", on_delete=models.CASCADE)
   selection = models.IntegerField(validators=[
     MinValueValidator(1), 
     MaxValueValidator(4),
@@ -65,49 +66,3 @@ class Pick(models.Model):
   created_at = models.DateTimeField(auto_now=timezone.now())
   updated_at = models.DateTimeField(default=timezone.now)
   
-
-class DailyData(models.Model):
-  topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
-  positive_count = models.IntegerField(null=True)
-  negative_count = models.IntegerField(null=True)
-  positive_male_count = models.IntegerField(null=True)
-  positive_female_count = models.IntegerField(null=True)
-  negative_male_count = models.IntegerField(null=True)
-  negative_female_count = models.IntegerField(null=True)
-  positive_10age_count = models.IntegerField(null=True)
-  positive_10age_male_count = models.IntegerField(null=True)
-  positive_10age_female_count = models.IntegerField(null=True)
-  positive_20age_count = models.IntegerField(null=True)
-  positive_20age_male_count = models.IntegerField(null=True)
-  positive_20age_female_count = models.IntegerField(null=True)
-  positive_30age_count = models.IntegerField(null=True)
-  positive_30age_male_count = models.IntegerField(null=True)
-  positive_30age_female_count = models.IntegerField(null=True)
-  positive_40age_count = models.IntegerField(null=True)
-  positive_40age_male_count = models.IntegerField(null=True)
-  positive_40age_female_count = models.IntegerField(null=True)
-  positive_50age_count = models.IntegerField(null=True)
-  positive_50age_male_count = models.IntegerField(null=True)
-  positive_50age_female_count = models.IntegerField(null=True)
-  positive_60age_count = models.IntegerField(null=True)
-  positive_60age_male_count = models.IntegerField(null=True)
-  positive_60age_female_count = models.IntegerField(null=True)
-  negative_10age_count = models.IntegerField(null=True)
-  negative_10age_male_count = models.IntegerField(null=True)
-  negative_10age_female_count = models.IntegerField(null=True)
-  negative_20age_count = models.IntegerField(null=True)
-  negative_20age_male_count = models.IntegerField(null=True)
-  negative_20age_female_count = models.IntegerField(null=True)
-  negative_30age_count = models.IntegerField(null=True)
-  negative_30age_male_count = models.IntegerField(null=True)
-  negative_30age_female_count = models.IntegerField(null=True)
-  negative_40age_count = models.IntegerField(null=True)
-  negative_40age_male_count = models.IntegerField(null=True)
-  negative_40age_female_count = models.IntegerField(null=True)
-  negative_50age_count = models.IntegerField(null=True)
-  negative_50age_male_count = models.IntegerField(null=True)
-  negative_50age_female_count = models.IntegerField(null=True)
-  negative_60age_count = models.IntegerField(null=True)
-  negative_60age_male_count = models.IntegerField(null=True)
-  negative_60age_female_count = models.IntegerField(null=True)
-  created_at = models.DateTimeField(default=timezone.now)
