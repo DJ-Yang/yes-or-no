@@ -16,27 +16,6 @@ class Topic(models.Model):
   hot_topic = models.BooleanField(default=False)
   created_at = models.DateTimeField(auto_now=timezone.now())
 
-  # def get_count_yes(self):
-  #   total = self.selection_set.count()
-  #   yes = self.selection_set.filter(select=0).count()
-
-  #   if total != 0:
-  #     percent = int(yes/total*100)
-  #   else:
-  #     percent = 0
-  #   return f'{percent}%'
-
-  # def get_count_no(self):
-  #   total = self.selection_set.count()
-  #   no = self.selection_set.filter(select=1).count()
-    
-
-  #   if total != 0:
-  #     percent = int(no/total*100)
-  #   else:
-  #     percent = 0
-  #   return f'{percent}%'
-
 class Selection(models.Model):
   topic = models.ForeignKey(Topic, related_name="selections", on_delete=models.CASCADE)
   image = models.ImageField()
