@@ -27,7 +27,7 @@
 
 .select-box {
     margin: 0 auto;
-    padding: 50px;
+    padding: 20px 50px 0px 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -82,4 +82,21 @@
     line-height: 25px;
     letter-spacing: 0.5px;
     word-break: keep-all;
+}
+
+.voting-btn {
+    width: 180px;
+    position: relative;
+    z-index: 1000;
+    display: inline-block;
+    color: #ffffff;
+    background-color: #49C5B6;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px 0;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
 }

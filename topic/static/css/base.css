@@ -78,3 +78,8 @@ a:focus {
     padding-top: 20px;
     padding-right: 10px;    
 }
+
+footer {
+    background-color: #ffffff;
+    height: 200px;
+}

@@ -65,7 +65,7 @@
         margin-top: 100px;
         border-radius: 100px;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 22px;
         letter-spacing: 1px;
         cursor: pointer;
     }
@@ -90,12 +90,31 @@
     }
     
     .topic-contents{
+        position: relative;
         height: 100%;
         width: 100%;
     }
-    .topic-thumb {
-
+    .topic-text {
+        padding: 10px 15px;
     }
+    
+    .topic-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .topic-subtitle {
+        color: #555555;
+    }
+
+    .participant {
+        position: absolute;
+        bottom: 15px;
+        right: 10px;
+        font-weight: bold;
+        color: #4d4d4d;
+    }
+
     .topic-thumb img {
         display: block;
         width: 100%;

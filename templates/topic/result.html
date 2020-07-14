@@ -87,7 +87,7 @@
     <div class="select-wrapper">
         <div class="select-box">
             <div class="total-chart-box">
-                <div id="chart4"></div>
+                <div id="chart1"></div>
             </div>
             <div class="selection">
                 <div class="selection-text selection-active">1. 1번 선택지 내용입니드아아</div>
@@ -99,24 +99,33 @@
     </div>
 
     <div class="topic-analysis-box">
+        <div class="analysis-title-row">
+            <div class="category">
+                <img src="{% static 'img/chart.png' %}" alt="">
+                분야별
+            </div>
+            <div class="date">
+                <img src="{% static 'img/date.png' %}" alt="">
+                기간별
+            </div>
+        </div>
         <div>
             <div class="chart-row">
                 <div class="chart-box">
+                    <div class="chart-title">종합 분석결과</div>
                     <div id="chart2"></div>
                     <div id="chart"></div>
                 </div>
                 <div class="chart-box">
+                    <div class="chart-title">연령대별 분석결과</div>
                     <div id="chart3"></div>
                 </div> 
                 <div class="chart-box">
+                    <div class="chart-title">성별 분석결과</div>
                     <div id="chart4"></div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div>
-
     </div>
 </div>
 
@@ -150,8 +159,269 @@
         }
     };
 
+    var chart = new ApexCharts(document.querySelector("#chart1"), options);
+    chart.render();
+</script>
+<script>
+    var options = {
+        series: [44, 55, 13, 43],
+        chart: {
+            type: 'pie',
+            width:400,
+            height:'10 0%'
+        },
+        labels: ['A', 'B', 'C', 'D'],
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            formatter: function (val, opts) {
+                console.log(val, opts)
+                return Math.round(val) + '%';
+            },
+            style: {
+                fontSize: '14px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 'regular',
+            },
+        },
+        legend: {
+            show: false
+        },
+        tooltip: {
+            enabled: false
+        }
+    };
+
     var chart = new ApexCharts(document.querySelector("#chart4"), options);
     chart.render();
+</script>
+
+<script>
+    var options = {
+        series: [{
+            name: 'Net Profit',
+            data: [44, 55, 57, 56, 61, 58]
+        }, {
+            name: 'Revenue',
+            data: [76, 85, 101, 98, 87, 105]
+        }, {
+            name: 'Free Cash Flow',
+            data: [35, 41, 36, 26, 45, 48]
+        }, {
+            name: 'Free Cash Flow',
+            data: [15, 34, 22, 35, 11, 30]
+        }],
+        chart: {
+            type: 'bar',
+            height: '100%',
+            width: 400,
+            toolbar: {
+                show: false
+            }
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ['10대', '20대', '30대', '40대', '50대', '60대'],
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return val + '%'
+                }
+            }
+        },
+        legend: {
+            show: false
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart3"), options);
+    chart.render();
+</script>
+<script>
+    var options = {
+        series: [{
+            name: 'Marine Sprite',
+            data: [24, 35, 21, 37, 22, 43]
+        }, {
+            name: 'Striking Calf',
+            data: [13, 13, 33, 22, 13, 13]
+        }, {
+            name: 'Tank Picture',
+            data: [12, 17, 11, 9, 15, 11]
+        }, {
+            name: 'Tank Picture',
+            data: [12, 17, 11, 9, 15, 11]
+        },
+        ],
+        chart: {
+            type: 'bar',
+            height: '100%',
+            width: 210,
+            stacked: true,
+            toolbar: {
+                show: false
+            }
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+            },
+        },
+        xaxis: {
+            categories: ['10대', '20대', '30대', '40대', '50대', '60대'],
+            tickAmount: 4,
+            max: 100,
+            labels: {
+                formatter: function (val) {
+                    return val + "%"
+                }
+            },
+
+        },
+        yaxis: {
+            labels: {
+                show: true
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return val + "K"
+                }
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        legend: {
+            show: false
+        },
+        grid: {
+            show: true,
+            yaxis: {
+                lines: {
+                    show: true
+                }
+            }
+
+        },
+        dataLabels: {
+            enabled: false
+        },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+
+
+    var options2 = {
+        series: [{
+            name: 'Marine Sprite',
+            data: [4, 15, 11, 17, 22, 23]
+        }, {
+            name: 'Striking Calf',
+            data: [53, 32, 33, 52, 13, 43]
+        }, {
+            name: 'Tank Picture',
+            data: [12, 17, 11, 9, 15, 11]
+        }, {
+            name: 'Tank Picture',
+            data: [12, 17, 11, 9, 15, 11]
+        },
+        ],
+        chart: {
+            type: 'bar',
+            height: '100%',
+            width: 210,
+            stacked: true,
+            toolbar: {
+                show: false
+            }
+        },
+        responsive: [
+            {
+                breakpoint: 1000,
+                options: {
+                    plotOptions: {
+                        bar: {
+                            horizontal: true
+                        }
+                    },
+                    chart: {
+                        // width: 100
+                    },
+                }
+            }],
+        plotOptions: {
+            bar: {
+                horizontal: true,
+            },
+        },
+        xaxis: {
+            categories: ['10대', '20대', '30대', '40대', '50대', '60대'],
+            tickAmount: 4,
+            max: 100,
+            labels: {
+                formatter: function (val) {
+                    return val + "%"
+                }
+            }
+        },
+        yaxis: {
+            reversed: true,
+            labels: {
+                show: false
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return val + "K"
+                }
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        legend: {
+            show: false
+        },
+        grid: {
+            show: true,
+            yaxis: {
+                lines: {
+                    show: true
+                }
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+    };
+
+
+
+
+    var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+    chart2.render();
 </script>
 {% endblock %}
 
