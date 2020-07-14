@@ -19,8 +19,7 @@
     position: relative;
     top: -300px;
     margin: 0 auto;
-    width: 700px;
-    height: 400px;
+    max-width: 700px;
     background-color: #ffffff;
     border-radius: 30px;
 }
@@ -58,7 +57,8 @@
     font-weight: bold;
     font-size: 45px;
     color: #49C5B6;
-    width: 1000px;
+    max-width: 1000px;
+    width: 70%;
     margin: 0 auto;
     text-align: center;
 }
@@ -75,7 +75,7 @@
 }
 
 .total-chart-box {
-    min-width: 300px;
+    width: 300px;
 }
 
 .btn-box {
@@ -102,3 +102,73 @@
     color: #ffffff;
 }
 
+.topic-analysis-box {
+    position: relative;
+    top: -200px;
+    width: 70%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.analysis-title-row {
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.category, .date {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.chart-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chart-box {
+    max-width: 400px;
+    height: 400px;
+    display: flex;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    width: 100%;
+    margin-right: 20px;
+    background-color: #ffffff;
+    position: relative;
+    padding-top: 40px;
+}
+
+.chart-title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#chart {
+    margin-left: -37px;
+}
+
+
+@media all and (max-width:480px) {
+    .total-chart-box {
+        min-width: 180px;
+    }
+    .selection-text {
+        font-size: 14px;
+    }
+    .select-wrapper {
+        top: -100px;
+    }
+    .topic-thumb {
+        height: 350px;
+    }
+    .topic-title {
+        font-size: 30px;
+    }
+    .topic-subtitle {
+        font-size: 15px;
+    }
+}
