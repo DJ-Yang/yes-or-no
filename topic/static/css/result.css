@@ -122,27 +122,24 @@
     cursor: pointer;
 }
 .chart-row {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
 
 .chart-box {
-    max-width: 400px;
+    width: 400px;
     height: 400px;
-    display: flex;
     border: 1px solid #e0e0e0;
     border-radius: 15px;
-    width: 100%;
+    padding: 10px;
     margin-right: 20px;
     background-color: #ffffff;
     position: relative;
-    padding-top: 40px;
 }
 
 .chart-title {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    padding-left: 10px;
     font-size: 24px;
     font-weight: bold;
 }
@@ -151,6 +148,41 @@
     margin-left: -37px;
 }
 
+#chart5 {
+}
+
+.label-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.one {
+    color: rgb(0, 143, 251);
+}
+.two {
+    color: rgb(0, 227, 150);;
+}
+.three {
+    color: rgb(254, 176, 25);
+}
+.four {
+    color: rgb(255, 69, 96);;
+}
+
+
+@media all and (max-width:768px) {
+    .select-wrapper {
+        top: -250px;
+    }
+    .topic-subtitle {
+        width: 90%;
+    }
+    .topic-title {
+        font-size: 35px;
+    }
+}
 
 @media all and (max-width:480px) {
     .total-chart-box {
@@ -160,7 +192,11 @@
         font-size: 14px;
     }
     .select-wrapper {
-        top: -100px;
+        top: -50px;
+        width: 95%;
+    }
+    .select-box {
+        padding-right: 20px;
     }
     .topic-thumb {
         height: 350px;
@@ -169,6 +205,42 @@
         font-size: 30px;
     }
     .topic-subtitle {
+        padding-top: 20px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 16px;
+        width: 90%;
+    }
+
+    .topic-analysis-box {
+        position: relative;
+        top: 0px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .btn {
+        border: 2px solid #ffffff;
+        border-radius: 30px;
+        display: inline-block;
+        padding: 10px 30px;
         font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .revoting-btn {
+        border-color: #49C5B6;
+        color: #49C5B6;
+        margin-right: 20px;
+    }
+    
+    .share-btn {
+        border-color: #ffffff;
+        color: #ffffff;
+    }
+    .chart-box {
+        margin: 0 auto;
+        width: 95%;
     }
 }

@@ -16,38 +16,6 @@
 
 {% block head_script %}
 <script type="text/javascript">
-    var postive = "{{ result.postive }}";
-    var negative = "{{ result.negative }}";
-
-
-    var data = "{{result}}"
-
-    data = data.replace(/&#x27;/gi, '"');
-
-    json_data = JSON.parse(data);
-
-    let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
-    let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
-    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
-    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
-    let chart_all_female_10 = 'female-10-' + json_data['positive_10age_female'] + '-' + json_data['negative_10age_female'];
-    let chart_all_female_20 = 'female-20-' + json_data['positive_20age_female'] + '-' + json_data['negative_20age_female'];
-    let chart_all_female_30 = 'female-30-' + json_data['positive_30age_female'] + '-' + json_data['negative_30age_female'];
-    let chart_all_female_40 = 'female-40-' + json_data['positive_40age_female'] + '-' + json_data['negative_40age_female'];
-    let chart_all_female_50 = 'female-50-' + json_data['positive_50age_female'] + '-' + json_data['negative_50age_female'];
-    let chart_all_female_60 = 'female-60-' + json_data['positive_60age_female'] + '-' + json_data['negative_60age_female'];
-    let chart_all_male_10 = 'male-10-' + json_data['positive_10age_male'] + '-' + json_data['negative_10age_male'];
-    let chart_all_male_20 = 'male-20-' + json_data['positive_20age_male'] + '-' + json_data['negative_20age_male'];
-    let chart_all_male_30 = 'male-30-' + json_data['positive_30age_male'] + '-' + json_data['negative_30age_male'];
-    let chart_all_male_40 = 'male-40-' + json_data['positive_40age_male'] + '-' + json_data['negative_40age_male'];
-    let chart_all_male_50 = 'male-50-' + json_data['positive_50age_male'] + '-' + json_data['negative_50age_male'];
-    let chart_all_male_60 = 'male-60-' + json_data['positive_60age_male'] + '-' + json_data['negative_60age_male'];
-
-    let chart_all_female = [chart_all_female_10, chart_all_female_20, chart_all_female_30, chart_all_female_40, chart_all_female_50, chart_all_female_60];
-    let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
-
-</script>
-<script type="text/javascript">
     function share() {
         var url = encodeURI(encodeURIComponent(myform.url.value));
         var title = encodeURI(myform.title.value);
@@ -113,16 +81,40 @@
             <div class="chart-row">
                 <div class="chart-box">
                     <div class="chart-title">종합 분석결과</div>
-                    <div id="chart2"></div>
-                    <div id="chart"></div>
+                    <div style="display: flex; height: fit-content;">
+                        <div id="chart2"></div>
+                        <div id="chart"></div>
+                    </div>
+                    <div class="label-box">
+                        <span class="label one"><i class="fa fa-circle" aria-hidden="true"></i> 1번</span>
+                        <span class="label two"><i class="fa fa-circle" aria-hidden="true"></i> 2번</span>      
+                        <span class="label three"><i class="fa fa-circle" aria-hidden="true"></i> 3번</span>      
+                        <span class="label four"><i class="fa fa-circle" aria-hidden="true"></i> 4번</span>      
+                    </div>
                 </div>
                 <div class="chart-box">
                     <div class="chart-title">연령대별 분석결과</div>
                     <div id="chart3"></div>
+                    <div class="label-box">
+                        <span class="label one"><i class="fa fa-circle" aria-hidden="true"></i> 1번</span>
+                        <span class="label two"><i class="fa fa-circle" aria-hidden="true"></i> 2번</span>      
+                        <span class="label three"><i class="fa fa-circle" aria-hidden="true"></i> 3번</span>      
+                        <span class="label four"><i class="fa fa-circle" aria-hidden="true"></i> 4번</span>      
+                    </div>
                 </div> 
                 <div class="chart-box">
                     <div class="chart-title">성별 분석결과</div>
-                    <div id="chart4"></div>
+                    <div style="display: flex; height: 335px; justify-content: center; align-items: center;">
+                        <div id="chart4"></div>
+                        <div id="chart5"></div>
+                    </div>
+                    
+                    <div class="label-box">
+                        <span class="label one"><i class="fa fa-circle" aria-hidden="true"></i> 1번</span>
+                        <span class="label two"><i class="fa fa-circle" aria-hidden="true"></i> 2번</span>      
+                        <span class="label three"><i class="fa fa-circle" aria-hidden="true"></i> 3번</span>      
+                        <span class="label four"><i class="fa fa-circle" aria-hidden="true"></i> 4번</span>      
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,6 +128,7 @@
         series: [44, 55, 13, 43],
         chart: {
             type: 'pie',
+            height: 320
         },
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
@@ -167,8 +160,7 @@
         series: [44, 55, 13, 43],
         chart: {
             type: 'pie',
-            width:400,
-            height:'10 0%'
+            width:280,
         },
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
@@ -195,6 +187,39 @@
     var chart = new ApexCharts(document.querySelector("#chart4"), options);
     chart.render();
 </script>
+<script>
+    var options = {
+        series: [44, 55, 13, 43],
+        chart: {
+            type: 'pie',
+            width:280,
+            
+        },
+        labels: ['A', 'B', 'C', 'D'],
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            formatter: function (val, opts) {
+                console.log(val, opts)
+                return Math.round(val) + '%';
+            },
+            style: {
+                fontSize: '14px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 'regular',
+            },
+        },
+        legend: {
+            show: false
+        },
+        tooltip: {
+            enabled: false
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart5"), options);
+    chart.render();
+</script>
 
 <script>
     var options = {
@@ -213,8 +238,8 @@
         }],
         chart: {
             type: 'bar',
-            height: '100%',
             width: 400,
+            height: 320,
             toolbar: {
                 show: false
             }
@@ -275,6 +300,7 @@
             type: 'bar',
             height: '100%',
             width: 210,
+            height: 320,
             stacked: true,
             toolbar: {
                 show: false
@@ -331,7 +357,6 @@
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
-
     var options2 = {
         series: [{
             name: 'Marine Sprite',
@@ -351,6 +376,7 @@
             type: 'bar',
             height: '100%',
             width: 210,
+            height: 320,
             stacked: true,
             toolbar: {
                 show: false

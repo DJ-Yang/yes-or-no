@@ -19,7 +19,6 @@ $(document).ready(function() {
 
 $(window).resize(function (){
    check_footer_postion();
-
 });
 
 
