@@ -19,6 +19,12 @@ $(document).ready(function() {
 });
 
 
+$(document).on('click', function(e) {
+    if ($(e.target).hasClass('voting-btn')) {
+        location.href = '#'
+    }
+})
+
 function check_new(creatd_at, now) {
 
     let minute = 60*1000
