@@ -49,10 +49,13 @@ class Selection(models.Model):
     topic.save()
     super().save(*args, **kwargs)
 
+    # delete 시 삭제 항목
+
 class Pick(models.Model):
   class Sex(models.IntegerChoices):
     MALE = 0
     FEMALE = 1
+  topic = models.ForeignKey(Topic, related_name="picks", on_delete=models.CASCADE)
   author = models.ForeignKey(User, related_name="picks", on_delete=models.CASCADE)
   selection = models.IntegerField(validators=[
     MinValueValidator(1), 
