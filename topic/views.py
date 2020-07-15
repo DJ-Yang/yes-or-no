@@ -6,8 +6,59 @@ from user.models import User
 from django.utils import timezone
 import datetime
 
-# def convert(topic_list): 
-#     return tuple(i[0] for i in topic_list)
+def convert(topic_list): 
+    return tuple(i[0] for i in topic_list)
+
+# 데일리 데이터 정리해서 보내는 부분
+# def today_dailydata(objects):
+#   start_day = datetime.date.today() - datetime.timedelta(days=7)
+#   end_day = datetime.date.today()
+#   dailydatas = objects.dailydata_set.filter(created_at__gte=start_day, created_at__lte=end_day)
+
+#   daily_data = {}
+#   for data in dailydatas:
+#     total = data.positive_count + data.negative_count
+#     positive_per = (data.positive_count/total*100) if not (total == 0) else 0
+#     negative_per = (data.negative_count/total*100) if not (total == 0) else 0
+#     daily_data[data.created_at.date().strftime("%Y-%m-%d")] = {
+#       'positive' : positive_per,
+#       'negative' : negative_per,
+#     }
+#   return daily_data
+
+
+# 핫 토픽 설정 부분
+# updated_at 필드를 추가해서 기존에 설문에 참여했던 사람이 값을 변경했을 경우도 값에 포함될 수 있게 함.
+# 매일 오전 00시 00분에 실행되게 데코레이터 사용
+def set_hot_topic():
+  yesterday = datetime.date.today() - datetime.timedelta(days=1)
+  today_picks = Pick.objects.filter(updated_at__date=yesterday)
+
+  topic_list = {
+  }
+  hot_topic_list = []
+
+  for pick in today_picks:
+    if pick.topic.id in topic_list:
+      topic_list[pick.topic.id] += 1
+    else:
+      topic_list[pcik.topic.id] = 1
+
+  topic_list = sorted(topic_list.items(), key=(lambda x : x[0]), reverse=True)
+
+  for topic in topic_list:
+    if len(hot_topic_list) >= 3:
+      if hot_topic_list[2][1] < topic[1]:
+        hot_topic_list[2] = topic
+    else:
+      hot_topic_list.append(topic)
+    hot_topic_list = sorted(hot_topic_list, key=(lambda x : x[1]), reverse=True)
+
+  hot_topic_id = convert(hot_topic_list)
+
+  Topic.objects.filter(hot_topic=True).update(hot_topic=False)
+
+  Topic.objects.filter(id__in=hot_topic_id).update(hot_topic=True)
 
 # result page에 접속할때마다 현재까지 결과 값을 확인하는 과정
 def set_data(objects):
