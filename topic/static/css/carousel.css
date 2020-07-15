@@ -26,3 +26,17 @@
 .owl-dots button{
         outline: none;
 }
+
+@media all and (max-width:480px) {
+
+    .owl-theme .owl-nav.disabled+.owl-dots {
+        top:-40px;
+    }
+
+    .owl-theme .owl-dots .owl-dot span {
+        width: 15px;
+        height: 15px;
+        margin: 5px 10px;
+        border-radius: 30px;
+    }
+}

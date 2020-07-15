@@ -5,14 +5,8 @@ from .models import User
 
 
 def signin(request):
-    if request.GET.get('next_page',''):
         return render(request, 'user/signin.html')
-    else:
-        _next = request.META.get('HTTP_REFERER')
-        _next = _next.split('/',maxsplit=3)[3]
-
-        url = '/auth/signin/?next_page=/%s' % _next
-        return HttpResponseRedirect(url)
+    
 
 
 def add_info(request):

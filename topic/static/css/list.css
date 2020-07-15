@@ -115,11 +115,15 @@
         color: #4d4d4d;
     }
 
+    .topic-thumb {
+        height: 250px;
+    }
+
     .topic-thumb img {
         display: block;
         width: 100%;
         height: 100%;
-        object-fit: cov er;
+        object-fit: cover;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -133,6 +137,37 @@
     .item {
         height: 450px;
     }
+    .voting-btn {
+        margin-top: 35px;
+    }
+    .topic-card {
+        width: 340px;
+        height: 350px;
+    }
+    .topic-title {
+
+    }
+    .topic-thumb {
+        height: 200px;
+    }
+    .topic-subtitle {
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.2px;
+    }
+    .hot-topic-contents {
+        padding-top: 70px;
+    }   
+    .hot-topic-subtitle {
+        font-size: 18px;
+        padding-top: 30px;
+        line-height: 20px;
+        font-weight: bold;
+        word-break: normal;
+    }
+    .voting-btn {
+        margin-top: 60px;
+    }
 }
 
 @media screen and (max-width:480px) {
@@ -142,4 +177,34 @@
     .item {
         height: 350px;
     }
+    .hot-topic-contents {
+        padding-top: 40px;
+    }
+    .hot-topic-title {
+        font-size: 30px;
+        word-break: keep-all;
+        line-height: 35px;
+    }
+    .hot-topic-subtitle {
+        font-size: 14px;
+        padding-top: 10px;
+        line-height: 20px;
+        font-weight: normal;
+        word-break: normal;
+    }
+    .voting-btn {
+        width: 150px;
+        font-weight: normal;
+        font-size: 18px;
+        letter-spacing: 1px;
+        border-radius: 35px;
+        padding: 15px 0;
+        margin-top: 30px;
+    }
+    .topic-card {
+        width: 95%;
+        height: 350px;
+        margin: 10px auto;
+    }
+
 }

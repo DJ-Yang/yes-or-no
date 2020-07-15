@@ -58,15 +58,18 @@
     font-size: 45px;
     color: #49C5B6;
     max-width: 1000px;
+    min-height: 45px;
     width: 70%;
     margin: 0 auto;
     text-align: center;
 }
 .topic-subtitle {
+    text-align: center;
     margin: 0 auto;
     color: #ffffff;
     font-size: 20px;
     max-width: 800px;
+    min-height: 75px;
     padding-top: 60px;
     font-weight: bold;
     line-height: 25px;

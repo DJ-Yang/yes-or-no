@@ -46,9 +46,9 @@
           2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
           제시해주세요!
         </div>
-          <div class="voting-btn">
-            투표하기
-          </div>
+        <div class="voting-btn">
+          투표하기
+        </div>
       </div>
     </div>
     <div class="item">
@@ -79,17 +79,21 @@
 </div>
 
 <div class="topic-list">
-  <div class="topic-card">
-    <div class="topic-contents">
-      <div class="topic-thumb"><img src="{% static 'img/test3.jpg' %}"></div>
-      <div class="topic-text">
-        <div class="topic-title">제목</div>
-        <div class="topic-subtitle">설명</div>
-        <div class="participant">100명 참여</div>  
-      </div>      
+  {% for topic in topics %}
+  <a href="{% url 'topic:select' topic.pk %}">
+    <div class="topic-card">
+      <div class="topic-contents">
+        <div class="topic-thumb"><img src="{{topic.thumb_image.url}}"></div>
+        <div class="topic-text">
+          <div class="topic-title">{{topic.title}}</div>
+          <div class="topic-subtitle">{{topic.description}}</div>
+          <div class="participant">{{topic.selection_set.all.count}}명 참여</div>
+        </div>
+      </div>
     </div>
-  </div>
-  
+  </a>
+  {% endfor %}
+
 </div>
 </div>
 
