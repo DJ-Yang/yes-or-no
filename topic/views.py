@@ -12,9 +12,30 @@ import json
 # def convert(topic_list): 
 #     return tuple(i[0] for i in topic_list) 
 
+# daily data
+def set_data(objects):
+  selections = [x for x in range(1, objects.selection_amount+1)]
+  ages = [10, 20, 30, 40, 50, 60]
+  genders = [0, 1]
+
+  return_data = {}
+
+  for selection in selections:
+    picks = objects.picks.filter(selection=selection)
+    return_data["selection_" + str(selection)] = picks.count()
+    for age in ages:
+      return_data["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, age_range=age).count()
+      for gender in genders:
+        return_data["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, gender=gender).count()
+        return_data["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, age_range=age, gender=gender).count()
+  
+  return return_data
+
 def topic_list(request):
   topics = Topic.objects.all().order_by('-created_at')
   hot_topics = Topic.objects.filter(hot_topic=True)
+  test = Topic.objects.get(pk=1)
+  set_data(test)
 
   return render(request, 'topic/list.html', {
     'topics' : topics,
