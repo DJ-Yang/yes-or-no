@@ -1,41 +1,36 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Topic, Selection, Pick
+from .models import Topic, Selection, Pick, DailyPick
 from django.http import HttpResponse, JsonResponse
-from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.decorators import login_required, user_passes_test
 from user.models import User
 from django.utils import timezone
 import datetime
-import json
-# from django.utils import simplejson
 
 # def convert(topic_list): 
-#     return tuple(i[0] for i in topic_list) 
+#     return tuple(i[0] for i in topic_list)
 
-# daily data
+# result page에 접속할때마다 현재까지 결과 값을 확인하는 과정
 def set_data(objects):
   selections = [x for x in range(1, objects.selection_amount+1)]
   ages = [10, 20, 30, 40, 50, 60]
   genders = [0, 1]
 
-  return_data = {}
+  result = {}
 
   for selection in selections:
     picks = objects.picks.filter(selection=selection)
-    return_data["selection_" + str(selection)] = picks.count()
+    result["selection_" + str(selection)] = picks.count()
     for age in ages:
-      return_data["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, age_range=age).count()
+      result["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, age_range=age).count()
       for gender in genders:
-        return_data["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, gender=gender).count()
-        return_data["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, age_range=age, gender=gender).count()
+        result["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, gender=gender).count()
+        result["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, age_range=age, gender=gender).count()
   
-  return return_data
+  return result
 
 def topic_list(request):
   topics = Topic.objects.all().order_by('-created_at')
   hot_topics = Topic.objects.filter(hot_topic=True)
-  test = Topic.objects.get(pk=1)
-  set_data(test)
 
   return render(request, 'topic/list.html', {
     'topics' : topics,
@@ -88,6 +83,8 @@ def topic_select(request, topic_id):
 def topic_result(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
   pick = topic.picks.filter(author=request.user)
+
+  data = set_data(topic)
   
   return render(request, 'topic/result.html', {
     'topic' : topic,

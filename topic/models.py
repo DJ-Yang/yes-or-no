@@ -48,3 +48,9 @@ class Pick(models.Model):
   created_at = models.DateTimeField(auto_now=timezone.now())
   updated_at = models.DateTimeField(default=timezone.now)
   
+class DailyPick(models.Model):
+  pick1 = models.IntegerField()
+  pick2 = models.IntegerField()
+  pick3 = models.IntegerField()
+  pick4 = models.IntegerField()
+  created_at = models.DateTimeField(auto_now=timezone.now())
