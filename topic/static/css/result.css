@@ -114,13 +114,18 @@
     width: 300px;
     display: flex;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .category, .date {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;
 }
+.category {
+    margin-right: 40px;
+}
+
 .chart-row {
     width: 100%;
     display: flex;
@@ -143,9 +148,26 @@
     font-size: 24px;
     font-weight: bold;
 }
+.age-title {
+    display:flex; 
+    justify-content: space-around; 
+    margin-top: 35px; 
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+.age-chart {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: fit-content;
+    margin-bottom: 50px;
+}
 
 #chart {
     margin-left: -37px;
+}
+#chart5 {
+    margin-left: -55px;
 }
 
 
@@ -245,5 +267,23 @@
         margin: 0 auto;
         width: 90%;
         height: 300px;
+    }
+    #chart5 {
+        margin-left: -35px;
+    }
+    .age-title {
+        margin-top: 20px; 
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    .age-chart {
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        height: fit-content;
+        margin-bottom: 0px;
+    }
+    .chart-row {
+        margin-bottom: 50px;
     }
 }

@@ -104,11 +104,14 @@
                 </div> 
                 <div class="chart-box">
                     <div class="chart-title">성별 분석결과</div>
-                    <div style="display: flex; height: 335px; justify-content: center; align-items: center;">
+                    <div class="age-title">
+                        <div>남성</div>
+                        <div>여성</div>
+                    </div>
+                    <div class="age-chart">
                         <div id="chart4"></div>
                         <div id="chart5"></div>
                     </div>
-                    
                     <div class="label-box">
                         <span class="label one"><i class="fa fa-circle" aria-hidden="true"></i> 1번</span>
                         <span class="label two"><i class="fa fa-circle" aria-hidden="true"></i> 2번</span>      
@@ -160,8 +163,35 @@
         series: [44, 55, 13, 43],
         chart: {
             type: 'pie',
-            width:280,
+            width:260,
         },
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 230
+                    },
+                }
+            },
+            {
+                breakpoint: 425,
+                options: {
+                    chart : {
+                        width: 200
+                    }
+                }
+            },
+            {
+                breakpoint: 375,
+                options: {
+                    chart : {
+                        width: 180
+                    }
+                }
+            }
+        
+        ],
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
             enabled: true,
@@ -192,9 +222,36 @@
         series: [44, 55, 13, 43],
         chart: {
             type: 'pie',
-            width:280,
+            width:260,
             
         },
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 230,
+                    },
+                }
+            },
+            {
+                breakpoint: 425,
+                options: {
+                    chart : {
+                        width: 200
+                    }
+                }
+            },
+            {
+                breakpoint: 375,
+                options: {
+                    chart : {
+                        width: 180
+                    }
+                }
+            }
+        
+        ],
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
             enabled: true,

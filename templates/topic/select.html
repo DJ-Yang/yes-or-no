@@ -30,6 +30,11 @@
     </div>
   </div>
 
+  <form action="#" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="pick">
+  </form>
+
   <div class="select-wrapper">
     <div class="select-box">
       <div class="selection">
