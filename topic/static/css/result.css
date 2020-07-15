@@ -148,8 +148,6 @@
     margin-left: -37px;
 }
 
-#chart5 {
-}
 
 .label-box {
     display: flex;
@@ -203,6 +201,8 @@
     }
     .topic-title {
         font-size: 30px;
+        width: 95%;
+        word-break: keep-all;
     }
     .topic-subtitle {
         padding-top: 20px;
@@ -219,6 +219,9 @@
         max-width: 1400px;
         margin: 0 auto;
     }
+    .btn-box {
+        margin: 20px auto;
+    }
     .btn {
         border: 2px solid #ffffff;
         border-radius: 30px;
@@ -227,12 +230,11 @@
         font-size: 15px;
         font-weight: bold;
         cursor: pointer;
-    }
-    
+    }    
     .revoting-btn {
         border-color: #49C5B6;
         color: #49C5B6;
-        margin-right: 20px;
+        margin-right: 10px;
     }
     
     .share-btn {
@@ -241,6 +243,7 @@
     }
     .chart-box {
         margin: 0 auto;
-        width: 95%;
+        width: 90%;
+        height: 300px;
     }
 }
