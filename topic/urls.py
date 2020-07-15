@@ -9,6 +9,5 @@ urlpatterns = [
     path('<int:topic_id>/check/', views.check_selection, name="check_selection"),
     path('<int:topic_id>/', views.topic_select, name="select"),
     path('<int:topic_id>/result/', views.topic_result, name="result"),
-    path('set/selection/', views.set_selection, name="set_selection"),
     path('request/', views.user_request, name="request"),
 ]
