@@ -18,80 +18,58 @@
 {% endblock %}
 
 {% block content %}
-<div class="topic">
-  <div class="topic-title">
-    {{ topic.title }}
-  </div>
-  <div class="topic-graph-wrap">
-    <div class="label-agree" style="width:{{topic.get_count_yes}};">{{topic.get_count_yes}}</div>
-    <div class="label-disagree">{% if topic.get_count_no != '0%'%}{{topic.get_count_no}}{%endif%}</div>
-    <div class="agree" style="width: {{topic.get_count_yes}};">
+<div class="topic-wrapper">
+  <div class="topic-background">
+    <div class="topic-thumb" style="background-image: url('/static/img/test.jpg')">
+    </div>
+    
+    <div class="topic-title-box">
+      <div class="topic-title">문재인 대통령에대한 나의 생각은?</div>
+      <div class="topic-subtitle">2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
+        제시해주세요!</div>
     </div>
   </div>
 
-  <div class="explain">
-    사진을 클릭한 후 버튼을 눌러주세요.
-  </div>
-  <div class="selection">
-
-    <div class="selection1">
-      <span class="sel1-des">{{topic.selection1_des}}</span>
-      <div class="img-wrapper">
-        <img id="sel1" src="{{ topic.selection1_image.url}}">
+  <div class="select-wrapper">
+    <div class="select-box">
+      <div class="selection">
+        <div class="selection-text-wrapper">
+          <div class="selection-text">
+            선택지선택지
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="vs">vs</div>
-    <div class="selection2">
-      <span class="sel2-des">{{topic.selection2_des}}</span>
-      <div class="img-wrapper">
-        <img id="sel2" src="{{ topic.selection2_image.url}}">
+      <div class="selection">
+        <div class="selection-text-wrapper">
+          <div class="selection-text">
+            선택지선택지
+          </div>
+        </div>
       </div>
+      <div class="selection">
+        <div class="selection-text-wrapper">
+          <div class="selection-text">
+            선택지선택지
+          </div>
+        </div>
+      </div>
+      <div class="selection">
+        <div class="selection-text-wrapper">
+          <div class="selection-text">
+            선택지선택지
+          </div>
+        </div>
+      </div>
+      <div class="voting-btn">투표하기</div>
     </div>
-    <div id="" class="submit" onclick="clickSelection(this.id)">
-      선택하기
-    </div>
+  </div>
+  
+  <div>
 
-    <div class="_baa_"></div>
   </div>
 </div>
+
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/select.js' %}"></script>
-<!-- selection 선택시 함수 -->
-<script>
-  function clickSelection(e) {
-
-    if (e=='') 
-      alert('사진을 클릭해주세요.');   
-    
-
-    let target = e;
-    let selection;
-    let topic_id = '{{topic.id}}'
-    let type;
-    let checkUserLogin = '{{ request.user }}';
-
-    if (!(checkUserLogin === 'AnonymousUser')) {
-      if (target == 'sel1') {
-        selection_des = '{{topic.selection1_des}}';
-        type = 0;
-      } else if (target == 'sel2') {
-        selection_des = '{{topic.selection2_des}}';
-        type = 1;
-      } else {
-        selection_des = 'error';
-      }
-      if (selection_des != 'error' || !selection_des) {
-        selectType(selection_des, topic_id, type)
-      }
-    } else {
-      alert('로그인이 필요한 작업입니다.');
-      location.href = '/auth/signin/';
-    }
-  }
-</script>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-<script type="text/javascript" src="{% static 'js/topic.js' %}?4"></script>
 {% endblock %}

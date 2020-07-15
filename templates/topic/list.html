@@ -7,141 +7,90 @@
 
 {% block head_link %}
 <link rel="stylesheet" href="{% static 'css/list.css' %}">
-<!-- <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}"> -->
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
 {% endblock %}
 
 {% block head_script %}
-{% endblock %}
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/list.js' %}"></script>
+{% endblock %}{% block content %}
 
-{% block content %}
-
-
-<div class="topic-list">
-
-
-
-  <!-- <div class="owl-carousel owl-theme">
-    {% for topic in hot %}
+<div class="hot-topic">
+  <div class="owl-carousel owl-theme">
     <div class="item">
-      <img class="topic-badge" src="{% static 'img/hot.png' %}">
-      <div class="topic-content">
-        <div class="topic-thumb">
-          <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
-            size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
+      <div class="thumb-box" style="background-image: url('/static/img/test.jpg')">
+      </div>
+      <div class="hot-topic-contents">
+        <div class="hot-topic-title">
+          문재인 대통령에대한 나의 생각은?
         </div>
-        <div class="topic-text">
-          <div class="title">{{topic.title}}</div>
-          <div class="description">{{topic.description}}</div>
-          <div class="topic-graph-wrap">
-            {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
-
-            {% else %}
-            <div class="label-agree">{{topic.get_count_yes}}</div>
-            <div class="label-disagree">{{topic.get_count_no}}</div>
-            <div class="agree" style="width:{{topic.get_count_yes}};">
-            </div>
-            {% endif %}
-          </div>
-          <div style="font-size: 13px;">
-            {{topic.selection_set.count}}명 참여
-          </div>
+        <div class="hot-topic-subtitle">
+          2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
+          제시해주세요!
+        </div>
+        <div class="voting-btn">
+          투표하기
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div> -->
-
-
-  <div class="hot-topic">
-    <h3>오늘의 토픽</h3>
-    <!-- <div class="hot-time">
-    </div> -->
-    {% for topic in hot %}
-    <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
-      <img class="topic-badge" src="{% static 'img/hot.png' %}">
-      <a href="{% url 'topic:check_selection' topic.id %}">
-        <div class="topic-content">
-          <div class="topic-thumb">
-            <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
-              size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
-          </div>
-          <div class="topic-text">
-            <div class="title">{{topic.title}}</div>
-            <div class="description">{{topic.description}}</div>
-            <div class="topic-graph-wrap">
-              {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
-
-              {% else %}
-              <div class="label-agree">{{topic.get_count_yes}}</div>
-              <div class="label-disagree">{{topic.get_count_no}}</div>
-              <div class="agree" style="width:{{topic.get_count_yes}};">
-              </div>
-              {% endif %}
-            </div>
-            <div style="font-size: 13px; padding-top: 5px;">
-              {{topic.selection_set.count}}명 참여
-            </div>
-          </div>
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test.jpg')">
+      </div>
+      <div class="hot-topic-contents">
+        <div class="hot-topic-title">
+          문재인 대통령에대한 나의 생각은?
         </div>
-      </a>
-    </div>
-    {% endfor %}
-  </div>
-
-
-  <div class="default-topic">
-    
-    <h3>최신 토픽</h3>
-    {% for topic in topics %}
-    <div class="topic" date="{{topic.created_at|date:'Y,n,j,G,i,s'}}">
-      <img class="topic-badge hide" src="{% static 'img/new.png' %}">
-      <a href="{% url 'topic:check_selection' topic.id %}">
-        <div class="topic-content">
-          <div class="topic-thumb">
-            <img src="{{topic.thumb_image.url}}" alt="{% static 'img/no.png' %}"
-              size="{{topic.thumb_image.width}},{{topic.thumb_image.height}}">
-          </div>
-          <div class="topic-text">
-            <div class="title">{{topic.title}}</div>
-            <div class="description">{{topic.description}}</div>
-            <div class="topic-graph-wrap{% if topic.selection_set.count == 0%} nodata{% endif %}">
-              {% if topic.get_count_yes == '0%' and topic.get_count_no == '0%' %}
-
-              {% else %}
-              <div class="label-agree">{{topic.get_count_yes}}</div>
-              <div class="label-disagree">{{topic.get_count_no}}</div>
-              <div class="agree" style="width:{{topic.get_count_yes}};">
-              </div>
-              {% endif %}
-            </div>
-            <div style="font-size: 13px; padding-top: 5px;">
-              {{topic.selection_set.count}}명 참여
-            </div>
-          </div>
+        <div class="hot-topic-subtitle">
+          2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
+          제시해주세요!
         </div>
-      </a>
+          <div class="voting-btn">
+            투표하기
+          </div>
+      </div>
     </div>
-    {% endfor %}
-
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test3.jpg')"></div>
+    </div>
+    <div class="item">
+      <div class="thumb-box" style="background-image: url('/static/img/test3.jpg')"></div>
+    </div>
   </div>
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script src="/js/owl.carousel.min.js"></script>
 <script>
   $('.owl-carousel').owlCarousel({
+    items: 1,
     loop: true,
     margin: 10,
     nav: false,
+    dots: true,
     autoplay: false,
-    // autoplayTimeout:3000,
-    // autoplayHoverPause:true,
-    // autoplaySpeed:1000,
-    items: 1,
+    autoplayTimeout: 1000,
+    autoplayHoverPause: true
   })
+
 </script>
-<script src="{% static 'js/list.js' %}"></script>
+
+
+<div class="list-title">
+  최신 토픽
+</div>
+
+<div class="topic-list">
+  <div class="topic-card">
+    <div class="topic-contents">
+      <div class="topic-thumb"><img src="{% static 'img/test3.jpg' %}"></div>
+      <div class="topic-text">
+        <div class="topic-title">제목</div>
+        <div class="topic-subtitle">설명</div>
+        <div class="participant">100명 참여</div>  
+      </div>      
+    </div>
+  </div>
+  
+</div>
+</div>
+
 {% endblock %}
