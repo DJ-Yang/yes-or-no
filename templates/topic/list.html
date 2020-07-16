@@ -30,9 +30,10 @@
         <div class="hot-topic-subtitle">
           {{hot_topic.content}}
         </div>
-        <div class="voting-btn">
-          투표하기
-        </div>
+      </div>
+      
+      <div class="voting-btn">
+        투표하기
       </div>
     </div>
     {% endfor %}
@@ -42,11 +43,11 @@
   $('.owl-carousel').owlCarousel({
     items: 1,
     loop: true,
-    margin: 10,
+    margin: 0,
     nav: false,
     dots: true,
     autoplay: false,
-    autoplayTimeout: 1000,
+    autoplayTimeout: 4000,
     autoplayHoverPause: true
   })
 
@@ -65,7 +66,7 @@
         <div class="topic-thumb"><img src="{{topic.thumb_image.url}}"></div>
         <div class="topic-text">
           <div class="topic-title">{{topic.title}}</div>
-          <div class="topic-subtitle">{{topic.description}}</div>
+          <div class="topic-subtitle">{{topic.content}}</div>
           <div class="participant">{{topic.selection_set.all.count}}명 참여</div>
         </div>
       </div>
