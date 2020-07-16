@@ -134,12 +134,13 @@ def topic_select(request, topic_id):
 def topic_result(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
   pick = topic.picks.filter(author=request.user)
-
+  my_pick = request.user.picks.get(topic=topic)
   data = set_data(topic)
   
   return render(request, 'topic/result.html', {
     'topic' : topic,
     'pick' : pick,
+    'my_pick' : my_pick,
   })
 
 def user_request(request):
