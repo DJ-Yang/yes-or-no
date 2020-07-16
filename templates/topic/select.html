@@ -26,40 +26,21 @@
     
     <div class="topic-title-box">
       <div class="topic-title">{{topic.title}}</div>
-      <div class="topic-subtitle">{{topic.description}}</div>
+      <div class="topic-subtitle">{{topic.content}}</div>
     </div>
   </div>
 
   <div class="select-wrapper">
     <div class="select-box">
-      <div data="1" class="selection" style="background: url({% static 'img/test3.jpg' %});">
+      {% for selection in topic.selections.all%}
+      <div data="{{forloop.counter}}" class="selection" style="background: url({{selection.image.url}});">
         <div class="selection-text-wrapper">
           <div class="selection-text">
-            선택지선택지
+            {{selection.description}}
           </div>
         </div>
       </div>
-      <div data="2" class="selection">
-        <div class="selection-text-wrapper">
-          <div class="selection-text">
-            선택지선택지
-          </div>
-        </div>
-      </div>
-      <div data="3" class="selection">
-        <div class="selection-text-wrapper">
-          <div class="selection-text">
-            선택지선택지
-          </div>
-        </div>
-      </div>
-      <div data="4" class="selection">
-        <div class="selection-text-wrapper">
-          <div class="selection-text">
-            선택지선택지
-          </div>
-        </div>
-      </div>
+      {% endfor %}
 
       <form action="{% url 'topic:select' topic.pk %}" method="POST" class="voting-form">
         {% csrf_token %}

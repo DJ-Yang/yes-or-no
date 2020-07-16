@@ -2,6 +2,14 @@ body {
     background-color: #ffffff !important;
 }
 
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.side-menu {
+    background-color: #ffffff;
+}
 
 .top {
     padding-top: 30px;
@@ -23,7 +31,7 @@ body {
     max-width: 840px;
     margin: 0 auto;
     
-    border-left: 4px solid #FFDE50;
+    border-left: 4px solid #49C5B6;
 }
 
 .list {

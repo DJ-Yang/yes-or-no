@@ -1,9 +1,19 @@
 from django.contrib import admin
-from .models import Topic, Selection, DailyData
+from .models import Topic, Selection, Pick, DailyPick
 
-# class DailyDataAdmin(admin.ModelAdmin):
-#   readonly_fields = ('created_at',)
+class SelectionInline(admin.TabularInline):
+  model = Selection
+  extra = 0
 
-admin.site.register(Topic)
-admin.site.register(Selection)
-admin.site.register(DailyData)
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+
+  inlines = [
+    SelectionInline,
+  ]
+
+  def _selecitons(self, obj):
+    return obj.selecitons.all().count()
+
+admin.site.register(Pick)
+admin.site.register(DailyPick)
