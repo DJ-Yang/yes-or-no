@@ -33,7 +33,7 @@
   <div class="select-wrapper">
     <div class="select-box">
       {% for selection in topic.selections.all%}
-      <div data="{{forloop.counter}}" class="selection" style="background: url({{selection.image.url}});">
+      <div data="{{forloop.counter}}" class="selection" style="background: url({{selection.image.url}}); background-size: cover; background-position: center;">
         <div class="selection-text-wrapper">
           <div class="selection-text">
             {{selection.description}}
