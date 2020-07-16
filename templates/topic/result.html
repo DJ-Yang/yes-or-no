@@ -11,11 +11,111 @@
 
 {% block head_link %}
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
-<link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 {% endblock %}
 
 {% block head_script %}
 <script type="text/javascript">
+    var data = '{{data}}';
+    data = data.replace(/&#x27;/gi, '"');
+    data = JSON.parse(data);
+
+    var all_chart_data = [data['selection_1'],data['selection_2'], data['selection_3'], data['selection_4']];
+    var age = [];
+    var age_total = [];
+    age.push([data['selection_1_10'],data['selection_2_10'],data['selection_3_10'],data['selection_4_10']]);
+    age.push([data['selection_1_20'],data['selection_2_20'],data['selection_3_20'],data['selection_4_20']]);
+    age.push([data['selection_1_30'],data['selection_2_30'],data['selection_3_30'],data['selection_4_30']]);
+    age.push([data['selection_1_40'],data['selection_2_40'],data['selection_3_40'],data['selection_4_40']]);
+    age.push([data['selection_1_50'],data['selection_2_50'],data['selection_3_50'],data['selection_4_50']]);
+    age.push([data['selection_1_60'],data['selection_2_60'],data['selection_3_60'],data['selection_4_60']]);
+    age_total.push(age[0].reduce((a,b)=>{return a+b;}));
+    age_total.push(age[1].reduce((a,b)=>{return a+b;}));
+    age_total.push(age[2].reduce((a,b)=>{return a+b;}));
+    age_total.push(age[3].reduce((a,b)=>{return a+b;}));
+    age_total.push(age[4].reduce((a,b)=>{return a+b;}));
+    age_total.push(age[5].reduce((a,b)=>{return a+b;}));
+    console.log(age, age_total)
+    // for (let i=0;i<6;i++) {
+    //     for(let j=0;j<4;j++) {
+    //         age[i][j] = (age[i][j] / age_total[i])*100;
+    //     }
+    // }
+    // var age_data_list = [];
+    // for (let i=0;i<4;i++) {
+    //     let temp = [];
+    //     for(let j=0;j<6;j++) {
+    //         temp.push(age[j][i]);
+    //     }
+    //     age_data_list.push(temp);
+    // }
+    
+    var all = [];
+    var all_total = [];
+
+    all.push([data['selection_1_10_0'],data['selection_2_10_0'],data['selection_3_10_0'],data['selection_4_10_0']]);
+    all.push([data['selection_1_20_0'],data['selection_2_20_0'],data['selection_3_20_0'],data['selection_4_20_0']]);
+    all.push([data['selection_1_30_0'],data['selection_2_30_0'],data['selection_3_30_0'],data['selection_4_30_0']]);
+    all.push([data['selection_1_40_0'],data['selection_2_40_0'],data['selection_3_40_0'],data['selection_4_40_0']]);
+    all.push([data['selection_1_50_0'],data['selection_2_50_0'],data['selection_3_50_0'],data['selection_4_50_0']]);
+    all.push([data['selection_1_60_0'],data['selection_2_60_0'],data['selection_3_60_0'],data['selection_4_60_0']]);
+    all.push([data['selection_1_10_1'],data['selection_2_10_1'],data['selection_3_10_1'],data['selection_4_10_1']]);
+    all.push([data['selection_1_20_1'],data['selection_2_20_1'],data['selection_3_20_1'],data['selection_4_20_1']]);
+    all.push([data['selection_1_30_1'],data['selection_2_30_1'],data['selection_3_30_1'],data['selection_4_30_1']]);
+    all.push([data['selection_1_40_1'],data['selection_2_40_1'],data['selection_3_40_1'],data['selection_4_40_1']]);
+    all.push([data['selection_1_50_1'],data['selection_2_50_1'],data['selection_3_50_1'],data['selection_4_50_1']]);
+    all.push([data['selection_1_60_1'],data['selection_2_60_1'],data['selection_3_60_1'],data['selection_4_60_1']]);
+    all_total.push(all[0].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[1].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[2].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[3].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[4].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[5].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[6].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[7].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[8].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[9].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[10].reduce((a,b)=>{return a+b;}));
+    all_total.push(all[11].reduce((a,b)=>{return a+b;}));
+
+    var sum = all_total.reduce((a,b)=>{return a+b;})
+    for (let i=0;i<12;i++) {
+        for(let j=0;j<4;j++) {
+            all[i][j] = (all[i][j] / sum)*100;
+        }
+    }
+    var all_data_list_male = [];
+    for (let i=0;i<4;i++) {
+        let temp = [];
+        for(let j=0;j<6;j++) {
+            temp.push(all[j][i]);
+        }
+        all_data_list_male.push(temp);
+    }
+    var all_data_list_female = [];
+    for (let i=0;i<4;i++) {
+        let temp = [];
+        for(let j=6;j<12;j++) {
+            temp.push(all[j][i]);
+        }
+        all_data_list_female.push(temp);
+    }
+
+
+    var data_list = [];
+    data_list.push([data['selection_1_0'],data['selection_2_0'],data['selection_3_0'],data['selection_4_0']]);
+    data_list.push([data['selection_1_1'],data['selection_2_1'],data['selection_3_1'],data['selection_4_1']]);
+    data_list.push([data['selection_1_10'], data['selection_1_20'], data['selection_1_30'],data['selection_1_40'],data['selection_1_50'],data['selection_1_60']]);
+    data_list.push([data['selection_2_10'], data['selection_2_20'], data['selection_2_30'],data['selection_2_40'],data['selection_2_50'],data['selection_2_60']]);
+    data_list.push([data['selection_3_10'], data['selection_3_20'], data['selection_3_30'],data['selection_3_40'],data['selection_3_50'],data['selection_3_60']]);
+    data_list.push([data['selection_4_10'], data['selection_4_20'], data['selection_4_30'],data['selection_4_40'],data['selection_4_50'],data['selection_4_60']]);
+    data_list.push([data['selection_1_10_0'], data['selection_1_20_0'], data['selection_1_30_0'], data['selection_1_40_0'], data['selection_1_50_0'], data['selection_1_60_0']]);
+    data_list.push([data['selection_2_10_0'], data['selection_2_20_0'], data['selection_2_30_0'], data['selection_2_40_0'], data['selection_2_50_0'], data['selection_2_60_0']]);
+    data_list.push([data['selection_3_10_0'], data['selection_3_20_0'], data['selection_3_30_0'], data['selection_3_40_0'], data['selection_3_50_0'], data['selection_3_60_0']]);
+    data_list.push([data['selection_4_10_0'], data['selection_4_20_0'], data['selection_4_30_0'], data['selection_4_40_0'], data['selection_4_50_0'], data['selection_4_60_0']]);
+    data_list.push([data['selection_1_10_1'], data['selection_1_20_1'], data['selection_1_30_1'], data['selection_1_40_1'], data['selection_1_50_1'], data['selection_1_60_1']]);
+    data_list.push([data['selection_2_10_1'], data['selection_2_20_1'], data['selection_2_30_1'], data['selection_2_40_1'], data['selection_2_50_1'], data['selection_2_60_1']]);
+    data_list.push([data['selection_3_10_1'], data['selection_3_20_1'], data['selection_3_30_1'], data['selection_3_40_1'], data['selection_3_50_1'], data['selection_3_60_1']]);
+    data_list.push([data['selection_4_10_1'], data['selection_4_20_1'], data['selection_4_30_1'], data['selection_4_40_1'], data['selection_4_50_1'], data['selection_4_60_1']]);
     function share() {
         var url = encodeURI(encodeURIComponent(myform.url.value));
         var title = encodeURI(myform.title.value);
@@ -23,8 +123,6 @@
         window.open(shareURL);
     }
 </script>
-
-
 {% endblock %}
 
 {% block content %}
@@ -60,7 +158,7 @@
             
             <div class="selection">
                 {% for selection in topic.selections.all %}
-                {% if my_pick.selection == forloop.counter %}
+                {% if pick.selection == forloop.counter %}
                 <div class="selection-text selection-active">{{forloop.counter}}. {{selection.description}}</div>
                 {% else %}
                 <div class="selection-text">{{forloop.counter}}. {{selection.description}}</div>
@@ -132,7 +230,7 @@
 <script src="{% static 'js/apexcharts.js' %}"></script>
 <script>
     var options = {
-        series: [44, 55, 13, 43],
+        series: all_chart_data,
         chart: {
             type: 'pie',
             
@@ -142,7 +240,6 @@
             enabled: true,
             textAnchor: 'start',
             formatter: function (val, opts) {
-                console.log(val, opts)
                 return Math.round(val) + '%';
             },
             style: {
@@ -164,7 +261,7 @@
 </script>
 <script>
     var options = {
-        series: [44, 55, 13, 43],
+        series: data_list[0],
         chart: {
             type: 'pie',
             width:260,
@@ -201,7 +298,6 @@
             enabled: true,
             textAnchor: 'start',
             formatter: function (val, opts) {
-                console.log(val, opts)
                 return Math.round(val) + '%';
             },
             style: {
@@ -220,14 +316,25 @@
 
     var chart = new ApexCharts(document.querySelector("#chart4"), options);
     chart.render();
-</script>
+    </script>
 <script>
     var options = {
-        series: [44, 55, 13, 43],
+        series: data_list[1],
+        noData: {
+            text: 'text',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0,
+            style: {
+                color: '#000000',
+                fontSize: '14px',
+            }
+        },
         chart: {
             type: 'pie',
-            width:260,
-            
+            width: 260,
+
         },
         responsive: [
             {
@@ -261,7 +368,6 @@
             enabled: true,
             textAnchor: 'start',
             formatter: function (val, opts) {
-                console.log(val, opts)
                 return Math.round(val) + '%';
             },
             style: {
@@ -285,17 +391,17 @@
 <script>
     var options = {
         series: [{
-            name: 'Net Profit',
-            data: [44, 55, 57, 56, 61, 58]
+            name: '1번',
+            data: age_data_list[0]
         }, {
-            name: 'Revenue',
-            data: [76, 85, 101, 98, 87, 105]
+            name: '2번',
+            data: age_data_list[1]
         }, {
-            name: 'Free Cash Flow',
-            data: [35, 41, 36, 26, 45, 48]
+            name: '3번',
+            data: age_data_list[2]
         }, {
-            name: 'Free Cash Flow',
-            data: [15, 34, 22, 35, 11, 30]
+            name: '4번',
+            data: age_data_list[3]
         }],
         chart: {
             type: 'bar',
@@ -333,6 +439,11 @@
         xaxis: {
             categories: ['10대', '20대', '30대', '40대', '50대', '60대'],
         },
+        yaxis: {
+            labels: {
+                formatter: (value) => { return value },
+            },
+        },
         fill: {
             opacity: 1
         },
@@ -343,6 +454,7 @@
                 }
             }
         },
+        
         legend: {
             show: false
         }
@@ -354,17 +466,17 @@
 <script>
     var options = {
         series: [{
-            name: 'Marine Sprite',
-            data: [24, 35, 21, 37, 22, 43]
+            name: '남자',
+            data: all_data_list_male[0]
         }, {
-            name: 'Striking Calf',
-            data: [13, 13, 33, 22, 13, 13]
+            name: '남자',
+            data: all_data_list_male[1]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '남자',
+            data: all_data_list_male[2]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '남자',
+            data: all_data_list_male[3]
         },
         ],
         chart: {
@@ -416,7 +528,7 @@
             max: 100,
             labels: {
                 formatter: function (val) {
-                    return val + "%"
+                    return val + '%'
                 }
             },
 
@@ -429,7 +541,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + "K"
+                    return val + '%'
                 }
             }
         },
@@ -458,17 +570,17 @@
 
     var options2 = {
         series: [{
-            name: 'Marine Sprite',
-            data: [4, 15, 11, 17, 22, 23]
+            name: '여자',
+            data: all_data_list_female[0]
         }, {
-            name: 'Striking Calf',
-            data: [53, 32, 33, 52, 13, 43]
+            name: '여자',
+            data: all_data_list_female[1]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '여자',
+            data: all_data_list_female[2]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '여자',
+            data: all_data_list_female[3]
         },
         ],
         chart: {
@@ -520,7 +632,7 @@
             max: 100,
             labels: {
                 formatter: function (val) {
-                    return val + "%"
+                    return val + '%'
                 }
             }
         },
@@ -533,7 +645,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + "K"
+                    return val + '%'
                 }
             }
         },

@@ -13,6 +13,9 @@ $(document).ready(function () {
 
 });
 
+$(window).resize(function() {
+    resizeSelection();
+});
 
 function resizeSelection() {
     let selection_count = $('.select-box').find('.selection').length;
@@ -29,3 +32,4 @@ function resizeSelection() {
     }
 
 }
+
