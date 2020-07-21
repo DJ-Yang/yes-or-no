@@ -32,9 +32,11 @@
         </div>
       </div>
       
-      <div class="voting-btn">
-        투표하기
-      </div>
+      <a href="{% url 'topic:select' hot_topic.pk %}">
+        <div class="voting-btn">
+          투표하기
+        </div>
+      </a>      
     </div>
     {% endfor %}
   </div>

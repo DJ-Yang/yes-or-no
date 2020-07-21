@@ -73,10 +73,19 @@
         cursor: pointer;
     }
 
+    .list-title {
+        margin-top: 70px;
+        max-width: 1900px;
+        width: 90%;
+        margin: 70px auto 30px auto;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
     .topic-list {
         width: 100%;
         max-width: 1900px;
-        margin: 0 auto;
+        margin: 0 auto 100px;
         display: flex;
         justify-content: center;
         align-content: center;

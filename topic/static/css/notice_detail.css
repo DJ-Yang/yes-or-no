@@ -1,7 +1,18 @@
 body {
     background-color: #ffffff !important;
 }
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
 
+.side-menu {
+    background-color: #ffffff;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 .top {
     padding-top: 30px;
     padding-left: 35px; 
@@ -14,7 +25,7 @@ body {
 .notice-detail {
     max-width: 840px;
     margin: 0 auto;
-    border-left: 4px solid #FFDE50;
+    border-left: 4px solid #49C5B6;
 
 }
 
@@ -43,6 +54,8 @@ body {
 }
 .detail-body {
     padding: 50px 0;
+    letter-spacing: 0.4px;
+    line-height: 25px;
 }
 .button {
     font-size: 14px;
