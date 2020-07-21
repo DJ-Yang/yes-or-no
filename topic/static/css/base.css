@@ -33,7 +33,9 @@ a:focus {
 }
 
 .menu-btn {
-    float: left;
+    float: right;
+    cursor: pointer;
+    margin-top: 3px;
 }
 .user-icon {
     float: right;
@@ -62,11 +64,11 @@ a:focus {
     height: 100vh;
     position: fixed;
     top: 0;
-    left: -300px;
+    right: -300px;
     background-color: #F4F7F6;
     z-index: 10001;
-    transition: left ease-in .2s;
-    border-right: 1px solid #e0e0e0;
+    transition: right ease-in .2s;
+    border-left: 1px solid #e0e0e0;
 }
 
 .side-menu-header {
@@ -74,12 +76,41 @@ a:focus {
 }
 
 .menu-close {
-    float: right;
+    float: left;
     padding-top: 20px;
-    padding-right: 10px;    
+    padding-left: 10px;    
+    cursor: pointer;
 }
+
+.menu-contents ul li {
+    vertical-align: middle;
+    padding: 20px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: bold;
+    font-size: 20px;
+    color: #202121;
+    display: flex;
+    align-items: center;
+    font-family: Helvetica, sans-serif;
+}
+.menu-contents ul li img {
+    margin-right: 20px;
+}
+
+
 
 footer {
     background-color: #ffffff;
     height: 200px;
+}
+
+
+@media all and (max-width:480px) {
+    .header-contents {
+        padding: 15px 20px 15px 5px;
+    }
+    .header-title {
+        margin: 0;
+        font-size: 35px;
+    }
 }

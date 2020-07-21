@@ -1,11 +1,8 @@
 function menuSwitch(e) {
-   console.log(e.id);
-
    if (e.id == 'close') {
-      $('.side-menu').css('left',-300); 
+      $('.side-menu').css('right','-300px'); 
    } else if (e.id == 'open') {
-      $('.side-menu').css('left','0'); 
-      $('.')
+      $('.side-menu').css('right','0'); 
    }   
 }
 
@@ -19,7 +16,6 @@ $(document).ready(function() {
 
 $(window).resize(function (){
    check_footer_postion();
-
 });
 
 

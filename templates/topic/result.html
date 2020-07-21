@@ -11,43 +11,143 @@
 
 {% block head_link %}
 <link rel="stylesheet" href="{% static 'css/result.css' %}">
-<link rel="stylesheet" href="{% static 'css/result_chart.css' %}">
 {% endblock %}
 
 {% block head_script %}
-<script type="text/javascript">
-    var postive = "{{ result.postive }}";
-    var negative = "{{ result.negative }}";
-
-
-    var data = "{{result}}"
-
-    data = data.replace(/&#x27;/gi, '"');
-
-    json_data = JSON.parse(data);
-
-    let chart_gender_female_data = [json_data['negative_female'], json_data['positive_female']];
-    let chart_gender_male_data = [json_data['negative_male'], json_data['positive_male']];
-    let chart_age_postive = [json_data['positive_10age'], json_data['positive_20age'], json_data['positive_30age'], json_data['positive_40age'], json_data['positive_50age'], json_data['positive_60age']];
-    let chart_age_negative = [json_data['negative_10age'], json_data['negative_20age'], json_data['negative_30age'], json_data['negative_40age'], json_data['negative_50age'], json_data['negative_60age']];
-    let chart_all_female_10 = 'female-10-' + json_data['positive_10age_female'] + '-' + json_data['negative_10age_female'];
-    let chart_all_female_20 = 'female-20-' + json_data['positive_20age_female'] + '-' + json_data['negative_20age_female'];
-    let chart_all_female_30 = 'female-30-' + json_data['positive_30age_female'] + '-' + json_data['negative_30age_female'];
-    let chart_all_female_40 = 'female-40-' + json_data['positive_40age_female'] + '-' + json_data['negative_40age_female'];
-    let chart_all_female_50 = 'female-50-' + json_data['positive_50age_female'] + '-' + json_data['negative_50age_female'];
-    let chart_all_female_60 = 'female-60-' + json_data['positive_60age_female'] + '-' + json_data['negative_60age_female'];
-    let chart_all_male_10 = 'male-10-' + json_data['positive_10age_male'] + '-' + json_data['negative_10age_male'];
-    let chart_all_male_20 = 'male-20-' + json_data['positive_20age_male'] + '-' + json_data['negative_20age_male'];
-    let chart_all_male_30 = 'male-30-' + json_data['positive_30age_male'] + '-' + json_data['negative_30age_male'];
-    let chart_all_male_40 = 'male-40-' + json_data['positive_40age_male'] + '-' + json_data['negative_40age_male'];
-    let chart_all_male_50 = 'male-50-' + json_data['positive_50age_male'] + '-' + json_data['negative_50age_male'];
-    let chart_all_male_60 = 'male-60-' + json_data['positive_60age_male'] + '-' + json_data['negative_60age_male'];
-
-    let chart_all_female = [chart_all_female_10, chart_all_female_20, chart_all_female_30, chart_all_female_40, chart_all_female_50, chart_all_female_60];
-    let chart_all_male = [chart_all_male_10, chart_all_male_20, chart_all_male_30, chart_all_male_40, chart_all_male_50, chart_all_male_60];
-
+<script src="{% static 'js/kakao.js' %}"></script>
+<script>
+    Kakao.init('d6c3621c6252a5999c0fb101d2a2d3ab');
+    console.log(Kakao.isInitialized());
 </script>
 <script type="text/javascript">
+
+    function set_chart_data() {
+
+    }
+    var data = '{{data}}';
+    data = data.replace(/&#x27;/gi, '"');
+    data = JSON.parse(data);
+    var all_chart_data = [data['selection_1'], data['selection_2'], data['selection_3'], data['selection_4']];
+
+    var all = [];
+    var all_total = [];
+    let age = [];
+    let age_total = [];
+    var age_data_list = [];
+    var all_data_list_male = [];
+    var all_data_list_female = [];
+    var data_list = [];
+
+
+    all_chart_data = all_chart_data.map(function (item) { return item == undefined ? 0 : item })
+    age.push([data['selection_1_10'], data['selection_2_10'], data['selection_3_10'], data['selection_4_10']]);
+    age.push([data['selection_1_20'], data['selection_2_20'], data['selection_3_20'], data['selection_4_20']]);
+    age.push([data['selection_1_30'], data['selection_2_30'], data['selection_3_30'], data['selection_4_30']]);
+    age.push([data['selection_1_40'], data['selection_2_40'], data['selection_3_40'], data['selection_4_40']]);
+    age.push([data['selection_1_50'], data['selection_2_50'], data['selection_3_50'], data['selection_4_50']]);
+    age.push([data['selection_1_60'], data['selection_2_60'], data['selection_3_60'], data['selection_4_60']]);
+
+    age.forEach(function (items, i) {
+        items = items.map(function (item) { return item == undefined ? 0 : item })
+        age[i] = items;
+    })
+    age_total.push(age[0].reduce((a, b) => { return a + b; }));
+    age_total.push(age[1].reduce((a, b) => { return a + b; }));
+    age_total.push(age[2].reduce((a, b) => { return a + b; }));
+    age_total.push(age[3].reduce((a, b) => { return a + b; }));
+    age_total.push(age[4].reduce((a, b) => { return a + b; }));
+    age_total.push(age[5].reduce((a, b) => { return a + b; }));
+
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 4; j++) {
+            age[i][j] = (age[i][j] / age_total[i]) * 100;
+        }
+    }
+    for (let i = 0; i < 4; i++) {
+        let temp = [];
+        for (let j = 0; j < 6; j++) {
+            temp.push(age[j][i]);
+        }
+        age_data_list.push(temp);
+    }
+
+
+    all.push([data['selection_1_10_0'], data['selection_2_10_0'], data['selection_3_10_0'], data['selection_4_10_0']]);
+    all.push([data['selection_1_20_0'], data['selection_2_20_0'], data['selection_3_20_0'], data['selection_4_20_0']]);
+    all.push([data['selection_1_30_0'], data['selection_2_30_0'], data['selection_3_30_0'], data['selection_4_30_0']]);
+    all.push([data['selection_1_40_0'], data['selection_2_40_0'], data['selection_3_40_0'], data['selection_4_40_0']]);
+    all.push([data['selection_1_50_0'], data['selection_2_50_0'], data['selection_3_50_0'], data['selection_4_50_0']]);
+    all.push([data['selection_1_60_0'], data['selection_2_60_0'], data['selection_3_60_0'], data['selection_4_60_0']]);
+    all.push([data['selection_1_10_1'], data['selection_2_10_1'], data['selection_3_10_1'], data['selection_4_10_1']]);
+    all.push([data['selection_1_20_1'], data['selection_2_20_1'], data['selection_3_20_1'], data['selection_4_20_1']]);
+    all.push([data['selection_1_30_1'], data['selection_2_30_1'], data['selection_3_30_1'], data['selection_4_30_1']]);
+    all.push([data['selection_1_40_1'], data['selection_2_40_1'], data['selection_3_40_1'], data['selection_4_40_1']]);
+    all.push([data['selection_1_50_1'], data['selection_2_50_1'], data['selection_3_50_1'], data['selection_4_50_1']]);
+    all.push([data['selection_1_60_1'], data['selection_2_60_1'], data['selection_3_60_1'], data['selection_4_60_1']]);
+
+    all.forEach(function (items, i) {
+        items = items.map(function (item) { return item == undefined ? 0 : item })
+        all[i] = items;
+    })
+
+
+    all_total.push(all[0].reduce((a, b) => { return a + b; }));
+    all_total.push(all[1].reduce((a, b) => { return a + b; }));
+    all_total.push(all[2].reduce((a, b) => { return a + b; }));
+    all_total.push(all[3].reduce((a, b) => { return a + b; }));
+    all_total.push(all[4].reduce((a, b) => { return a + b; }));
+    all_total.push(all[5].reduce((a, b) => { return a + b; }));
+    all_total.push(all[6].reduce((a, b) => { return a + b; }));
+    all_total.push(all[7].reduce((a, b) => { return a + b; }));
+    all_total.push(all[8].reduce((a, b) => { return a + b; }));
+    all_total.push(all[9].reduce((a, b) => { return a + b; }));
+    all_total.push(all[10].reduce((a, b) => { return a + b; }));
+    all_total.push(all[11].reduce((a, b) => { return a + b; }));
+    var sum = all_total.reduce((a, b) => { return a + b; })
+
+
+
+    for (let i = 0; i < 12; i++) {
+        for (let j = 0; j < 4; j++) {
+            all[i][j] = (all[i][j] / sum) * 100;
+        }
+    }
+    for (let i = 0; i < 4; i++) {
+        let temp = [];
+        for (let j = 0; j < 6; j++) {
+            temp.push(all[j][i]);
+        }
+        all_data_list_male.push(temp);
+    }
+    for (let i = 0; i < 4; i++) {
+        let temp = [];
+        for (let j = 6; j < 12; j++) {
+            temp.push(all[j][i]);
+        }
+        all_data_list_female.push(temp);
+    }
+    data_list.push([data['selection_1_0'], data['selection_2_0'], data['selection_3_0'], data['selection_4_0']]);
+    data_list.push([data['selection_1_1'], data['selection_2_1'], data['selection_3_1'], data['selection_4_1']]);
+    data_list.push([data['selection_1_10'], data['selection_1_20'], data['selection_1_30'], data['selection_1_40'], data['selection_1_50'], data['selection_1_60']]);
+    data_list.push([data['selection_2_10'], data['selection_2_20'], data['selection_2_30'], data['selection_2_40'], data['selection_2_50'], data['selection_2_60']]);
+    data_list.push([data['selection_3_10'], data['selection_3_20'], data['selection_3_30'], data['selection_3_40'], data['selection_3_50'], data['selection_3_60']]);
+    data_list.push([data['selection_4_10'], data['selection_4_20'], data['selection_4_30'], data['selection_4_40'], data['selection_4_50'], data['selection_4_60']]);
+    data_list.push([data['selection_1_10_0'], data['selection_1_20_0'], data['selection_1_30_0'], data['selection_1_40_0'], data['selection_1_50_0'], data['selection_1_60_0']]);
+    data_list.push([data['selection_2_10_0'], data['selection_2_20_0'], data['selection_2_30_0'], data['selection_2_40_0'], data['selection_2_50_0'], data['selection_2_60_0']]);
+    data_list.push([data['selection_3_10_0'], data['selection_3_20_0'], data['selection_3_30_0'], data['selection_3_40_0'], data['selection_3_50_0'], data['selection_3_60_0']]);
+    data_list.push([data['selection_4_10_0'], data['selection_4_20_0'], data['selection_4_30_0'], data['selection_4_40_0'], data['selection_4_50_0'], data['selection_4_60_0']]);
+    data_list.push([data['selection_1_10_1'], data['selection_1_20_1'], data['selection_1_30_1'], data['selection_1_40_1'], data['selection_1_50_1'], data['selection_1_60_1']]);
+    data_list.push([data['selection_2_10_1'], data['selection_2_20_1'], data['selection_2_30_1'], data['selection_2_40_1'], data['selection_2_50_1'], data['selection_2_60_1']]);
+    data_list.push([data['selection_3_10_1'], data['selection_3_20_1'], data['selection_3_30_1'], data['selection_3_40_1'], data['selection_3_50_1'], data['selection_3_60_1']]);
+    data_list.push([data['selection_4_10_1'], data['selection_4_20_1'], data['selection_4_30_1'], data['selection_4_40_1'], data['selection_4_50_1'], data['selection_4_60_1']]);
+
+
+    data_list.forEach(function (items, i) {
+        items = items.map(function (item) { return item == undefined ? 0 : item })
+        data_list[i] = items;
+    })
+
+
     function share() {
         var url = encodeURI(encodeURIComponent(myform.url.value));
         var title = encodeURI(myform.title.value);
@@ -55,31 +155,33 @@
         window.open(shareURL);
     }
 </script>
-
-
 {% endblock %}
 
 {% block content %}
 <div class="topic-wrapper">
     <div class="topic-background">
-        <div class="topic-thumb" style="background-image: url('/static/img/test.jpg')">
+        <div class="topic-thumb" style="background-image: url('{{topic.thumb_image.url}}')">
         </div>
 
         <div class="topic-title-box">
-            <div class="topic-title">문재인 대통령에대한 나의 생각은?</div>
-            <div class="topic-subtitle">2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는
-                의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
-                제시해주세요!</div>
+            <div class="topic-title">{{topic.title}}</div>
+            <div class="topic-subtitle">{{topic.content}}</div>
 
             <div class="btn-box">
-                <div class="btn revoting-btn">
-                    <img src="{% static 'img/checked.png' %}" width="15px">
-                    다시하기
-                </div>
+                <a href="{% url 'topic:select' topic.pk %}">
+                    <div class="btn revoting-btn">
+                        <img src="{% static 'img/checked.png' %}" width="15px">
+                        다시하기
+                    </div>
+                </a>
                 <div class="btn share-btn">
                     <img src="{% static 'img/share.png' %}" width="12px">
                     공유하기
                 </div>
+                <div>
+
+                </div>
+                <!-- <div class="share-box share-active"></div> -->
             </div>
         </div>
     </div>
@@ -89,19 +191,23 @@
             <div class="total-chart-box">
                 <div id="chart1"></div>
             </div>
+
             <div class="selection">
-                <div class="selection-text selection-active">1. 1번 선택지 내용입니드아아</div>
-                <div class="selection-text">2. 2번 선택지 내용입니드아아</div>
-                <div class="selection-text">3. 3번 선택지 내용입니드아아</div>
-                <div class="selection-text">4. 4번 선택지 내용입니드아아</div>
+                {% for selection in topic.selections.all %}
+                {% if pick.selection == forloop.counter %}
+                <div class="selection-text selection-active">{{forloop.counter}}. {{selection.description}}</div>
+                {% else %}
+                <div class="selection-text">{{forloop.counter}}. {{selection.description}}</div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
     <div class="topic-analysis-box">
         <div class="analysis-title-row">
-            <div class="category">
-                <img src="{% static 'img/chart.png' %}" alt="">
+            <div class="category chart-active">
+                <img src="{% static 'img/chart_active.png' %}" alt="">
                 분야별
             </div>
             <div class="date">
@@ -113,36 +219,133 @@
             <div class="chart-row">
                 <div class="chart-box">
                     <div class="chart-title">종합 분석결과</div>
-                    <div id="chart2"></div>
-                    <div id="chart"></div>
+                    <div style="display: flex; height: fit-content; justify-content: center;">
+                        <div id="chart2"></div>
+                        <div id="chart"></div>
+                    </div>
+                    <div class="label-box">
+                        {% for i in topic.selections.all %}
+                        <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
+                            {{forloop.counter}}번</span>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="chart-box">
                     <div class="chart-title">연령대별 분석결과</div>
                     <div id="chart3"></div>
-                </div> 
+                    <div class="label-box">
+                        {% for i in topic.selections.all %}
+                        <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
+                            {{forloop.counter}}번</span>
+                        {% endfor %}
+                    </div>
+                </div>
                 <div class="chart-box">
                     <div class="chart-title">성별 분석결과</div>
-                    <div id="chart4"></div>
+                    <div class="age-title">
+                        <div>남성</div>
+                        <div>여성</div>
+                    </div>
+                    <div class="age-chart">
+                        <div id="chart4"></div>
+                        <div id="chart5"></div>
+                    </div>
+                    <div class="label-box">
+                        {% for i in topic.selections.all %}
+                        <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
+                            {{forloop.counter}}번</span>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div>
+            공유하기
+            <span class="close">&times;</span>
+        </div>
+        
+        <div class="copy-link">
+            <i class="fa fa-external-link" aria-hidden="true"></i>
+            <input name="share_link" type="text" disabled>
+        </div>
+        <div class="sns-btn">
+            <div class="button">
+                <a href="javascript:;" id="kakao-link-btn">
+                    <img src="https://yorn-bucket.s3.amazonaws.com/static/img/kakao_share.png" width="45px">
+                </a>
+                <script type="text/javascript">
+                    var currentURL = window.location.href;
+                    var buttonURL = currentURL.replace('result/', '');
+                    var commentcount = parseInt('21');
+                    Kakao.Link.createDefaultButton({
+                        container: '#kakao-link-btn',
+                        objectType: 'feed',
+                        content: {
+                            title: '문재인 대통령에 대한 나의 생각은?',
+                            description: '2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을 제시해주세요!',
+                            imageUrl: 'https://yorn-bucket.s3.amazonaws.com/media/%E1%84%8F%E1%85%A5%E1%86%BA1_4OR4Xh4.jpg',
+                            link: {
+                                mobileWebUrl: buttonURL,
+                                webUrl: buttonURL
+                            }
+                        },
+                        social: {
+                            commentCount: commentcount,
+                            // sharedCount: 845
+                            // 나중에 공유하기 callback parameter이용해서 공유 횟수 볼 수 있게 하기
+                        },
+                        buttons: [
+                            {
+                                title: '나도 투표하기',
+                                link: {
+                                    mobileWebUrl: buttonURL,
+                                    webUrl: buttonURL
+                                }
+                            },
+                        ]
+                    });
+                </script>
+                <a href="javascript:void(0);" id="naver-link-btn" onclick="share();">
+                    <img src="https://yorn-bucket.s3.amazonaws.com/static/img/naver_share.png" width="45px">
+                </a>
+                <form id="myform" class="hide">
+                    <input type="text" id="url" value=""><br>
+                    <input type="text" id="title" value="문재인 대통령에 대한 나의 생각은?"><br>
+                </form>
+                <script type="text/javascript">
+                    var currentURL = window.location.href;
+                    var shareurl = currentURL.replace('result/', '');
+                    document.getElementById("url").value = shareurl;
+                </script>
+                <!-- <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+                <script type="text/javascript">
+                    new ShareNaver.makeButton({ "type": "f"});
+                </script> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="{% static 'js/apexcharts.js' %}"></script>
 <script>
     var options = {
-        series: [44, 55, 13, 43],
+        series: all_chart_data,
         chart: {
             type: 'pie',
+
         },
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
             enabled: true,
             textAnchor: 'start',
             formatter: function (val, opts) {
-                console.log(val, opts)
                 return Math.round(val) + '%';
             },
             style: {
@@ -164,18 +367,43 @@
 </script>
 <script>
     var options = {
-        series: [44, 55, 13, 43],
+        series: data_list[0],
         chart: {
             type: 'pie',
-            width:400,
-            height:'10 0%'
+            width: 260,
         },
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 230
+                    },
+                }
+            },
+            {
+                breakpoint: 425,
+                options: {
+                    chart: {
+                        width: 200
+                    }
+                }
+            },
+            {
+                breakpoint: 375,
+                options: {
+                    chart: {
+                        width: 180
+                    }
+                }
+            }
+
+        ],
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
             enabled: true,
             textAnchor: 'start',
             formatter: function (val, opts) {
-                console.log(val, opts)
                 return Math.round(val) + '%';
             },
             style: {
@@ -195,30 +423,110 @@
     var chart = new ApexCharts(document.querySelector("#chart4"), options);
     chart.render();
 </script>
+<script>
+    var options = {
+        series: data_list[1],
+        noData: {
+            text: 'text',
+            align: 'center',
+            verticalAlign: 'middle',
+            offsetX: 0,
+            offsetY: 0,
+            style: {
+                color: '#000000',
+                fontSize: '14px',
+            }
+        },
+        chart: {
+            type: 'pie',
+            width: 260,
+
+        },
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 230,
+                    },
+                }
+            },
+            {
+                breakpoint: 425,
+                options: {
+                    chart: {
+                        width: 200
+                    }
+                }
+            },
+            {
+                breakpoint: 375,
+                options: {
+                    chart: {
+                        width: 180
+                    }
+                }
+            }
+
+        ],
+        labels: ['A', 'B', 'C', 'D'],
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            formatter: function (val, opts) {
+                return Math.round(val) + '%';
+            },
+            style: {
+                fontSize: '14px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 'regular',
+            },
+        },
+        legend: {
+            show: false
+        },
+        tooltip: {
+            enabled: false
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart5"), options);
+    chart.render();
+</script>
 
 <script>
     var options = {
         series: [{
-            name: 'Net Profit',
-            data: [44, 55, 57, 56, 61, 58]
+            name: '1번',
+            data: age_data_list[0]
         }, {
-            name: 'Revenue',
-            data: [76, 85, 101, 98, 87, 105]
+            name: '2번',
+            data: age_data_list[1]
         }, {
-            name: 'Free Cash Flow',
-            data: [35, 41, 36, 26, 45, 48]
+            name: '3번',
+            data: age_data_list[2]
         }, {
-            name: 'Free Cash Flow',
-            data: [15, 34, 22, 35, 11, 30]
+            name: '4번',
+            data: age_data_list[3]
         }],
         chart: {
             type: 'bar',
-            height: '100%',
-            width: 400,
+            width: '100%',
+            height: 320,
             toolbar: {
                 show: false
             }
         },
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        height: 230
+                    },
+                }
+            }
+        ],
         plotOptions: {
             bar: {
                 horizontal: false,
@@ -237,6 +545,13 @@
         xaxis: {
             categories: ['10대', '20대', '30대', '40대', '50대', '60대'],
         },
+        yaxis: {
+            tickAmount: 4,
+            max: 100,
+            labels: {
+                formatter: (value) => { return value + '%' },
+            },
+        },
         fill: {
             opacity: 1
         },
@@ -247,6 +562,7 @@
                 }
             }
         },
+
         legend: {
             show: false
         }
@@ -258,28 +574,57 @@
 <script>
     var options = {
         series: [{
-            name: 'Marine Sprite',
-            data: [24, 35, 21, 37, 22, 43]
+            name: '남자',
+            data: all_data_list_male[0]
         }, {
-            name: 'Striking Calf',
-            data: [13, 13, 33, 22, 13, 13]
+            name: '남자',
+            data: all_data_list_male[1]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '남자',
+            data: all_data_list_male[2]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '남자',
+            data: all_data_list_male[3]
         },
         ],
         chart: {
             type: 'bar',
             height: '100%',
             width: 210,
+            height: 320,
             stacked: true,
             toolbar: {
                 show: false
             }
         },
+        responsive: [
+            {
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 220,
+                        height: 230
+                    },
+                }
+            },
+            {
+                breakpoint: 425,
+                options: {
+                    chart: {
+                        width: 200
+                    }
+                }
+            },
+            {
+                breakpoint: 375,
+                options: {
+                    chart: {
+                        width: 180
+                    }
+                }
+            }
+
+        ],
         plotOptions: {
             bar: {
                 horizontal: true,
@@ -291,7 +636,7 @@
             max: 100,
             labels: {
                 formatter: function (val) {
-                    return val + "%"
+                    return val + '%'
                 }
             },
 
@@ -304,7 +649,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + "K"
+                    return val + '%'
                 }
             }
         },
@@ -331,26 +676,26 @@
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
 
-
     var options2 = {
         series: [{
-            name: 'Marine Sprite',
-            data: [4, 15, 11, 17, 22, 23]
+            name: '여자',
+            data: all_data_list_female[0]
         }, {
-            name: 'Striking Calf',
-            data: [53, 32, 33, 52, 13, 43]
+            name: '여자',
+            data: all_data_list_female[1]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '여자',
+            data: all_data_list_female[2]
         }, {
-            name: 'Tank Picture',
-            data: [12, 17, 11, 9, 15, 11]
+            name: '여자',
+            data: all_data_list_female[3]
         },
         ],
         chart: {
             type: 'bar',
             height: '100%',
             width: 210,
+            height: 320,
             stacked: true,
             toolbar: {
                 show: false
@@ -358,18 +703,32 @@
         },
         responsive: [
             {
-                breakpoint: 1000,
+                breakpoint: 480,
                 options: {
-                    plotOptions: {
-                        bar: {
-                            horizontal: true
-                        }
-                    },
                     chart: {
-                        // width: 100
+                        width: 220,
+                        height: 230
                     },
                 }
-            }],
+            },
+            {
+                breakpoint: 425,
+                options: {
+                    chart: {
+                        width: 200
+                    }
+                }
+            },
+            {
+                breakpoint: 375,
+                options: {
+                    chart: {
+                        width: 180
+                    }
+                }
+            }
+
+        ],
         plotOptions: {
             bar: {
                 horizontal: true,
@@ -381,7 +740,7 @@
             max: 100,
             labels: {
                 formatter: function (val) {
-                    return val + "%"
+                    return val + '%'
                 }
             }
         },
@@ -394,7 +753,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + "K"
+                    return val + '%'
                 }
             }
         },

@@ -15,52 +15,38 @@
 {% endblock %}
 
 {% block head_script %}
+<script src="{% static 'js/select.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="topic-wrapper">
   <div class="topic-background">
-    <div class="topic-thumb" style="background-image: url('/static/img/test.jpg')">
+    <div class="topic-thumb" style="background-image: url('{{topic.thumb_image.url}}')">
     </div>
     
     <div class="topic-title-box">
-      <div class="topic-title">문재인 대통령에대한 나의 생각은?</div>
-      <div class="topic-subtitle">2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을
-        제시해주세요!</div>
+      <div class="topic-title">{{topic.title}}</div>
+      <div class="topic-subtitle">{{topic.content}}</div>
     </div>
   </div>
 
   <div class="select-wrapper">
     <div class="select-box">
-      <div class="selection">
+      {% for selection in topic.selections.all%}
+      <div data="{{forloop.counter}}" class="selection" style="background: url({{selection.image.url}}); background-size: cover; background-position: center;">
         <div class="selection-text-wrapper">
           <div class="selection-text">
-            선택지선택지
+            {{selection.description}}
           </div>
         </div>
       </div>
-      <div class="selection">
-        <div class="selection-text-wrapper">
-          <div class="selection-text">
-            선택지선택지
-          </div>
-        </div>
-      </div>
-      <div class="selection">
-        <div class="selection-text-wrapper">
-          <div class="selection-text">
-            선택지선택지
-          </div>
-        </div>
-      </div>
-      <div class="selection">
-        <div class="selection-text-wrapper">
-          <div class="selection-text">
-            선택지선택지
-          </div>
-        </div>
-      </div>
-      <div class="voting-btn">투표하기</div>
+      {% endfor %}
+
+      <form action="{% url 'topic:select' topic.pk %}" method="POST" class="voting-form">
+        {% csrf_token %}
+        <input type="hidden" name="pick">
+        <input type="submit" value="투표하기" class="voting-btn">
+      </form>
     </div>
   </div>
   

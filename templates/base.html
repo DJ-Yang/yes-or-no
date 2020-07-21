@@ -16,7 +16,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
   <script src="{% static 'js/base.js' %}"></script>
   {% block head_script %}
   {% endblock %}
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   {% block head_link %}
@@ -33,21 +33,27 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
         <div class="menu-btn">
           <img id="open" onclick="menuSwitch(this)" src="{% static 'img/menu.png' %}">
         </div>
-        <div class="user-icon">
+        <!-- <div class="user-icon">
           <img src="{% static 'img/user_icon.png' %}">
-        </div>        
+        </div>         -->
         <div class="header-title">
           <a href="{% url 'topic:list' %}">톺톡</a>
           
         </div>
       </div>        
     </div>
-          
+
     <div class="side-menu">
       <div class="side-menu-header">
         <span id="close" class="menu-close" onclick="menuSwitch(this)"><img src="{% static 'img/close.png' %}" alt=""></span>
       </div>
-      <div class="menu-contents"></div>
+      <div class="menu-contents">
+        <ul>
+          <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">회원가입/로그인</li></a>
+          <a href=""><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
+          <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="">공지사항</li></a>
+        </ul>
+      </div>
     </div>
 
   </header>
@@ -62,6 +68,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
   
 
 </div>
+{% block extra_js %}
+{% endblock %}
 </body>
-
 </html>

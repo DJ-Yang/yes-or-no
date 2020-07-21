@@ -133,13 +133,13 @@ def topic_select(request, topic_id):
 @login_required(login_url='/auth/signin/')
 def topic_result(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
-  pick = topic.picks.filter(author=request.user)
-
+  pick = topic.picks.get(author=request.user)
   data = set_data(topic)
   
   return render(request, 'topic/result.html', {
     'topic' : topic,
     'pick' : pick,
+    'data' : data,
   })
 
 def user_request(request):

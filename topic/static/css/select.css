@@ -16,6 +16,7 @@
 }
 
 .select-wrapper  {
+    display: flex;
     position: relative;
     top: -300px;
     margin: 0 auto;
@@ -27,33 +28,41 @@
 
 .select-box {
     margin: 0 auto;
-    padding: 20px 50px 0px 50px;
+    padding: 0px 50px 60px 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     align-content: center;
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
 }
 
 .selection {
     position: relative;
-    background-color: #dddddd;
     width: 220px;
     height: 220px;
     margin: 10px 10px;
     border-radius: 15px;
+    cursor: pointer;    
 }
 
-.selection-text-wrapper {
+.selection-active {
+    opacity: 0.4;
+    background-color: #000000;
+}
+
+.selection .selection-text-wrapper {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #5a5a5a;
+    background-color: #5a5a5a9f;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     color: #ffffff;
     min-height: 30px;
 }
-.selection-text {
+.selection .selection-text {
     padding: 5px 10px;
     font-weight: bold;
 }
@@ -68,15 +77,19 @@
     font-weight: bold;
     font-size: 45px;
     color: #49C5B6;
-    width: 1000px;
+    max-width: 1000px;
+    min-height: 45px;
+    width: 70%;
     margin: 0 auto;
     text-align: center;
 }
 .topic-subtitle {
+    text-align: center;
     margin: 0 auto;
     color: #ffffff;
     font-size: 20px;
     max-width: 800px;
+    min-height: 75px;
     padding-top: 60px;
     font-weight: bold;
     line-height: 25px;
@@ -85,18 +98,79 @@
 }
 
 .voting-btn {
+    border: none;
+    outline: none;
     width: 180px;
-    position: relative;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%,-50%);
     z-index: 1000;
     display: inline-block;
     color: #ffffff;
     background-color: #49C5B6;
     text-align: center;
-    margin-top: 20px;
     padding: 15px 0;
     border-radius: 30px;
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 1px;
     cursor: pointer;
+}
+
+
+@media all and (max-width:768px) {
+    .select-wrapper {
+        width: 90%;
+    }
+    .topic-subtitle {
+        width: 90%;
+    }
+    .topic-title {
+        font-size: 35px;
+    }
+    .select-box {
+        padding: 0 0 50px 0;
+    }
+}
+
+@media all and (max-width:480px) {
+    .topic-thumb {
+        height: 350px;
+    }
+    .topic-title {
+        font-size: 30px;
+        width: 95%;
+        word-break: keep-all;
+    }
+    .topic-subtitle {
+        padding-top: 20px;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 16px;
+        width: 90%;
+    }
+    .select-wrapper {
+        top: -100px;
+        height: 400px;
+    }
+    .select-box {
+        width: 100%;
+        padding: 0 0 50px 0;
+    }
+    .selection {
+        width: 140px;
+        height: 140px;
+        margin: 5px 10px;
+    }
+    .voting-btn {
+        padding: 5px 0;
+        font-size: 17px;
+        bottom: 0px;
+    }
+    .selection-text {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
 }

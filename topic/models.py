@@ -39,7 +39,7 @@ class Pick(models.Model):
   selection = models.IntegerField(validators=[
     MinValueValidator(1), 
     MaxValueValidator(4),
-  ])
+  ], null=True)
   age_range = models.IntegerField(validators=[
     MinValueValidator(0), 
     MaxValueValidator(100),
