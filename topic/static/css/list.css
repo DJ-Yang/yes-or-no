@@ -113,6 +113,7 @@
     .topic-title {
         font-size: 20px;
         font-weight: bold;
+        margin-top: 10px;
         margin-bottom: 20px;
     }
     .topic-subtitle {
