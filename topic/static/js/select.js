@@ -1,10 +1,14 @@
 $(document).on('click', '.selection', function (e) {
 
-    let pick = $(e.target);
 
+    let pick = $(e.target);
+    if (pick.hasClass('selection-text')) {
+        pick = pick.parent().parent();
+    }
+    console.log(pick);
     $('input[name=pick]').val(pick.attr('data'));
-    $('.selection').addClass('selection-active');
-    $(e.target).removeClass('selection-active');
+    $('.selection').removeClass('selection-active');
+    pick.addClass('selection-active');
 });
 
 $(document).ready(function () {
