@@ -5,7 +5,6 @@ $(document).on('click', '.selection', function (e) {
     if (pick.hasClass('selection-text')) {
         pick = pick.parent().parent();
     }
-    console.log(pick);
     $('input[name=pick]').val(pick.attr('data'));
     $('.selection').removeClass('selection-active');
     pick.addClass('selection-active');

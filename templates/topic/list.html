@@ -21,7 +21,7 @@
   <div class="owl-carousel owl-theme">
     {% for hot_topic in hot_topics %}
     <div class="item">
-      <div class="thumb-box" style="background-image: url('/static/img/test.jpg');">
+      <div class="thumb-box" style="background-image: url({{hot_topic.thumb_image.url}});">
       </div>
       <div class="hot-topic-contents">
         <div class="hot-topic-title">

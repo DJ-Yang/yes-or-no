@@ -30,9 +30,7 @@ function check_footer_postion() {
 
    let check = (container_height+header_height)-screen_height;
 
-   // console.log(container_height, header_height, screen_height, footer_height);
-   // console.log(check);
-   // console.log(check+footer_height)
+
    if (check<0) {
       if (check+footer_height>0) {
          $('footer').css('display','block')
