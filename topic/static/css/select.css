@@ -47,7 +47,6 @@
     margin: 10px 10px;
     border-radius: 15px;
     cursor: pointer;    
-<<<<<<< HEAD
 }
 
 .selection-active {
@@ -55,15 +54,6 @@
     background-color: #000000;
 }
 
-=======
-}
-
-.selection-active {
-    opacity: 0.4;
-    background-color: #000000;
-}
-
->>>>>>> 4b97a499766997742b587a4b979d66d5d4746b02
 .selection .selection-text-wrapper {
     position: absolute;
     bottom: 0;
@@ -120,13 +110,17 @@
     z-index: 1000;
     display: inline-block;
     color: #ffffff;
-    background-color: #49C5B6;
+    background-color: #cecece;
     text-align: center;
     padding: 15px 0;
     border-radius: 30px;
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 1px;
+}
+
+.enabled {
+    background-color: #49C5B6;
     cursor: pointer;
 }
 
