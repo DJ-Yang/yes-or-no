@@ -105,12 +105,16 @@ def topic_select(request, topic_id):
 
   if request.method == 'POST':
     u_gender = 0 if (request.user.gender == 'male') else 1
+
+    if not request.POST.get('pick'):
+      return redirect('topic:select', topic.id)
     pick, created = Pick.objects.get_or_create(
       author=request.user,
       topic=topic,
       age_range=request.user.age_range,
       gender=u_gender
     )
+
     if created:
         pick.selection = request.POST.get('pick')
         pick.updated_at = timezone.now()
