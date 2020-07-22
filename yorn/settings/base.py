@@ -132,8 +132,8 @@ SITE_ID = 1
 ACCOUNT_ADAPTER = 'user.adapter.MyAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'user.adapter.MySocialAccountAdapter'
 
-LOGIN_REDIRECT_URL = '/topic/'
-LOGOUT_REDIRECT_URL = '/topic/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_LOGOUT_ON_GET = True
 
