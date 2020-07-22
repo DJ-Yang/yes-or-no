@@ -1,5 +1,6 @@
 $(document).on('click', '.selection', function (e) {
 
+<<<<<<< HEAD
 
     let pick = $(e.target);
     if (pick.hasClass('selection-text')) {
@@ -8,6 +9,13 @@ $(document).on('click', '.selection', function (e) {
     $('input[name=pick]').val(pick.attr('data'));
     $('.selection').removeClass('selection-active');
     pick.addClass('selection-active');
+=======
+    let pick = $(e.target);
+
+    $('input[name=pick]').val(pick.attr('data'));
+    $('.selection').addClass('selection-active');
+    $(e.target).removeClass('selection-active');
+>>>>>>> 4b97a499766997742b587a4b979d66d5d4746b02
 });
 
 $(document).ready(function () {
