@@ -1,53 +1,32 @@
-// // navbar 따라다니는 기준 스크롤
-// $(window).scroll(function(){
-//     if ($(window).scrollTop() > 1) {
-//        $('nav').addClass('fixed-header');
-//     }
-//     else {
-//        $('nav').removeClass('fixed-header');
-//     }
-// });  
-
-// navbar 메뉴 선택시 강조옵션
-$(document).on('click','nav .nav-menu ul li a', function(e) {   
-   let menu = $(e.target);
-   $('nav ul li a').removeClass('select');
-   menu.addClass('select');
-})
-
-// 모바일 메뉴 숨기기 기능
-$(document).on('click', function(e) {
-   if ($(e.target).hasClass('close') == true || $(e.target).hasClass('mobile-close') == true) {
-      $('.mobile-menu').animate({right:'-250px'}, 150);
-      $('.mobile-close').removeClass('on');
-   }
-})
-// 모바일 메뉴 펼치기
-$('.toggle img').on('click', function(e) {
-   $('.mobile-menu').animate({right:'0'}, 150);
-   $('.mobile-close').addClass('on');
-});
-
-$('.login').on('click', function(e) {
-   if($('.popmenu-wrap').hasClass('hide')) {
-      $('.popmenu-wrap').removeClass('hide');
-   } else {
-      $('.popmenu-wrap').addClass('hide');
-   }
-});
-
+function menuSwitch(e) {
+   if (e.id == 'close') {
+      $('.side-menu').css('right','-300px'); 
+   } else if (e.id == 'open') {
+      $('.side-menu').css('right','0'); 
+   }   
+}
 
 $(document).ready(function() {
-
    check_footer_postion();
-
-   
+   // change_navbar();
 });
 
 $(window).resize(function (){
    check_footer_postion();
-
+   // change_navbar();
 });
+
+function change_navbar() {
+   let screen = window.screen.width;
+   
+   if (screen>768) {
+      $('.menu-btn').addClass('hide');
+      $('.menu-box').removeClass('hide'); 
+   } else {
+      $('.menu-btn').removeClass('hide');
+      $('.menu-box').addClass('hide'); 
+   }
+}
 
 
 
@@ -61,9 +40,7 @@ function check_footer_postion() {
 
    let check = (container_height+header_height)-screen_height;
 
-   // console.log(container_height, header_height, screen_height, footer_height);
-   // console.log(check);
-   // console.log(check+footer_height)
+
    if (check<0) {
       if (check+footer_height>0) {
          $('footer').css('display','block')

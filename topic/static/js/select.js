@@ -1,37 +1,47 @@
-// $(document).ready(function() {
-    
-//     let sel1_top = $('#sel1').offset().top;
-//     let sel2_top = $('#sel2').offset().top;
-//     let sel1 = $('#sel1').height();
-//     let sel2 = $('#sel2').height();
-//     let vs_height;
-//     console.log(sel1, sel2);
-//     console.log(sel1_top, sel2_top);
+$(document).on('click', '.selection', function (e) {
 
-//     if (sel1>sel2) {
-//         vs_height = sel2_top-sel2 + (sel2/2)
-//     } else {
-//         vs_height = sel1_top-sel1 + (sel1/2)
-//     }
-   
-//     $('.vs').css('top',sel2_top+10);
-//     $('.vs').css('display','inline-block')    
-// });
-
-
-$(document).on('click','.selection img', function(e) {
-
-    if (this.id == 'sel1') {
-        $('#sel2').parent().parent().addClass('selected');
-        $('#sel1').parent().parent().removeClass('selected');
-        $('.sel2-des').css('background-color','#333333');
-        // $('.sel1-des').css('background-color','#FFDE50');
-    } else {
-        $('#sel1').parent().parent().addClass('selected');
-        $('#sel2').parent().parent().removeClass('selected');
-        $('.sel1-des').css('background-color','#333333');
-        // $('.sel2-des').css('background-color','f0ff20');
+    let pick = $(e.target);
+    if (pick.hasClass('selection-text')) {
+        pick = pick.parent().parent();
     }
+    $('input[name=pick]').val(pick.attr('data'));
 
-    $('.submit').attr('id',this.id)
-})
+    $('.selection').removeClass('selection-active');
+    pick.addClass('selection-active');
+});
+
+$(document).ready(function () {
+
+    resizeSelection();
+
+});
+
+$(window).resize(function() {
+    resizeSelection();
+});
+
+function resizeSelection() {
+    let selection_count = $('.select-box').find('.selection').length;
+    if (selection_count == 2) {
+        if (window.screen.width > 670) {
+            $('.selection').css('width', '280px');
+            $('.selection').css('height', '280px');
+            $('.select-wrapper').css('height','600px');
+            
+        } else if(window.screen.width > 380 && window.screen.width < 480) {
+            $('.selection').css('width', '150px');
+            $('.selection').css('height', '150px');
+            $('.select-wrapper').css('height','300px');
+        } else if(window.screen.width > 360 && window.screen.width <= 380) {
+            $('.selection').css('width', '140px');
+            $('.selection').css('height', '140px');
+            $('.select-wrapper').css('height','300px');
+        } else if(window.screen.width <= 360) {
+            $('.selection').css('width', '140px');
+            $('.selection').css('height', '140px');
+            $('.select-wrapper').css('height','360px');
+            $('.selection-text').css('font-size','12px');
+        }
+    }
+}
+

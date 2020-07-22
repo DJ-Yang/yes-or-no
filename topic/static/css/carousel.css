@@ -1,0 +1,42 @@
+
+.owl-theme .owl-nav.disabled+.owl-dots {
+    position: relative;
+    top: -50px ;        
+    height: 20px;
+}
+
+
+/* dot  */
+.owl-theme .owl-dots .owl-dot span {
+    width: 20px;
+    height: 20px;
+    margin: 5px 10px;
+    background: #D6D6D6;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity .2s ease;
+    border-radius: 30px;
+}
+
+/* dot active */
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #49C5B6;
+}
+
+.owl-dots button{
+        outline: none;
+}
+
+@media all and (max-width:480px) {
+
+    .owl-theme .owl-nav.disabled+.owl-dots {
+        top:-40px;
+    }
+
+    .owl-theme .owl-dots .owl-dot span {
+        width: 15px;
+        height: 15px;
+        margin: 5px 10px;
+        border-radius: 30px;
+    }
+}
