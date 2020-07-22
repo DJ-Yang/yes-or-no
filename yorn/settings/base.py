@@ -146,7 +146,7 @@ CRONTAB_COMMAND_SUFFIX = '2>&1'
 CRONTAB_DJANGO_SETTINGS_MODULE = 'yorn.settings.prod'
 CRONJOBS = [
     ('0 0 * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
-    ('59 23 * * *', 'topic.views.create_daily_data', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
+    ('59 23 * * *', 'topic.views.store_daily_pick', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
 ]
 
 # # 임시 스태틱 루트 설정
