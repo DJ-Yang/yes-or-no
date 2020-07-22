@@ -101,9 +101,14 @@ a:focus {
 
 footer {
     background-color: #ffffff;
-    height: 200px;
+    width: 100%;
 }
 
+footer .contents {
+    padding: 80px 0;
+    text-align: center;
+    font-size: 14px;
+}
 
 @media all and (max-width:480px) {
     .header-contents {

@@ -49,7 +49,11 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
       </div>
       <div class="menu-contents">
         <ul>
+          {% if request.user.is_active %}
+          <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">로그아웃</li></a>
+          {% else %}
           <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">회원가입/로그인</li></a>
+          {% endif %}
           <a href=""><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
           <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="">공지사항</li></a>
         </ul>
@@ -61,13 +65,17 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
     {% block content %}
     {% endblock %}
   </div>
-
-  <footer>
-    
-  </footer>
   
-
 </div>
+<<<<<<< HEAD
+<footer>
+  <div class="contents">
+    <div>Copyright © 톺톡</div>
+    <div style="display: inline-block;">문의 메일 : weall.co@gmail.com </div>
+  </div>
+</footer>
+=======
+>>>>>>> 4b97a499766997742b587a4b979d66d5d4746b02
 {% block extra_js %}
 {% endblock %}
 </body>

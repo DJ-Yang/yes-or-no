@@ -27,6 +27,8 @@
 }
 
 .select-box {
+    
+    width: 100%;
     margin: 0 auto;
     padding: 0px 50px 60px 50px;
     display: flex;
@@ -45,6 +47,7 @@
     margin: 10px 10px;
     border-radius: 15px;
     cursor: pointer;    
+<<<<<<< HEAD
 }
 
 .selection-active {
@@ -52,6 +55,15 @@
     background-color: #000000;
 }
 
+=======
+}
+
+.selection-active {
+    opacity: 0.4;
+    background-color: #000000;
+}
+
+>>>>>>> 4b97a499766997742b587a4b979d66d5d4746b02
 .selection .selection-text-wrapper {
     position: absolute;
     bottom: 0;
