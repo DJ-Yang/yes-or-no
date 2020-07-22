@@ -21,8 +21,9 @@ $('.analysis-title-row div').on('click', function(e) {
 })
 
 $('.share-btn').on('click', function(e) {
+    console.log(location.href.split('result')[0])
     $('#modal').css('display','block');
-    $('input[name=share_link]').val(location.href);
+    $('input[name=share_link]').val(location.href.split('result')[0]);
 });
 
 $('.modal-content .close').on('click', function(e) {

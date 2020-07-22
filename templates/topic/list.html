@@ -21,11 +21,7 @@
   <div class="owl-carousel owl-theme">
     {% for hot_topic in hot_topics %}
     <div class="item">
-<<<<<<< HEAD
       <div class="thumb-box" style="background-image: url({{hot_topic.thumb_image.url}});">
-=======
-      <div class="thumb-box" style="background-image: url('/static/img/test.jpg');">
->>>>>>> 4b97a499766997742b587a4b979d66d5d4746b02
       </div>
       <div class="hot-topic-contents">
         <div class="hot-topic-title">
@@ -36,11 +32,7 @@
         </div>
       </div>
       
-<<<<<<< HEAD
-      <a href="{% url 'topic:select' hot_topic.pk %}">
-=======
       <a href="{% url 'topic:check_selection' hot_topic.pk %}">
->>>>>>> 4b97a499766997742b587a4b979d66d5d4746b02
         <div class="voting-btn">
           투표하기
         </div>
@@ -56,8 +48,8 @@
     margin: 0,
     nav: false,
     dots: true,
-    autoplay: false,
-    autoplayTimeout: 4000,
+    autoplay: true,
+    autoplayTimeout: 2500,
     autoplayHoverPause: true
   })
 
