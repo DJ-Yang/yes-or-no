@@ -93,6 +93,8 @@ def topic_list(request):
 def check_selection(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
 
+  print(request.user)
+
   if topic.picks.filter(author=request.user).exists():
     return redirect('topic:result', topic.id)
   else:
