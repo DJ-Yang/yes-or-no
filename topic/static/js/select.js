@@ -26,10 +26,21 @@ function resizeSelection() {
         if (window.screen.width > 670) {
             $('.selection').css('width', '280px');
             $('.selection').css('height', '280px');
+            $('.select-wrapper').css('height','600px');
             
-        } else if(window.screen.width < 480) {
+        } else if(window.screen.width > 380 && window.screen.width < 480) {
             $('.selection').css('width', '150px');
             $('.selection').css('height', '150px');
+            $('.select-wrapper').css('height','300px');
+        } else if(window.screen.width > 360 && window.screen.width <= 380) {
+            $('.selection').css('width', '140px');
+            $('.selection').css('height', '140px');
+            $('.select-wrapper').css('height','300px');
+        } else if(window.screen.width <= 360) {
+            $('.selection').css('width', '140px');
+            $('.selection').css('height', '140px');
+            $('.select-wrapper').css('height','360px');
+            $('.selection-text').css('font-size','12px');
         }
 
     }
