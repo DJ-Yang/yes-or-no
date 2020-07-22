@@ -6,17 +6,27 @@ function menuSwitch(e) {
    }   
 }
 
-
-
-
 $(document).ready(function() {
    check_footer_postion();
-  
+   // change_navbar();
 });
 
 $(window).resize(function (){
    check_footer_postion();
+   // change_navbar();
 });
+
+function change_navbar() {
+   let screen = window.screen.width;
+   
+   if (screen>768) {
+      $('.menu-btn').addClass('hide');
+      $('.menu-box').removeClass('hide'); 
+   } else {
+      $('.menu-btn').removeClass('hide');
+      $('.menu-box').addClass('hide'); 
+   }
+}
 
 
 

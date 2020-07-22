@@ -53,11 +53,22 @@ a:focus {
     font-size: 38px;
     font-weight: bold;
 }
+.hide {
+    display: none !important;
+}
 
 .header-title a {
     color: #49C5B6;
 }
 
+.menu-box {
+    display: flex;
+    float: right;
+}
+
+.menu-box li{
+    display: inline;
+}
 
 .side-menu {
     width: 300px;
