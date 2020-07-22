@@ -9,23 +9,19 @@ import datetime
 def convert(topic_list): 
     return tuple(i[0] for i in topic_list)
 
-# 데일리 데이터 정리해서 보내는 부분
-# def today_dailydata(objects):
-#   start_day = datetime.date.today() - datetime.timedelta(days=7)
-#   end_day = datetime.date.today()
-#   dailydatas = objects.dailydata_set.filter(created_at__gte=start_day, created_at__lte=end_day)
+# 데일리 데이터 저장 부분
+def store_daily_pick():
+  topics = Topic.objects.all()
 
-#   daily_data = {}
-#   for data in dailydatas:
-#     total = data.positive_count + data.negative_count
-#     positive_per = (data.positive_count/total*100) if not (total == 0) else 0
-#     negative_per = (data.negative_count/total*100) if not (total == 0) else 0
-#     daily_data[data.created_at.date().strftime("%Y-%m-%d")] = {
-#       'positive' : positive_per,
-#       'negative' : negative_per,
-#     }
-#   return daily_data
+  for topic in topics:
+    picks = Topic.picks.all()
 
+    todaypick = DailyPick()
+    todaypick.pick1 = picks.filter(selection=1).count()
+    todaypick.pick2 = picks.filter(selection=2).count()
+    todaypick.pick3 = picks.filter(selection=3).count()
+    todaypick.pick4 = picks.filter(selection=4).count()
+    todaypick.save()
 
 # 핫 토픽 설정 부분
 # updated_at 필드를 추가해서 기존에 설문에 참여했던 사람이 값을 변경했을 경우도 값에 포함될 수 있게 함.
