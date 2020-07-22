@@ -64,11 +64,22 @@ a:focus {
 .menu-box {
     display: flex;
     float: right;
+    margin-top: 7px;
 }
 
 .menu-box li{
-    display: inline;
+    float: right;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: #4b4b4b;
+    height: 30px;
 }
+
+.menu-box li img {
+    margin-right: 5px;
+}
+
 
 .side-menu {
     width: 300px;

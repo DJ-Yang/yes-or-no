@@ -1,3 +1,14 @@
+
+
+$(document).ready(function () {
+    resizeSelection();
+});
+
+$(window).resize(function() {
+    resizeSelection();
+});
+
+// 선택지 골랐을때 이벤트
 $(document).on('click', '.selection', function (e) {
 
     let pick = $(e.target);
@@ -6,20 +17,18 @@ $(document).on('click', '.selection', function (e) {
     }
     $('input[name=pick]').val(pick.attr('data'));
 
-    $('.selection').removeClass('selection-active');
-    pick.addClass('selection-active');
+    $('.selection').addClass('selection-active');
+    pick.removeClass('selection-active');
+
+    let btn = $('input[type=submit');
+    btn.addClass('enabled');
+    btn.attr('disabled',false);
+
+    
+
 });
 
-$(document).ready(function () {
-
-    resizeSelection();
-
-});
-
-$(window).resize(function() {
-    resizeSelection();
-});
-
+// 화면 크기마다 선택지 크기
 function resizeSelection() {
     let selection_count = $('.select-box').find('.selection').length;
     if (selection_count == 2) {

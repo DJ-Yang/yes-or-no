@@ -45,7 +45,7 @@
       <form action="{% url 'topic:select' topic.pk %}" method="POST" class="voting-form">
         {% csrf_token %}
         <input type="hidden" name="pick">
-        <input type="submit" value="투표하기" class="voting-btn">
+        <input type="submit" value="투표하기" class="voting-btn" disabled="true">
       </form>
     </div>
   </div>

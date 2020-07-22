@@ -44,4 +44,5 @@ $('.fa-external-link').on('click', function() {
     tempElem.select();
     document.execCommand("copy");
     document.body.removeChild(tempElem);
+    alert('클립보드에 복사되었습니다.')
 })
