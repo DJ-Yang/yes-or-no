@@ -5,6 +5,7 @@ $(document).on('click', '.selection', function (e) {
         pick = pick.parent().parent();
     }
     $('input[name=pick]').val(pick.attr('data'));
+
     $('.selection').removeClass('selection-active');
     pick.addClass('selection-active');
 });
