@@ -37,7 +37,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
             <a href=""><li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li></a>
             <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li></a>
             {% if request.user.is_active %}
-            <a href="{% url 'account_logout' %}"><li><img src="{% static 'img/user.png' %}" alt="" height="20px">로그아웃</li></a>
+            <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
             {% else %}
             <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="" height="20px">회원가입/로그인</li></a>
             {% endif %}
@@ -60,7 +60,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
       <div class="menu-contents">
         <ul>
           {% if request.user.is_active %}
-          <a href="{% url 'account_logout' %}"><li><img src="{% static 'img/user.png' %}" alt="">로그아웃</li></a>
+          <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
           {% else %}
           <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">회원가입/로그인</li></a>
           {% endif %}
