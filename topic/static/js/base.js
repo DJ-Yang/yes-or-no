@@ -25,3 +25,8 @@ function change_navbar() {
       $('.menu-box').addClass('hide'); 
    }
 }
+
+function logout() {
+   if(confirm('정말 로그아웃 하시겠습니까?'))
+      location.href = '/auth/accounts/logout/'
+}

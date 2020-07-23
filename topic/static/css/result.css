@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 150px;
+    min-width: 200px;
 }
 
 .selection-text {
@@ -49,7 +49,7 @@
     color: #7C828A;
 }
 .selection-active {
-    color: #49C5B6;
+    /* color: #49C5B6; */
     font-weight: bold;
 }
 
@@ -175,7 +175,7 @@
     justify-content: center; 
     align-items: center;
     height: fit-content;
-    margin-bottom: 50px;
+    margin-bottom: 48px;
 }
 
 #chart {
@@ -187,10 +187,17 @@
 
 
 .label-box {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 30px;
+    padding: 7px 10px;
     border-top: 1px solid #e0e0e0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.label {
+    width: 185px;
+    flex-wrap: wrap;
+    padding-bottom: 5px;
 }
 
 .label1 {
@@ -358,7 +365,7 @@ input[name=share_link] {
     .chart-box {
         margin: 10px auto;
         width: 90%;
-        height: 300px;
+        height: 310px;
     }
     #chart5 {
         margin-left: -35px;
@@ -380,5 +387,12 @@ input[name=share_link] {
     }
     .analysis-title-row {
         margin-bottom: 0;
+    }
+    .label-box {
+        padding: 8px 5px;
+    }
+    .label {
+        width: 150px;
+        font-size: 13px;
     }
 }
