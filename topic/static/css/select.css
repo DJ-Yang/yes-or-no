@@ -174,8 +174,11 @@
         font-size: 17px;
         bottom: 0px;
     }
+    .selection .selection-text-wrapper {
+        min-height: 25px;
+    }
     .selection-text {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: normal;
     }
 

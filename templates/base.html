@@ -10,7 +10,15 @@
 
   {% block head_meta %}
   {% endblock %}
-  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169034644-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-169034644-1');
+</script>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="{% static 'js/base.js' %}"></script>
@@ -21,7 +29,6 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
   <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   {% block head_link %}
   {% endblock %}
-
 
 </head>
 
@@ -35,10 +42,10 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
         </div>
         <div class="menu-box">
           <ul>
-            <a href=""><li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li></a>
+            <a href="{% url 'topic:list' %}"><li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li></a>
             <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li></a>
             {% if request.user.is_active %}
-            <a href="{% url 'account_logout' %}"><li><img src="{% static 'img/user.png' %}" alt="" height="20px">로그아웃</li></a>
+            <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
             {% else %}
             <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="" height="20px">회원가입/로그인</li></a>
             {% endif %}
@@ -61,11 +68,11 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
       <div class="menu-contents">
         <ul>
           {% if request.user.is_active %}
-          <a href="{% url 'account_logout' %}"><li><img src="{% static 'img/user.png' %}" alt="">로그아웃</li></a>
+          <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
           {% else %}
           <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">회원가입/로그인</li></a>
           {% endif %}
-          <a href=""><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
+          <a href="{% url 'topic:list' %}"><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
           <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="">공지사항</li></a>
         </ul>
       </div>
@@ -81,7 +88,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
 <footer>
   <div class="contents">
     <div>Copyright © 톺톡</div>
-    <div style="display: inline-block;">문의 메일 : weall.co@gmail.com </div>
+    <div style="display: inline-block;"><i class="fa fa-envelope" aria-hidden="true"></i> 문의 메일 : weall.co@gmail.com </div>
   </div>
 </footer>
 {% block extra_js %}
