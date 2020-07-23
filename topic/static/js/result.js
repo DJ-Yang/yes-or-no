@@ -23,7 +23,8 @@ $('.analysis-title-row div').on('click', function(e) {
 $('.share-btn').on('click', function(e) {
     console.log(location.href.split('result')[0])
     $('#modal').css('display','block');
-    $('input[name=share_link]').val(location.href.split('result')[0]);
+    let copy_text = location.href.split('result')[0] + 'check/'
+    $('input[name=share_link]').val(copy_text);
 });
 
 $('.modal-content .close').on('click', function(e) {
