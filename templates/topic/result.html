@@ -240,14 +240,18 @@
             <div class="chart-row">
                 <div class="chart-box">
                     <div class="chart-title">종합 분석결과</div>
+                    <div style="display: flex; justify-content: space-around; margin: 15px 0 -20px 0; font-size: 18px;">
+                        <div>여성</div>
+                        <div>남성</div>
+                    </div>
                     <div style="display: flex; height: fit-content; justify-content: center;">
                         <div id="chart2"></div>
                         <div id="chart"></div>
                     </div>
                     <div class="label-box">
                         {% for i in topic.selections.all %}
-                        <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{i.description}}</span>
+                        <div class="label label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
+                            {{i.description }}</div>
                         {% endfor %}
                     </div>
                 </div>
@@ -256,8 +260,8 @@
                     <div id="chart3"></div>
                     <div class="label-box">
                         {% for i in topic.selections.all %}
-                        <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{forloop.counter}}번</span>
+                        <div class="label label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
+                            {{i.description }}</div>
                         {% endfor %}
                     </div>
                 </div>
@@ -273,8 +277,8 @@
                     </div>
                     <div class="label-box">
                         {% for i in topic.selections.all %}
-                        <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{forloop.counter}}번</span>
+                        <div class="label label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
+                            {{i.description }}</div>
                         {% endfor %}
                     </div>
                 </div>
@@ -612,7 +616,7 @@
             type: 'bar',
             height: '100%',
             width: 210,
-            height: 320,
+            height: 308,
             stacked: true,
             toolbar: {
                 show: false
@@ -624,7 +628,7 @@
                 options: {
                     chart: {
                         width: 220,
-                        height: 230
+                        height: 218
                     },
                 }
             },
@@ -716,7 +720,7 @@
             type: 'bar',
             height: '100%',
             width: 210,
-            height: 320,
+            height: 308,
             stacked: true,
             toolbar: {
                 show: false
@@ -728,7 +732,7 @@
                 options: {
                     chart: {
                         width: 220,
-                        height: 230
+                        height: 218
                     },
                 }
             },
