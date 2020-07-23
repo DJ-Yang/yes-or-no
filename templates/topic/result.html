@@ -195,9 +195,30 @@
             <div class="selection">
                 {% for selection in topic.selections.all %}
                 {% if pick.selection == forloop.counter %}
-                <div class="selection-text selection-active">{{forloop.counter}}. {{selection.description}}</div>
+                
+                    {% if forloop.counter == 1 %}
+                    <div class="selection-text selection-active" style="color: rgb(0, 143, 251);">
+                    {% elif forloop.counter == 2 %}
+                    <div class="selection-text selection-active" style="color: rgb(0, 227, 150);">                    
+                    {% elif forloop.counter == 3 %}
+                    <div class="selection-text selection-active" style="color: rgb(254, 176, 25);">
+                    {% elif forloop.counter == 4 %}
+                    <div class="selection-text selection-active" style="color: rgb(255, 69, 96);">
+                    {% endif %}
+                    <i class="fa fa-circle" aria-hidden="true"></i> {{selection.description}}<i class="fa fa-check" aria-hidden="true" style="padding-left: 10px;"></i>
+                </div>
                 {% else %}
-                <div class="selection-text">{{forloop.counter}}. {{selection.description}}</div>
+                <div class="selection-text">
+                    {% if forloop.counter == 1 %}
+                    <i class="fa fa-circle" aria-hidden="true" style="color: rgb(0, 143, 251);"></i>
+                    {% elif forloop.counter == 2 %}
+                    <i class="fa fa-circle" aria-hidden="true" style="color: rgb(0, 227, 150);"></i>                    
+                    {% elif forloop.counter == 3 %}
+                    <i class="fa fa-circle" aria-hidden="true" style="color: rgb(254, 176, 25);"></i>
+                    {% elif forloop.counter == 4 %}
+                    <i class="fa fa-circle" aria-hidden="true" style="color: rgb(255, 69, 96);"></i>
+                    {% endif %}
+                     {{selection.description}}</div>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -226,7 +247,7 @@
                     <div class="label-box">
                         {% for i in topic.selections.all %}
                         <span class="label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{forloop.counter}}번</span>
+                            {{i.description}}</span>
                         {% endfor %}
                     </div>
                 </div>

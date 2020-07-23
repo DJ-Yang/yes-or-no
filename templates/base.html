@@ -34,7 +34,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
         </div>
         <div class="menu-box">
           <ul>
-            <a href=""><li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li></a>
+            <a href="{% url 'topic:list' %}"><li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li></a>
             <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li></a>
             {% if request.user.is_active %}
             <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
@@ -64,7 +64,7 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
           {% else %}
           <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">회원가입/로그인</li></a>
           {% endif %}
-          <a href=""><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
+          <a href="{% url 'topic:list' %}"><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
           <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="">공지사항</li></a>
         </ul>
       </div>
