@@ -70,8 +70,6 @@
         }
         age_data_list.push(temp);
     }
-
-
     all.push([data['selection_1_10_0'], data['selection_2_10_0'], data['selection_3_10_0'], data['selection_4_10_0']]);
     all.push([data['selection_1_20_0'], data['selection_2_20_0'], data['selection_3_20_0'], data['selection_4_20_0']]);
     all.push([data['selection_1_30_0'], data['selection_2_30_0'], data['selection_3_30_0'], data['selection_4_30_0']]);
@@ -89,8 +87,6 @@
         items = items.map(function (item) { return item == undefined ? 0 : item })
         all[i] = items;
     })
-
-
     all_total.push(all[0].reduce((a, b) => { return a + b; }));
     all_total.push(all[1].reduce((a, b) => { return a + b; }));
     all_total.push(all[2].reduce((a, b) => { return a + b; }));
@@ -104,9 +100,6 @@
     all_total.push(all[10].reduce((a, b) => { return a + b; }));
     all_total.push(all[11].reduce((a, b) => { return a + b; }));
     var sum = all_total.reduce((a, b) => { return a + b; })
-
-
-
     for (let i = 0; i < 12; i++) {
         for (let j = 0; j < 4; j++) {
             all[i][j] = (all[i][j] / sum) * 100;
@@ -301,19 +294,19 @@
         <div class="sns-btn">
             <div class="button">
                 <a href="javascript:;" id="kakao-link-btn">
-                    <img src="https://yorn-bucket.s3.amazonaws.com/static/img/kakao_share.png" width="45px">
+                    <img src="{% static 'img/kakao_share.png' %}" width="45px">
                 </a>
                 <script type="text/javascript">
                     var currentURL = window.location.href;
                     var buttonURL = currentURL.replace('result/', '');
-                    var commentcount = parseInt('21');
+                    var commentcount = parseInt('{{topic.picks.count}}');
                     Kakao.Link.createDefaultButton({
                         container: '#kakao-link-btn',
                         objectType: 'feed',
                         content: {
-                            title: '문재인 대통령에 대한 나의 생각은?',
-                            description: '2020년 5월 8일 문재인 대통령 지지율 70프로에 관한 기사가 업로드 되었을 때. 해당 게시물의 댓글에서는 지지율을 인정할 수 없다는 의견들이 다수를 차지했습니다. 시청자 여러분이 직접 의견을 제시해주세요!',
-                            imageUrl: 'https://yorn-bucket.s3.amazonaws.com/media/%E1%84%8F%E1%85%A5%E1%86%BA1_4OR4Xh4.jpg',
+                            title: '{{topic.title}}',
+                            description: '{{topic.content}}',
+                            imageUrl: '{{topic.thumb_image.url}}',
                             link: {
                                 mobileWebUrl: buttonURL,
                                 webUrl: buttonURL
@@ -336,11 +329,11 @@
                     });
                 </script>
                 <a href="javascript:void(0);" id="naver-link-btn" onclick="share();">
-                    <img src="https://yorn-bucket.s3.amazonaws.com/static/img/naver_share.png" width="45px">
+                    <img src="{% static 'img/naver_share.png' %}" width="45px">
                 </a>
                 <form id="myform" class="hide">
                     <input type="text" id="url" value=""><br>
-                    <input type="text" id="title" value="문재인 대통령에 대한 나의 생각은?"><br>
+                    <input type="text" id="title" value="{{topic.title}}"><br>
                 </form>
                 <script type="text/javascript">
                     var currentURL = window.location.href;
