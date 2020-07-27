@@ -116,13 +116,13 @@
 .topic-analysis-box {
     position: relative;
     top: -200px;
-    width: 70%;
-    max-width: 1400px;
+    width: 80%;
     margin: 0 auto;
 }
 
 .analysis-title-row {
-    width: 300px;
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
@@ -288,7 +288,24 @@ input[name=share_link] {
 	}
 }
 
+@media all and (max-width:1695px) {
+    .analysis-title-row {
+        max-width: 860px;
+    }
+}
+
+@media all and (max-width:1130px) {
+    .topic-analysis-box {
+        width: 100%;
+    }
+}
+
 @media all and (max-width:768px) {
+    
+    .analysis-title-row {
+        padding-left: 50px;
+    }
+
     .select-wrapper {
         top: -250px;
     }
@@ -301,6 +318,11 @@ input[name=share_link] {
 }
 
 @media all and (max-width:480px) {
+
+    .analysis-title-row {
+        padding-left: 0px;
+    }
+
     .total-chart-box {
         min-width: 180px;
     }

@@ -142,16 +142,20 @@
     }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:1000px) {
     .hot-topic { 
         height: 450px;
     }
     .item {
         height: 450px;
     }
+    .topic-list {
+    }
     .topic-card {
-        width: 340px;
-        height: 350px;
+        display: inline-block;
+        width: 45%;
+        margin: 10px;
+        height: 380px;
     }
     .topic-title {
         margin-bottom: 10px;
@@ -170,7 +174,7 @@
         word-break: normal;
     }
     .voting-btn {
-        margin-top: 60px;
+        bottom: 70px;
     }
     .topic-subtitle {
         font-size: 14px;
@@ -186,7 +190,7 @@
     }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width:550px) {
     .hot-topic {
         height: 350px;
     }
