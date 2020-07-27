@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="{% static 'css/notice.css' %}">
 {% endblock %}
 
-{% block head_script %}
-<script src="{% static 'js/notice.js' %}"></script>
-{% endblock %}
 
 {% block content %}
 <div class="list-container">
@@ -27,4 +24,8 @@
         {% endfor %}
     </ul>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/notice.js' %}"></script>
 {% endblock %}

@@ -17,7 +17,7 @@ $(window).resize(function (){
 function change_navbar() {
    let screen = window.screen.width;
    
-   if (screen>768) {
+   if (screen>1000) {
       $('.menu-btn').addClass('hide');
       $('.menu-box').removeClass('hide'); 
    } else {
