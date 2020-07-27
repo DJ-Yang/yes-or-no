@@ -8,7 +8,7 @@ function check_footer_postion() {
 
     console.log(contents_height, screen_height)
 
-    let check = contents_height - screen_height;
+    let check = contents_height - screen_height+136;
  
     if (check<0) {
           $('footer').css('display','block')
