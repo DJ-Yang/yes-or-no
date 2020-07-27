@@ -14,7 +14,7 @@ def store_daily_pick():
   topics = Topic.objects.all()
 
   for topic in topics:
-    picks = Topic.picks.all()
+    picks = topic.picks.all()
 
     todaypick = DailyPick()
     todaypick.pick1 = picks.filter(selection=1).count()
@@ -38,7 +38,7 @@ def set_hot_topic():
     if pick.topic.id in topic_list:
       topic_list[pick.topic.id] += 1
     else:
-      topic_list[pcik.topic.id] = 1
+      topic_list[pick.topic.id] = 1
 
   topic_list = sorted(topic_list.items(), key=(lambda x : x[0]), reverse=True)
 
