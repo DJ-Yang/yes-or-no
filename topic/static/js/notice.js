@@ -18,5 +18,6 @@ function check_footer_postion() {
        $('footer').css('display','block')
        $('footer').css('position','relative');
     }
- 
+    
+    $('.test').html(screen_height+' '+contents_height);
  }

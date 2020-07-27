@@ -21,7 +21,9 @@ p {
     letter-spacing: -0.28px;
     font-family: nanum;
 }
-
+.container {
+    padding-bottom: 146px;
+}
 .notice-detail {
     max-width: 840px;
     margin: 0 auto;
