@@ -1,0 +1,17 @@
+.wrapper {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 196px;
+}
+
+footer {
+    background-color: #fbfbfb;
+    position: absolute;
+    bottom: 0;
+}
+
+@media all and (max-width:480px) {
+    .wrapper {
+        padding-bottom: 136px;
+    }
+}
