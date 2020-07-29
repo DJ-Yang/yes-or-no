@@ -40,7 +40,7 @@ body {
 .list-row {
     padding: 24px 40px;
     background-color: transparent;
-    transition: ease-in .2s;
+    transition: background-color ease-in .2s;
     border-bottom: 1px solid #191f2820;
 }
 

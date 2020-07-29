@@ -10,13 +10,12 @@
 {% endblock %}
 
 {% block head_script %}
-<script src="{% static 'js/notice.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="notice-detail">
     <h2 class="top">공지사항</h2>
-
+    <!-- <h2 class="test"></h2> -->
     <div class="detail">
         <div class="detail-header">
             <div class="title">
@@ -38,4 +37,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/notice.js' %}"></script>
 {% endblock %}
