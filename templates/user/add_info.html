@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/add_info.css' %}">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/add_info.js' %}"></script>
     <title>톺톡</title>
 
 </head>
@@ -26,7 +29,10 @@
             <div class="btn-box">
                 <form action="{% url 'add_info' %}" method="POST">
                     {% csrf_token %}
-                    {{form}}
+                    <div style="margin-top: 15px;">성별/나이</div>
+                    <div id="add">{{addform}}</div>
+                    <div style="margin-top: 15px;">지역</div>
+                    <div id="region">{{regionform}}</div>                    
                     <input type="submit" value="확 인">
                 </form>
             </div>
