@@ -8,7 +8,7 @@
 
 //     console.log(contents_height, screen_height)
 
-//     let check = contents_height - screen_height+136;
+    // let check = contents_height - screen_height+136;
  
 //     if (check<0) {
 //         $('body').css('max-height',screen_height);

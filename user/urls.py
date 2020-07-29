@@ -5,4 +5,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('signin/', views.signin, name='signin'),
     path('add_info/', views.add_info, name='add_info'),
+    path('get_form/', views.get_form, name='get_form'),
 ]
