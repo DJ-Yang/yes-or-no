@@ -17,6 +17,7 @@ def store_daily_pick():
     picks = topic.picks.all()
 
     todaypick = DailyPick()
+    todaypick.topic = topic
     todaypick.pick1 = picks.filter(selection=1).count()
     todaypick.pick2 = picks.filter(selection=2).count()
     todaypick.pick3 = picks.filter(selection=3).count()
