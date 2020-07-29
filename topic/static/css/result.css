@@ -187,7 +187,7 @@
 
 
 .label-box {
-    padding: 7px 10px;
+    padding: 7px 5px;
     border-top: 1px solid #e0e0e0;
     display: flex;
     flex-wrap: wrap;
@@ -195,9 +195,10 @@
 }
 
 .label {
-    width: 185px;
+    width: 195px;
     flex-wrap: wrap;
     padding-bottom: 5px;
+    font-size: 13px;
 }
 
 .label1 {
@@ -305,6 +306,15 @@ input[name=share_link] {
     .analysis-title-row {
         padding-left: 50px;
     }
+    .select-box {
+        padding-right: 10px;
+    }
+    .selection {
+        min-width: 260px;
+    }
+    .selection-text {
+        font-size: 16px;
+    }
 
     .select-wrapper {
         top: -250px;
@@ -316,6 +326,7 @@ input[name=share_link] {
         font-size: 35px;
     }
 }
+
 
 @media all and (max-width:480px) {
 
@@ -386,8 +397,9 @@ input[name=share_link] {
     }
     .chart-box {
         margin: 10px auto;
-        width: 90%;
+        width: 95%;
         height: 310px;
+        padding: 10px 0px;
     }
     #chart5 {
         margin-left: -35px;
@@ -411,20 +423,49 @@ input[name=share_link] {
         margin-bottom: 0;
     }
     .label-box {
-        padding: 8px 5px;
+        padding: 8px 0px;
     }
     .label {
-        width: 150px;
-        font-size: 13px;
+        width: 180px;
+        font-size: 12px;
     }
 }
 
 @media all and (max-width:425px) {
+    .total-chart-box {
+        min-width: 170px;
+    }
+    .select-box {
+        padding-right: 10px;
+    }
+    .selection {
+        min-width: 230px;
+    }
+    .selection-text {
+        
+    }
+
     .age-chart {
         padding: 10px 0;
     }
+    .label {
+        font-size: 11px;
+        width: 160px;
+    }
 }
 @media all and (max-width:375px) {
+    .total-chart-box {
+        min-width: 140px;
+    }
+    .select-box {
+        padding-right: 10px;
+    }
+    .selection {
+        min-width: 210px;
+    }
+    .selection-text {
+        font-size: 13px;
+    }
     .age-chart {
         padding: 15px 0;
     }
