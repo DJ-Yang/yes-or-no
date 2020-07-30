@@ -2,6 +2,16 @@ body {
     background-color: #ffffff !important;
 }
 
+@font-face {
+    font-family: 'nanum';
+    src:url('../fonts/NanumSquareR.woff') format('woff');
+    font-weight: normal;
+}
+
+* {
+    font-family: nanum !important;
+}
+
 .header {
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;

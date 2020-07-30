@@ -1,8 +1,16 @@
+
+@font-face {
+    font-family: 'nanum';
+    src:url('../fonts/NanumSquareR.woff') format('woff');
+    font-weight: normal;
+}
+
 body {
     background-color: #F4F7F6;
 }
 * {
     -webkit-tap-highlight-color : transparent;
+    /* font-family: nanum; */
 }
 a,
 a:visited,
@@ -54,7 +62,7 @@ a:focus {
     width: 100px;
     margin: 0 auto;
     text-align: center;
-    font-size: 38px;
+    font-size: 35px;
     font-weight: bold;
 }
 .hide {

@@ -107,8 +107,13 @@ def topic_select(request, topic_id):
   if request.method == 'POST':
     u_gender = 0 if (request.user.gender == 'male') else 1
 
-    if not request.POST.get('pick'):
+    u_pick = int(request.POST.get('pick', '0'))
+    selections = topic.selections.all().count()
+
+    if u_pick < 1 or u_pick > selections:
       return redirect('topic:select', topic.id)
+    
+    
     pick, created = Pick.objects.get_or_create(
       author=request.user,
       topic=topic,
@@ -117,12 +122,12 @@ def topic_select(request, topic_id):
     )
 
     if created:
-        pick.selection = request.POST.get('pick')
+        pick.selection = u_pick
         pick.updated_at = timezone.now()
         pick.save()
     else:
-      if not pick.selection == request.POST.get('pick'):
-        pick.selection = request.POST.get('pick')
+      if not pick.selection == u_pick:
+        pick.selection = u_pick
         pick.updated_at = timezone.now()
         pick.save()
     return redirect('topic:result', topic.id)
@@ -136,14 +141,17 @@ def topic_select(request, topic_id):
 @login_required(login_url='/auth/signin/')
 def topic_result(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
-  pick = topic.picks.get(author=request.user)
-  data = set_data(topic)
+  try:
+    pick = topic.picks.get(author=request.user)  
+    data = set_data(topic)
+    return render(request, 'topic/result.html', {
+      'topic' : topic,
+      'pick' : pick,
+      'data' : data,
+    })
+  except:
+    return redirect('topic:select', topic_id)
   
-  return render(request, 'topic/result.html', {
-    'topic' : topic,
-    'pick' : pick,
-    'data' : data,
-  })
-
+  
 def user_request(request):
   return render(request, 'topic/request.html')
