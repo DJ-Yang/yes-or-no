@@ -60,7 +60,7 @@
 
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 4; j++) {
-            age[i][j] = (age[i][j] / age_total[i]) * 100;
+            age[i][j] = Math.round((age[i][j] / age_total[i]) * 100);
         }
     }
     for (let i = 0; i < 4; i++) {
@@ -102,7 +102,7 @@
     var sum = all_total.reduce((a, b) => { return a + b; })
     for (let i = 0; i < 12; i++) {
         for (let j = 0; j < 4; j++) {
-            all[i][j] = (all[i][j] / sum) * 100;
+            Math.round(all[i][j] = (all[i][j] / sum) * 100);
         }
     }
     for (let i = 0; i < 4; i++) {
@@ -667,7 +667,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + '%'
+                    return Math.round(val) + '%'
                 }
             }
         },
@@ -758,7 +758,7 @@
             max: 100,
             labels: {
                 formatter: function (val) {
-                    return val + '%'
+                    return Math.round(val) + '%'
                 }
             }
         },
