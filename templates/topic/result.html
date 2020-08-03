@@ -153,9 +153,8 @@
 {% block content %}
 <div class="topic-wrapper">
     <div class="topic-background">
-        <div class="topic-thumb" style="background-image: url('{{topic.thumb_image.url}}')">
-        </div>
-
+        
+        <div class="topic-thumb" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{topic.thumb_image.url}}')">
         <div class="topic-title-box">
             <div class="topic-title">{{topic.title}}</div>
             <div class="topic-subtitle">{{topic.content}}</div>
@@ -176,6 +175,7 @@
                 </div>
                 <!-- <div class="share-box share-active"></div> -->
             </div>
+        </div>
         </div>
     </div>
 
