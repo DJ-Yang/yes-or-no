@@ -40,11 +40,7 @@ class Pick(models.Model):
     MinValueValidator(1), 
     MaxValueValidator(4),
   ], null=True)
-  age_range = models.IntegerField(validators=[
-    MinValueValidator(0), 
-    MaxValueValidator(100),
-  ])
-  gender = models.IntegerField(choices=Sex.choices)
+  # age_range, gender 삭제 (2020-08-03)
   created_at = models.DateTimeField(auto_now=timezone.now())
   updated_at = models.DateTimeField(default=timezone.now)
   
