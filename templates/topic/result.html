@@ -18,6 +18,7 @@
 <script>
     Kakao.init('d6c3621c6252a5999c0fb101d2a2d3ab');
     console.log(Kakao.isInitialized());
+
 </script>
 <script type="text/javascript">
 
@@ -198,7 +199,7 @@
                     {% elif forloop.counter == 4 %}
                     <div class="selection-text selection-active" style="color: rgb(255, 69, 96);">
                     {% endif %}
-                    <i class="fa fa-circle" aria-hidden="true"></i> {{selection.description}}<i class="fa fa-check" aria-hidden="true" style="padding-left: 10px;"></i>
+                    <i class="fa fa-circle" aria-hidden="true"></i><div>{{selection.description}}</div><i class="fa fa-check" aria-hidden="true"></i>
                 </div>
                 {% else %}
                 <div class="selection-text">
@@ -211,7 +212,7 @@
                     {% elif forloop.counter == 4 %}
                     <i class="fa fa-circle" aria-hidden="true" style="color: rgb(255, 69, 96);"></i>
                     {% endif %}
-                     {{selection.description}}</div>
+                    <div>{{selection.description}}</div></div>
                 {% endif %}
                 {% endfor %}
             </div>
@@ -300,12 +301,14 @@
                     var currentURL = window.location.href;
                     var buttonURL = currentURL.replace('result/', '');
                     var commentcount = parseInt('{{topic.picks.count}}');
+                    var topicDescription = '{{topic.content|linebreaksbr}}'.replace(/<br>/gi,'');
+
                     Kakao.Link.createDefaultButton({
                         container: '#kakao-link-btn',
                         objectType: 'feed',
                         content: {
                             title: '{{topic.title}}',
-                            description: '{{topic.content}}',
+                            description: topicDescription,
                             imageUrl: '{{topic.thumb_image.url}}',
                             link: {
                                 mobileWebUrl: buttonURL,
@@ -357,8 +360,35 @@
         series: all_chart_data,
         chart: {
             type: 'pie',
-
+            width: '100%'
         },
+        // responsive: [
+        //     {
+        //         breakpoint: 570,
+        //         options: {
+        //             chart: {
+        //                 width: 230
+        //             },
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 500,
+        //         options: {
+        //             chart: {
+        //                 width: 190
+        //             }
+        //         }
+        //     },
+        //     {
+        //         breakpoint: 460,
+        //         options: {
+        //             chart: {
+        //                 width: 150
+        //             }
+        //         }
+        //     }
+
+        // ],
         labels: ['A', 'B', 'C', 'D'],
         dataLabels: {
             enabled: true,
@@ -377,7 +407,7 @@
         },
         tooltip: {
             enabled: false
-        }
+        },
     };
 
     var chart = new ApexCharts(document.querySelector("#chart1"), options);

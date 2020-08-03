@@ -59,14 +59,21 @@ class regionForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(regionForm, self).__init__(*args, **kwargs)
+        
+        _sido = '서울'
+        print(args)
+        for arg in args:
+            for k,v in arg.items():
+                if k == 'sido':
+                    _sido = v
+
         self.fields['sido'] = forms.ChoiceField(
             label=False,
             choices=sido,
-            initial='서울',
         )
         self.fields['sigungu'] = forms.ChoiceField(
             label=False,
-            choices=Sigunu.seoul,
+            choices=Sigunu().get_list(_sido)
         )
 
     def set_region(self, selected_sido='서울'):
