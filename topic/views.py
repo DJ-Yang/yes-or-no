@@ -69,10 +69,10 @@ def set_data(objects):
     picks = objects.picks.filter(selection=selection)
     result["selection_" + str(selection)] = picks.count()
     for age in ages:
-      result["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, age_range=age).count()
+      result["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, author__age_range=age).count()
       for gender in genders:
-        result["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, gender=gender).count()
-        result["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, age_range=age, gender=gender).count()
+        result["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, author__gender=gender).count()
+        result["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, author__age_range=age, author__gender=gender).count()
   
   return result
 
@@ -86,11 +86,9 @@ def topic_list(request):
   })
 
 @login_required(login_url='/auth/signin/')
-@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
+@user_passes_test(lambda u: u.gender and u.age_range and u.sido and u.sigungu, login_url='/auth/add_info/')
 def check_selection(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
-
-  print(request.user)
 
   if topic.picks.filter(author=request.user).exists():
     return redirect('topic:result', topic.id)
@@ -100,7 +98,7 @@ def check_selection(request, topic_id):
     })
 
 @login_required(login_url='/auth/signin/')
-@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
+@user_passes_test(lambda u: u.gender and u.age_range and u.sido and u.sigungu, login_url='/auth/add_info/')
 def topic_select(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
 
@@ -108,17 +106,14 @@ def topic_select(request, topic_id):
     u_gender = 0 if (request.user.gender == 'male') else 1
 
     u_pick = int(request.POST.get('pick', '0'))
-    selections = topic.selections.all().count()
 
-    if u_pick < 1 or u_pick > selections:
+    if u_pick < 1 or u_pick > topic.selection_amount:
       return redirect('topic:select', topic.id)
     
     
     pick, created = Pick.objects.get_or_create(
       author=request.user,
       topic=topic,
-      age_range=request.user.age_range,
-      gender=u_gender
     )
 
     if created:
