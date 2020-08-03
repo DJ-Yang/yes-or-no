@@ -49,6 +49,7 @@ class Pick(models.Model):
   updated_at = models.DateTimeField(default=timezone.now)
   
 class DailyPick(models.Model):
+  topic = models.ForeignKey(Topic, related_name="daily", on_delete=models.CASCADE, null=True, blank=True)
   pick1 = models.IntegerField()
   pick2 = models.IntegerField()
   pick3 = models.IntegerField()

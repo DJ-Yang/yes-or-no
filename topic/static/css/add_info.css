@@ -10,7 +10,7 @@
 }
 
 .logo a:visited {
-    color: #FFDE50;
+    color: #49C5B6;
 }
 
 .signin-page {
@@ -22,17 +22,17 @@
 
 .logo {
     font-size:50px;
-    color: #FFDE50;
-    font-weight: 500;
+    color: #49C5B6;
+    font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
 }
 
 .signin-box {
-    max-width: 500px;
+    max-width: 520px;
     min-width: 320px;
     width: 100%;
-    height: 400px;
+    height: 450px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     margin: 0 auto;
@@ -51,18 +51,19 @@
 
 .signin-box .btn-box {
     width: 300px;
-    margin: 50px auto;
+    margin: 25px auto;
     text-align: center;
 }
 
 select {
     width: 100px;
-    margin: 20px 0;
+    margin: 10px 0;
     padding: 10px 10px;
     font-size: 17px;
     font-family: nanum;
     outline: none;
     border: 1px solid #dadada;
+    background-color: #fff; 
 }
 
 select option {
@@ -70,25 +71,25 @@ select option {
 }
 
 select:focus {
-    border: 1px solid #FFDE50;
+    border: 1px solid #49C5B6;
 }
 
 input[type=submit] {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
     width: 200px;
     height: 40px;
-    border: 1.2px solid #dadada;
+    border: 1.2px solid #49C5B6;
     background-color: #ffffff;
     font-size: 20px;
     font-family: nanum;
     transition: background-color ease-in .2s;
     outline: none;
-    
+    cursor: pointer;    
 }
 input[type=submit]:hover {
-    background-color: #FFDE50;
-    border-color: #FFDE50;
+    background-color: #49C5B6;
+    border-color: #49C5B6;
     color: #575757;
 }
 input[type=submit]:foucs {
