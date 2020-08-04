@@ -28,6 +28,7 @@
     var data = '{{data}}';
     data = data.replace(/&#x27;/gi, '"');
     data = JSON.parse(data);
+    console.log(data);
     var all_chart_data = [data['selection_1'], data['selection_2'], data['selection_3'], data['selection_4']];
 
     var all = [];
@@ -71,18 +72,18 @@
         }
         age_data_list.push(temp);
     }
-    all.push([data['selection_1_10_0'], data['selection_2_10_0'], data['selection_3_10_0'], data['selection_4_10_0']]);
-    all.push([data['selection_1_20_0'], data['selection_2_20_0'], data['selection_3_20_0'], data['selection_4_20_0']]);
-    all.push([data['selection_1_30_0'], data['selection_2_30_0'], data['selection_3_30_0'], data['selection_4_30_0']]);
-    all.push([data['selection_1_40_0'], data['selection_2_40_0'], data['selection_3_40_0'], data['selection_4_40_0']]);
-    all.push([data['selection_1_50_0'], data['selection_2_50_0'], data['selection_3_50_0'], data['selection_4_50_0']]);
-    all.push([data['selection_1_60_0'], data['selection_2_60_0'], data['selection_3_60_0'], data['selection_4_60_0']]);
-    all.push([data['selection_1_10_1'], data['selection_2_10_1'], data['selection_3_10_1'], data['selection_4_10_1']]);
-    all.push([data['selection_1_20_1'], data['selection_2_20_1'], data['selection_3_20_1'], data['selection_4_20_1']]);
-    all.push([data['selection_1_30_1'], data['selection_2_30_1'], data['selection_3_30_1'], data['selection_4_30_1']]);
-    all.push([data['selection_1_40_1'], data['selection_2_40_1'], data['selection_3_40_1'], data['selection_4_40_1']]);
-    all.push([data['selection_1_50_1'], data['selection_2_50_1'], data['selection_3_50_1'], data['selection_4_50_1']]);
-    all.push([data['selection_1_60_1'], data['selection_2_60_1'], data['selection_3_60_1'], data['selection_4_60_1']]);
+    all.push([data['selection_1_10_male'], data['selection_2_10_male'], data['selection_3_10_male'], data['selection_4_10_male']]);
+    all.push([data['selection_1_20_male'], data['selection_2_20_male'], data['selection_3_20_male'], data['selection_4_20_male']]);
+    all.push([data['selection_1_30_male'], data['selection_2_30_male'], data['selection_3_30_male'], data['selection_4_30_male']]);
+    all.push([data['selection_1_40_male'], data['selection_2_40_male'], data['selection_3_40_male'], data['selection_4_40_male']]);
+    all.push([data['selection_1_50_male'], data['selection_2_50_male'], data['selection_3_50_male'], data['selection_4_50_male']]);
+    all.push([data['selection_1_60_male'], data['selection_2_60_male'], data['selection_3_60_male'], data['selection_4_60_male']]);
+    all.push([data['selection_1_10_female'], data['selection_2_10_female'], data['selection_3_10_female'], data['selection_4_10_female']]);
+    all.push([data['selection_1_20_female'], data['selection_2_20_female'], data['selection_3_20_female'], data['selection_4_20_female']]);
+    all.push([data['selection_1_30_female'], data['selection_2_30_female'], data['selection_3_30_female'], data['selection_4_30_female']]);
+    all.push([data['selection_1_40_female'], data['selection_2_40_female'], data['selection_3_40_female'], data['selection_4_40_female']]);
+    all.push([data['selection_1_50_female'], data['selection_2_50_female'], data['selection_3_50_female'], data['selection_4_50_female']]);
+    all.push([data['selection_1_60_female'], data['selection_2_60_female'], data['selection_3_60_female'], data['selection_4_60_female']]);
 
     all.forEach(function (items, i) {
         items = items.map(function (item) { return item == undefined ? 0 : item })
@@ -120,20 +121,20 @@
         }
         all_data_list_female.push(temp);
     }
-    data_list.push([data['selection_1_0'], data['selection_2_0'], data['selection_3_0'], data['selection_4_0']]);
-    data_list.push([data['selection_1_1'], data['selection_2_1'], data['selection_3_1'], data['selection_4_1']]);
+    data_list.push([data['selection_1_male'], data['selection_2_male'], data['selection_3_male'], data['selection_4_male']]);
+    data_list.push([data['selection_1_female'], data['selection_2_female'], data['selection_3_female'], data['selection_4_female']]);
     data_list.push([data['selection_1_10'], data['selection_1_20'], data['selection_1_30'], data['selection_1_40'], data['selection_1_50'], data['selection_1_60']]);
     data_list.push([data['selection_2_10'], data['selection_2_20'], data['selection_2_30'], data['selection_2_40'], data['selection_2_50'], data['selection_2_60']]);
     data_list.push([data['selection_3_10'], data['selection_3_20'], data['selection_3_30'], data['selection_3_40'], data['selection_3_50'], data['selection_3_60']]);
     data_list.push([data['selection_4_10'], data['selection_4_20'], data['selection_4_30'], data['selection_4_40'], data['selection_4_50'], data['selection_4_60']]);
-    data_list.push([data['selection_1_10_0'], data['selection_1_20_0'], data['selection_1_30_0'], data['selection_1_40_0'], data['selection_1_50_0'], data['selection_1_60_0']]);
-    data_list.push([data['selection_2_10_0'], data['selection_2_20_0'], data['selection_2_30_0'], data['selection_2_40_0'], data['selection_2_50_0'], data['selection_2_60_0']]);
-    data_list.push([data['selection_3_10_0'], data['selection_3_20_0'], data['selection_3_30_0'], data['selection_3_40_0'], data['selection_3_50_0'], data['selection_3_60_0']]);
-    data_list.push([data['selection_4_10_0'], data['selection_4_20_0'], data['selection_4_30_0'], data['selection_4_40_0'], data['selection_4_50_0'], data['selection_4_60_0']]);
-    data_list.push([data['selection_1_10_1'], data['selection_1_20_1'], data['selection_1_30_1'], data['selection_1_40_1'], data['selection_1_50_1'], data['selection_1_60_1']]);
-    data_list.push([data['selection_2_10_1'], data['selection_2_20_1'], data['selection_2_30_1'], data['selection_2_40_1'], data['selection_2_50_1'], data['selection_2_60_1']]);
-    data_list.push([data['selection_3_10_1'], data['selection_3_20_1'], data['selection_3_30_1'], data['selection_3_40_1'], data['selection_3_50_1'], data['selection_3_60_1']]);
-    data_list.push([data['selection_4_10_1'], data['selection_4_20_1'], data['selection_4_30_1'], data['selection_4_40_1'], data['selection_4_50_1'], data['selection_4_60_1']]);
+    data_list.push([data['selection_1_10_male'], data['selection_1_20_male'], data['selection_1_30_male'], data['selection_1_40_male'], data['selection_1_50_male'], data['selection_1_60_male']]);
+    data_list.push([data['selection_2_10_male'], data['selection_2_20_male'], data['selection_2_30_male'], data['selection_2_40_male'], data['selection_2_50_male'], data['selection_2_60_male']]);
+    data_list.push([data['selection_3_10_male'], data['selection_3_20_male'], data['selection_3_30_male'], data['selection_3_40_male'], data['selection_3_50_male'], data['selection_3_60_male']]);
+    data_list.push([data['selection_4_10_male'], data['selection_4_20_male'], data['selection_4_30_male'], data['selection_4_40_male'], data['selection_4_50_male'], data['selection_4_60_male']]);
+    data_list.push([data['selection_1_10_female'], data['selection_1_20_female'], data['selection_1_30_female'], data['selection_1_40_female'], data['selection_1_50_female'], data['selection_1_60_female']]);
+    data_list.push([data['selection_2_10_female'], data['selection_2_20_female'], data['selection_2_30_female'], data['selection_2_40_female'], data['selection_2_50_female'], data['selection_2_60_female']]);
+    data_list.push([data['selection_3_10_female'], data['selection_3_20_female'], data['selection_3_30_female'], data['selection_3_40_female'], data['selection_3_50_female'], data['selection_3_60_female']]);
+    data_list.push([data['selection_4_10_female'], data['selection_4_20_female'], data['selection_4_30_female'], data['selection_4_40_female'], data['selection_4_50_female'], data['selection_4_60_female']]);
 
 
     data_list.forEach(function (items, i) {
@@ -141,7 +142,7 @@
         data_list[i] = items;
     })
 
-
+    console.log(data_list)
     function share() {
         var url = encodeURI(encodeURIComponent(myform.url.value));
         var title = encodeURI(myform.title.value);
@@ -472,7 +473,7 @@
     chart.render();
 </script>
 <script>
-    var options = {
+    var options = {        
         series: data_list[1],
         noData: {
             text: 'text',
