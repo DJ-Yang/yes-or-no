@@ -9,7 +9,7 @@ def signin(request):
 def add_info(request):
     wrong_flag = User.objects.get(pk=request.user.id)
     # 계속 수정해야할때 들어가야되서 일부러 not 넣어둠 나중에 지워야함.
-    if not wrong_flag.gender and not (wrong_flag.age_range == 0):
+    if wrong_flag.gender or not (wrong_flag.age_range == 0) or wrong_flag.sido or wrong_flag.sigungu:
         return redirect('topic:list')
     else:
         if request.method == 'POST':
@@ -33,3 +33,11 @@ def get_form(request):
     form = regionForm()
     form = form.set_region(selected_sido=request.GET.get('sido','서울'))
     return HttpResponse(form)
+
+
+def user_info(request):
+
+    context = {
+        'user':User.objects.get(pk=request.user.pk)
+    }
+    return render(request, 'user/user_info.html', context)
