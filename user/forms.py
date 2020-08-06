@@ -50,8 +50,29 @@ class AddForm(forms.ModelForm):
             label=False,
             choices=gender,
             )
-    
 
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['nickname','gender','age_range']
+
+    def __init__(self, *args, **kwargs):
+        super(EditForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+        self.fields['nickname'] = forms.CharField(
+            label=False,
+        )
+        self.fields['age_range'] = forms.ChoiceField(
+            label=False,
+            choices=age_range,
+            )
+        self.fields['gender'] = forms.ChoiceField(
+            label=False,
+            choices=gender,
+            widget=forms.RadioSelect
+            )
+
+    
 class regionForm(forms.Form):
     class Meta:
         model = User

@@ -74,6 +74,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     )
     sido = models.CharField(max_length=10, null=True)
     sigungu = models.CharField(max_length=15, null=True)
+
     is_active = models.BooleanField(default=True)    
     is_admin = models.BooleanField(default=False)    
     is_superuser = models.BooleanField(default=False)    
