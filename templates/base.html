@@ -44,8 +44,8 @@
           </div>
           <div class="menu-box">
             <ul>
-              <a href="{% url 'topic:list' %}">
-                <li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li>
+              <a href="{% url 'user_info' %}">
+                <li><img src="{% static 'img/home.png' %}" alt="" height="20px">마이페이지</li>
               </a>
               <a href="{% url 'notice:notice' %}">
                 <li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li>
@@ -85,8 +85,8 @@
               <li>회원가입/로그인</li>
             </a>
             {% endif %}
-            <a href="{% url 'topic:list' %}">
-              <li>토픽목록</li>
+            <a href="{% url 'user_info' %}">
+              <li>마이페이지</li>
             </a>
             <a href="{% url 'notice:notice' %}">
               <li>공지사항</li>
