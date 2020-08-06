@@ -8,7 +8,7 @@ from point.models import Point
 def signin(request):
         return render(request, 'user/signin.html')
 def add_info(request):
-    wrong_flag = User.objects.get(pk=request.user.id)
+    # wrong_flag = User.objects.get(pk=request.user.id)
     # 계속 수정해야할때 들어가야되서 일부러 not 넣어둠 나중에 지워야함.
     if request.method == 'POST':
         addform = AddForm(request.POST)
@@ -47,15 +47,27 @@ def user_info(request):
     return render(request, 'user/user_info.html', context)
 
 def edit_profile(request):
+    if request.method == 'POST':
+        editform = EditForm(request.POST)
+        regionform = regionForm(request.POST)
+        if editform.is_valid() and regionform.is_valid():
+            user = User.objects.get(pk=request.user.id)
+            user.nickname = editform.cleaned_data['nickname']
+            user.age_range = editform.cleaned_data['age_range']
+            user.gender = editform.cleaned_data['gender']
+            user.sido = regionform.cleaned_data['sido']
+            user.sigungu = regionform.cleaned_data['sigungu']
+            user.save()
+        return redirect('user_info')
+    else:            
+        editform = EditForm()
+        regionform = regionForm().set_region(selected_sido=request.user.sido)
+        
+        user_data = ''+request.user.nickname+','+str(request.user.age_range)+','+request.user.gender
+        context = {
+            'editform':editform,
+            'regionform':regionform,
+            'user_data':user_data
+        }
 
-    editform = EditForm()
-    regionform = regionForm().set_region(selected_sido=request.user.sido)
-    
-    user_data = ''+request.user.nickname+','+str(request.user.age_range)+','+request.user.gender
-    context = {
-        'editform':editform,
-        'regionform':regionform,
-        'user_data':user_data
-    }
-
-    return render(request, 'user/edit_profile.html', context)
+        return render(request, 'user/edit_profile.html', context)
