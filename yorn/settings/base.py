@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'topic.apps.TopicConfig',
     'notice.apps.NoticeConfig',
     'user.apps.UserConfig',
+    'point.apps.PointConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',

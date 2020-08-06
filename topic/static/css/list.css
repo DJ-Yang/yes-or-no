@@ -58,7 +58,7 @@
     .voting-btn {
         width: 200px;
         position: absolute;
-        bottom: 150px;
+        bottom: 110px;
         left: 5%;
         z-index: 1000;
         display: inline-block;
@@ -118,6 +118,14 @@
     }
     .topic-subtitle {
         color: #555555;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* 라인수 */
+        -webkit-box-orient: vertical;
+        word-wrap:break-word; 
+        line-height: 1.2em;
+        height: 95px;
     }
 
     .participant {
@@ -164,13 +172,13 @@
         height: 200px;
     }
     .hot-topic-contents {
-        padding-top: 70px;
+        padding-top: 50px;
     }   
     .hot-topic-subtitle {
         font-size: 18px;
         padding-top: 30px;
-        line-height: 20px;
-        font-weight: bold;
+        line-height: 21px;
+        font-weight: normal;
         word-break: normal;
     }
     .voting-btn {
@@ -211,6 +219,12 @@
         line-height: 20px;
         font-weight: normal;
         word-break: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 8; /* 라인수 */
+        -webkit-box-orient: vertical;
+        word-wrap:break-word; 
     }
     .voting-btn {
         width: 150px;
@@ -219,7 +233,7 @@
         letter-spacing: 1px;
         border-radius: 35px;
         padding: 15px 0;
-        bottom: 50px;
+        bottom: 30px;
     }
     .topic-card {
         width: 95%;

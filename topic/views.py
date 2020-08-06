@@ -61,7 +61,7 @@ def set_hot_topic():
 def set_data(objects):
   selections = [x for x in range(1, objects.selection_amount+1)]
   ages = [10, 20, 30, 40, 50, 60]
-  genders = [0, 1]
+  genders = ['male','female']
 
   result = {}
 

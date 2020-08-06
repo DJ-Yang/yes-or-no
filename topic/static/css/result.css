@@ -9,19 +9,24 @@
 }
 
 .topic-thumb {
-    height: 700px;
-    background-size: cover;
+    min-height: 500px;
     background-position: center;
-    opacity: 0.5;
+    background-size: cover;
+}
+.cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: black;
+    height: 100px;
 }
 .hide {
     display: none;
 }
-
 .select-wrapper  {
     position: relative;
-    top: -300px;
-    margin: 0 auto;
+    margin: -100px auto 50px auto;
     max-width: 700px;
     background-color: #ffffff;
     border-radius: 30px;
@@ -41,8 +46,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-width: 200px;
 }
+
+.selection-text div {
+    display: inline-block;
+}
+.selection-text .fa-circle {
+    padding-right: 5px;
+}
+.selection-text .fa-check {
+    padding-left: 5px;
+}
+
 
 .selection-text {
     font-size: 20px;
@@ -52,10 +67,12 @@
     /* color: #49C5B6; */
     font-weight: bold;
 }
+.selection-active div {
+    padding-left: 5px;
+}
 
 .topic-title-box {
-    position: absolute;
-    top: 10%;
+    padding: 50px 0 100px 0;
     width: 100%;
 }
 
@@ -63,18 +80,20 @@
     font-weight: bold;
     font-size: 45px;
     color: #49C5B6;
-    max-width: 1000px;
+    max-width: 1200px;
     min-height: 45px;
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     text-align: center;
 }
+
 .topic-subtitle {
     text-align: center;
     margin: 0 auto;
     color: #ffffff;
     font-size: 20px;
-    max-width: 800px;
+    max-width: 1100px;
+    width: 95%;
     min-height: 75px;
     padding-top: 60px;
     font-weight: bold;
@@ -84,7 +103,6 @@
 }
 
 .total-chart-box {
-    width: 300px;
 }
 
 .btn-box {
@@ -109,13 +127,11 @@
 .share-btn {
     border-color: #ffffff;
     color: #ffffff;
-    transition: all ease-in .5s;
 }
 
 
 .topic-analysis-box {
     position: relative;
-    top: -200px;
     width: 80%;
     margin: 0 auto;
 }
@@ -149,10 +165,10 @@
 
 .chart-box {
     width: 400px;
-    height: 400px;
+    height: fit-content;
     border: 1px solid #e0e0e0;
     border-radius: 15px;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     margin: 0 15px 20px 15px;
     background-color: #ffffff;
     position: relative;
@@ -189,6 +205,7 @@
 .label-box {
     padding: 7px 5px;
     border-top: 1px solid #e0e0e0;
+    height: fit-content;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -277,7 +294,6 @@ input[name=share_link] {
 .sns-btn .button img {
     margin: 0px 10px;
 }
-
 @keyframes scaleUp {
 	0% {
 		transform: translateY(-100px);
@@ -299,6 +315,12 @@ input[name=share_link] {
     .topic-analysis-box {
         width: 100%;
     }
+    .select-wrapper {
+        top: 0;
+    }
+    .topic-thumb {
+        min-height: 300px;
+    }
 }
 
 @media all and (max-width:768px) {
@@ -310,17 +332,20 @@ input[name=share_link] {
         padding-right: 10px;
     }
     .selection {
-        min-width: 260px;
     }
     .selection-text {
-        font-size: 16px;
+        font-size: 18px;
+        display: flex;
     }
-
-    .select-wrapper {
-        top: -250px;
+    .selection-text .fa-check {
+        padding-left: 5px;
     }
     .topic-subtitle {
         width: 90%;
+        padding-top: 30px;
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 22px;
     }
     .topic-title {
         font-size: 35px;
@@ -329,26 +354,24 @@ input[name=share_link] {
 
 
 @media all and (max-width:480px) {
-
     .analysis-title-row {
         padding-left: 0px;
     }
-
-    .total-chart-box {
-        min-width: 180px;
+    .select-wrapper {
+        width: 95%;
     }
     .selection-text {
         font-size: 14px;
+        display: flex;
     }
-    .select-wrapper {
-        top: -50px;
-        width: 95%;
+    .selection-text div{
+        padding-left: 5px;
     }
     .select-box {
         padding-right: 20px;
     }
     .topic-thumb {
-        height: 350px;
+        min-height: 350px;
     }
     .topic-title {
         font-size: 30px;
@@ -356,8 +379,8 @@ input[name=share_link] {
         word-break: keep-all;
     }
     .topic-subtitle {
-        padding-top: 20px;
-        font-size: 14px;
+        padding-top: 10px;
+        font-size: 13px;
         letter-spacing: 1px;
         line-height: 16px;
         width: 90%;
@@ -365,7 +388,6 @@ input[name=share_link] {
 
     .topic-analysis-box {
         position: relative;
-        top: 0px;
         width: 100%;
         max-width: 1400px;
         margin: 0 auto;
@@ -398,8 +420,7 @@ input[name=share_link] {
     .chart-box {
         margin: 10px auto;
         width: 95%;
-        height: 310px;
-        padding: 10px 0px;
+        padding: 10px 0px 0px 0px;
     }
     #chart5 {
         margin-left: -35px;
@@ -433,20 +454,20 @@ input[name=share_link] {
 
 @media all and (max-width:425px) {
     .total-chart-box {
-        min-width: 170px;
+        
     }
     .select-box {
         padding-right: 10px;
+        display: flex;
     }
     .selection {
-        min-width: 230px;
+        min-width: 160px;
     }
-    .selection-text {
-        
-    }
-
     .age-chart {
         padding: 10px 0;
+    }
+    .label-box {
+        padding: 7px 8px;
     }
     .label {
         font-size: 11px;
@@ -455,18 +476,45 @@ input[name=share_link] {
 }
 @media all and (max-width:375px) {
     .total-chart-box {
-        min-width: 140px;
+        
     }
     .select-box {
         padding-right: 10px;
     }
     .selection {
-        min-width: 210px;
+        min-width: 150px;
     }
     .selection-text {
         font-size: 13px;
     }
     .age-chart {
         padding: 15px 0;
+    }
+    .chart-box {
+        height: fit-content;
+    }
+}
+@media all and (max-width: 355px) {
+    .label {
+        width: fit-content;
+        padding: 3px;
+    }
+    .label-box {
+        justify-content: space-around;
+    }
+}
+
+@media all and (max-width: 337px) {
+    .select-box {
+        padding-right: 10px;
+    }
+    .selection {
+        min-width: 130px;
+    }
+    .selection-text {
+        font-size: 12px;
+    }
+    .selection-text .fa-check {
+        padding-left: 5px;
     }
 }
