@@ -11,49 +11,64 @@
 
 {% block content %}
 <div class="contents-wrapper">
-        <div class="info-contents">
-            <div class="my-profile">
-                <img src="{% static 'img/user_profile.png' %}" alt="">
-                <div class="inner">
-                    <div class="name">{{user.nickname}}</div>
-                    <div class="region">{{user.sido}} {{user.sigungu}}</div>
-                    <div class="age">{{user.age_range}}대 {% if user.gender == 'female' %}여자{% else %}남자{%endif%}</div>
-                </div>
-                <a href="{% url 'edit_profile' %}"><div class="edit-btn">프로필 수정</div></a>
+    <div class="info-contents">
+        <div class="my-profile">
+            <img src="{% static 'img/user_profile.png' %}" alt="">
+            <div class="inner">
+                <div class="name">{{user.nickname}}</div>
+                <div class="region">{{user.sido}} {{user.sigungu}}</div>
+                <div class="age">{{user.age_range}}대 {% if user.gender == 'female' %}여자{% else %}남자{%endif%}</div>
             </div>
-            <div class="count-wrapper">
-                <div class="count-box">
-                    포인트
-                    <div class="point-count">추가 예정</div>
-                </div>
-                <div class="split-border-r"></div>
-                <div class="count-box">
-                    참여한 토픽
-                    <div class="topic-count">
-                        {{picks.count}}
-                    </div>
+            <a href="{% url 'edit_profile' %}">
+                <div class="edit-btn">프로필 수정</div>
+            </a>
+        </div>
+        <div class="count-wrapper">
+            <div class="count-box">
+                포인트
+                <div class="point-count">추가 예정</div>
+            </div>
+            <div class="split-border-r"></div>
+            <div class="count-box">
+                참여한 토픽
+                <div class="topic-count">
+                    {{picks.count}}
                 </div>
             </div>
         </div>
-        <div class="topic-contents">
-            <div class="topic-list">
-                {% for pick in picks %}
-                <div class="topic">
-                    <a href="{% url 'topic:result' pick.topic.pk %}">
+    </div>
+    <div class="topic-contents">
+        <div class="topic-list">
+            {% for pick in picks %}
+            <div class="topic">
+                <a href="{% url 'topic:result' pick.topic.pk %}">
                     <div class="thumb-box" style="background-image: url({{pick.topic.thumb_image.url}});">
                         <div class="participation">{{pick.updated_at|date:'Y.m.d'}}</div>
                     </div>
-                    
+
                     <div class="topic-text">
                         <div class="topic-title">
                             {{pick.topic.title}}
                         </div>
                     </div>
                 </a>
+<<<<<<< HEAD
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="more-topic">
+            <a href="{% url 'topic:list' %}">
+            더 많은 토픽 보러가기 <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+        </div>
+    </div>
+=======
                 </div>
                 {% endfor %}
             </div>
         </div>
+>>>>>>> 1877a688d8a6a3c3fd1d5621950f88fd5d0b96b7
     <div>
     </div>
 </div>

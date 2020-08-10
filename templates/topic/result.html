@@ -245,8 +245,12 @@
                     </div>
                     <div class="label-box">
                         {% for i in topic.selections.all %}
-                        <div class="label label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{i.description }}</div>
+                        <div class="label label{{forloop.counter}}">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            <div class="label-des">
+                                {{i.description}}
+                            </div>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -256,7 +260,10 @@
                     <div class="label-box">
                         {% for i in topic.selections.all %}
                         <div class="label label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{i.description }}</div>
+                            <div class="label-des">
+                                {{i.description}}
+                            </div>
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -272,8 +279,12 @@
                     </div>
                     <div class="label-box">
                         {% for i in topic.selections.all %}
-                        <div class="label label{{forloop.counter}}"><i class="fa fa-circle" aria-hidden="true"></i>
-                            {{i.description }}</div>
+                        <div class="label label{{forloop.counter}}">
+                            <i class="fa fa-circle" aria-hidden="true"></i>
+                            <div class="label-des">
+                                {{i.description}}
+                            </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>

@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 $(document).on('change', 'select[name=sido]', function(e) {
     $.get("/auth/get_form/?sido="+e.target.value,function(res) {
-        $('#region').html(res);
+        $('#region').html('<span class="label">지역</span> '+res);
         $('#region select').css('margin','0px 3px')
     })    
 })
