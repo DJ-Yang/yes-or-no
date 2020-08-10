@@ -130,7 +130,7 @@
 
     .participant {
         position: absolute;
-        bottom: 15px;
+        bottom: 5px;
         right: 10px;
         font-weight: bold;
         color: #4d4d4d;

@@ -42,7 +42,7 @@ def user_info(request):
 
     context = {
         'user':user,
-        'picks':Pick.objects.filter(author=request.user),
+        'picks':Pick.objects.filter(author=request.user).order_by('-updated_at')[:4]
     }
     return render(request, 'user/user_info.html', context)
 

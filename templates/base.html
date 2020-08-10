@@ -44,15 +44,15 @@
           </div>
           <div class="menu-box">
             <ul>
-              <a href="{% url 'user_info' %}">
-                <li><img src="{% static 'img/home.png' %}" alt="" height="20px">마이페이지</li>
-              </a>
               <a href="{% url 'notice:notice' %}">
                 <li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li>
               </a>
               {% if request.user.is_active %}
               <a href="javascript:void(0);" onclick="logout()">
                 <li><img src="{% static 'img/user.png' %}">로그아웃</li>
+              </a>
+              <a href="{% url 'user_info' %}">
+                <li><img src="{% static 'img/home.png' %}" alt="" height="20px">마이페이지</li>
               </a>
               {% else %}
               <a href="{% url 'signin' %}">
