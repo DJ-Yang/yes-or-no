@@ -1,0 +1,450 @@
+@media all {
+    .contents-wrapper {
+        height: fit-content;
+        padding-bottom: 190px;
+    }
+    footer {
+        position: relative;
+        bottom: 0;
+    }
+}
+
+@media all and (min-width:1000px) {
+    
+    .contents-wrapper {
+        width: 1000px;
+        margin: 100px auto 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .info-contents {        
+        width: 300px;
+        height: fit-content;
+        margin-right: 20px;
+    }
+    .my-profile {
+        padding: 30px;
+        margin: 0 auto;
+        text-align: center;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    .my-profile img {
+        width: 150px;
+        margin-bottom: 10px;
+    }
+    .edit-btn {
+        border: 1px solid #49C5B6;
+        color: #49C5B6;
+        border-radius: 5px;
+        padding: 5px 0px;
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+        bottom: 0;
+        cursor: pointer;
+    }
+    .my-profile .inner {
+        margin-bottom: 40px;
+    }
+    .my-profile .name {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .region, .age {
+        color:  #959595;
+        margin-top: 5px;
+    }
+    
+    .topic-contents {
+        width: 700px; 
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);        
+        border-radius: 5px;
+        margin-bottom: 50px;
+    }
+    .split-border-r {
+        border-right: 1px solid #e0e0e0;
+        margin: 8px 0;
+    }
+    .count-wrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    .count-box {
+        height: 60px;
+        width: 100%;
+        font-size: 19px;
+        text-align: center;
+        padding-top: 12px;
+        font-weight: bold;
+    }
+    .point-count {
+        /* font-size: 20px;
+        color: #49C5B6;
+        font-weight: bold; */
+        margin-top: 10px;
+
+        
+        font-size: 16px;
+        color: #bebebe;
+        font-weight: normal;
+    }
+    
+    .topic-count {
+        font-size: 20px;
+        color: #959595;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .topic-list {
+        min-height: 400px;
+        padding: 28px;
+    }
+
+    .topic {
+        width: 290px;
+        display: inline-block;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    }
+    .thumb-box {
+        position: relative;
+        width: 100%;
+        height: 190px;
+        background-position: center;
+        background-size: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .topic-text {
+        padding: 10px;
+    }
+    .topic-title {
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2; /* 라인수 */
+        -webkit-box-orient: vertical;
+        word-wrap:break-word;
+        height: 40px; 
+    }
+
+    .participation {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background-color: #49C5B6;
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 12px;
+        /* font-weight: bold; */
+        color: #ffffff;
+    }
+
+    
+    .more-topic {
+        float:right;
+        margin-right: 40px;
+        margin-bottom: 20px;
+        color: #696969;
+        font-size: 18px;
+    }
+}
+
+@media all and (min-width:481px) and (max-width:999px) {
+    .header {
+        background-color: #ffffff;
+    }
+    .side-menu {
+        background-color: #ffffff;
+    }
+
+    .info-contents {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 20px 10vw;
+    }
+    .my-profile {
+        background-color: #ffffff;
+        height: 250px;
+        margin: 0 20px;
+    }
+    .my-profile img {
+        width: 150px;
+    }
+    .my-profile .inner {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .my-profile .name {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .region, .age {
+        color:  #959595;
+        margin-top: 5px;
+    }
+    .edit-btn {
+        border: 1px solid #49C5B6;
+        color: #49C5B6;
+        border-radius: 5px;
+        padding: 5px 0px;
+        width: 150px;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        cursor: pointer;
+    }
+    .split-border-r {
+        border-right: 1px solid #e0e0e0;
+        margin: 8px 0;
+    }
+    .count-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        background-color: #ffffff;
+        box-shadow: 0 10px 20px 0 rgba(0,0,0,.08), 0 10px 6px 0 rgba(74,74,74,.05), 0 0 2px 0 rgba(0,0,0,.1);
+        height: 100px;
+        border-radius: 5px;
+    }
+    .count-box {
+        width: 20vw;
+        min-width: 140px;
+        font-size: 20px;
+        text-align: center;
+        padding-top: 20px;
+        font-weight: bold;
+    }
+    .point-count {
+        /* font-size: 30px;
+        color: #49C5B6;
+        font-weight: bold; */
+        margin-top: 20px;
+
+        font-size: 16px;
+        color: #bebebe;
+        font-weight: normal;
+    }
+    
+    .topic-count {
+        font-size: 30px;
+        color: #959595;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .topic-contents {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .topic-list {
+        min-height: 400px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .topic {
+        width: 45vw;
+        max-width: 350px;
+        display: inline-block;
+        vertical-align: top;
+        margin: 2vw 2vw;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+    }
+    .thumb-box {
+        position: relative;
+        width: 100%;
+        height: 35vw;
+        max-height: 240px;
+        background-position: center;
+        background-size: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .topic-text {
+        padding: 5px 5px;
+        min-height: 40px;
+    }
+    .topic-title {
+        font-size: 18px;
+        line-height: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2; /* 라인수 */
+        -webkit-box-orient: vertical;
+        word-wrap:break-word;
+        height: 37px; 
+    }
+    .participation {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background-color: #49C5B6;
+        padding: 4px 10px;
+        border-radius: 30px;
+        font-size: 12px;
+        /* font-weight: bold; */
+        color: #ffffff;
+    }
+    .more-topic {
+        float:right;
+        margin-top: 15px;
+        margin-right: 4vw;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width:480px) {
+
+    .header {
+        background-color: #ffffff;
+    }
+    .side-menu {
+        background-color: #ffffff;
+    }
+
+    .my-profile {
+        background-color: #ffffff;
+        text-align: center;
+        padding: 40px 15px 120px;
+    }
+    .my-profile img {
+        width: 150px;
+    }
+    .my-profile .inner {
+        margin-bottom: 40px;
+    }
+    .my-profile .name {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .region, .age {
+        color:  #959595;
+        margin-top: 5px;
+    }
+    .split-border-r {
+        border-right: 1px solid #e0e0e0;
+        margin: 8px 0;
+    }
+    .count-wrapper {
+        display: flex;
+        justify-content: center;
+        background-color: #ffffff;
+        margin: -60px auto 20px;
+        width: 90%;
+        box-shadow: 0 10px 20px 0 rgba(0,0,0,.08), 0 10px 6px 0 rgba(74,74,74,.05), 0 0 2px 0 rgba(0,0,0,.1);
+        height: 100px;
+        border-radius: 5px;
+    }
+    .count-box {
+        height: 130px;
+        width: 335px;
+        font-size: 18px;
+        text-align: center;
+        padding-top: 20px;
+        font-weight: bold;
+    }
+    .point-count {
+        /* font-size: 25px;
+        color: #49C5B6;
+        font-weight: bold; */
+        margin-top: 18px;
+        font-size: 14px;
+        color: #bebebe;
+        font-weight: normal;
+    }
+    
+    .topic-count {
+        font-size: 25px;
+        color: #959595;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .edit-btn {
+        border: 1px solid #49C5B6;
+        color: #49C5B6;
+        border-radius: 5px;
+        padding: 5px 0px;
+        width: 80%;
+        margin: 20px auto 0;
+        position: relative;
+        bottom: 0;
+        cursor: pointer;
+    }
+    .topic-list {
+        
+    }
+    .topic {
+        width: 45vw;
+        display: inline-block;
+        vertical-align: top;
+        margin: 2vw 2vw;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+    }
+    .thumb-box {
+        position: relative;
+        width: 100%;
+        height: 35vw;
+        background-position: center;
+        background-size: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .topic-text {
+        padding: 5px 5px;
+        min-height: 40px;
+    }
+    .topic-title {
+        font-size: 15px;
+        line-height: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2; /* 라인수 */
+        -webkit-box-orient: vertical;
+        word-wrap:break-word;
+        height: 34px; 
+    }
+    .participation {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background-color: #49C5B6;
+        padding: 2px 5px;
+        border-radius: 30px;
+        font-size: 11px;
+        /* font-weight: bold; */
+        color: #ffffff;
+    }
+    .more-topic {
+        float:right;
+        margin-right: 10px;
+        margin-top: 20px;
+        color: #696969;
+        font-size: 14px;
+    }
+}

@@ -1,8 +1,3 @@
-$(document).ready(function() {
-    set_chart_data();   
-});
-
-
 $('.analysis-title-row div').on('click', function(e) {
     if ($(e.target).hasClass('category')) {
         $('.date').removeClass('chart-active');

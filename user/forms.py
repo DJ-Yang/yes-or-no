@@ -50,8 +50,29 @@ class AddForm(forms.ModelForm):
             label=False,
             choices=gender,
             )
-    
 
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['nickname','gender','age_range']
+
+    def __init__(self, *args, **kwargs):
+        super(EditForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
+        self.fields['nickname'] = forms.CharField(
+            label=False,
+        )
+        self.fields['age_range'] = forms.ChoiceField(
+            label=False,
+            choices=age_range,
+            )
+        self.fields['gender'] = forms.ChoiceField(
+            label=False,
+            choices=gender,
+            widget=forms.RadioSelect
+            )
+
+    
 class regionForm(forms.Form):
     class Meta:
         model = User
@@ -59,14 +80,21 @@ class regionForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(regionForm, self).__init__(*args, **kwargs)
+        
+        _sido = '서울'
+        print(args)
+        for arg in args:
+            for k,v in arg.items():
+                if k == 'sido':
+                    _sido = v
+
         self.fields['sido'] = forms.ChoiceField(
             label=False,
             choices=sido,
-            initial='서울',
         )
         self.fields['sigungu'] = forms.ChoiceField(
             label=False,
-            choices=Sigunu.seoul,
+            choices=Sigunu().get_list(_sido)
         )
 
     def set_region(self, selected_sido='서울'):
