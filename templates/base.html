@@ -80,14 +80,14 @@
             <a href="javascript:void(0);" onclick="logout()">
               <li>로그아웃</li>
             </a>
+            <a href="{% url 'user_info' %}">
+              <li>마이페이지</li>
+            </a>
             {% else %}
             <a href="{% url 'signin' %}">
               <li>회원가입/로그인</li>
             </a>
             {% endif %}
-            <a href="{% url 'user_info' %}">
-              <li>마이페이지</li>
-            </a>
             <a href="{% url 'notice:notice' %}">
               <li>공지사항</li>
             </a>
