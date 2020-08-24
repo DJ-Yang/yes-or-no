@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from .forms import AddForm, regionForm, EditForm
 from .models import User
 from topic.models import Pick
@@ -33,6 +34,7 @@ def get_form(request):
     return HttpResponse(form)
 
 
+@login_required(login_url='/auth/signin/')
 def user_info(request):
 
     user = User.objects.get(pk=request.user.pk)

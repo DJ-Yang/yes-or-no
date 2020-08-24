@@ -7,7 +7,7 @@ function menuSwitch(e) {
       $('#close').attr('id','open');
    } else if (e.id == 'open') {
       $('.side-menu').css('opacity','1')
-      $('.side-menu').css('height','150px');
+      $('.side-menu').css('height','fit-content');
       $('.side-menu').css('z-index','100001');
       $('#open').attr('id','close');
    }   
