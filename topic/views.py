@@ -17,6 +17,7 @@ def store_daily_pick():
     picks = topic.picks.all()
 
     todaypick = DailyPick()
+    todaypick.topic = topic
     todaypick.pick1 = picks.filter(selection=1).count()
     todaypick.pick2 = picks.filter(selection=2).count()
     todaypick.pick3 = picks.filter(selection=3).count()
@@ -60,7 +61,7 @@ def set_hot_topic():
 def set_data(objects):
   selections = [x for x in range(1, objects.selection_amount+1)]
   ages = [10, 20, 30, 40, 50, 60]
-  genders = [0, 1]
+  genders = ['male','female']
 
   result = {}
 
@@ -68,10 +69,10 @@ def set_data(objects):
     picks = objects.picks.filter(selection=selection)
     result["selection_" + str(selection)] = picks.count()
     for age in ages:
-      result["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, age_range=age).count()
+      result["selection_" + str(selection) + "_" + str(age)] = picks.filter(selection=selection, author__age_range=age).count()
       for gender in genders:
-        result["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, gender=gender).count()
-        result["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, age_range=age, gender=gender).count()
+        result["selection_" + str(selection) + "_" + str(gender)] = picks.filter(selection=selection, author__gender=gender).count()
+        result["selection_" + str(selection) + "_" + str(age) + "_" + str(gender)] = picks.filter(selection=selection, author__age_range=age, author__gender=gender).count()
   
   return result
 
@@ -85,11 +86,9 @@ def topic_list(request):
   })
 
 @login_required(login_url='/auth/signin/')
-@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
+@user_passes_test(lambda u: u.gender and u.age_range and u.sido and u.sigungu, login_url='/auth/add_info/')
 def check_selection(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
-
-  print(request.user)
 
   if topic.picks.filter(author=request.user).exists():
     return redirect('topic:result', topic.id)
@@ -99,29 +98,31 @@ def check_selection(request, topic_id):
     })
 
 @login_required(login_url='/auth/signin/')
-@user_passes_test(lambda u: u.gender and u.age_range, login_url='/auth/add_info/')
+@user_passes_test(lambda u: u.gender and u.age_range and u.sido and u.sigungu, login_url='/auth/add_info/')
 def topic_select(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
 
   if request.method == 'POST':
     u_gender = 0 if (request.user.gender == 'male') else 1
 
-    if not request.POST.get('pick'):
+    u_pick = int(request.POST.get('pick', '0'))
+
+    if u_pick < 1 or u_pick > topic.selection_amount:
       return redirect('topic:select', topic.id)
+    
+    
     pick, created = Pick.objects.get_or_create(
       author=request.user,
       topic=topic,
-      age_range=request.user.age_range,
-      gender=u_gender
     )
 
     if created:
-        pick.selection = request.POST.get('pick')
+        pick.selection = u_pick
         pick.updated_at = timezone.now()
         pick.save()
     else:
-      if not pick.selection == request.POST.get('pick'):
-        pick.selection = request.POST.get('pick')
+      if not pick.selection == u_pick:
+        pick.selection = u_pick
         pick.updated_at = timezone.now()
         pick.save()
     return redirect('topic:result', topic.id)
@@ -135,14 +136,17 @@ def topic_select(request, topic_id):
 @login_required(login_url='/auth/signin/')
 def topic_result(request, topic_id):
   topic = get_object_or_404(Topic, pk=topic_id)
-  pick = topic.picks.get(author=request.user)
-  data = set_data(topic)
+  try:
+    pick = topic.picks.get(author=request.user)  
+    data = set_data(topic)
+    return render(request, 'topic/result.html', {
+      'topic' : topic,
+      'pick' : pick,
+      'data' : data,
+    })
+  except:
+    return redirect('topic:select', topic_id)
   
-  return render(request, 'topic/result.html', {
-    'topic' : topic,
-    'pick' : pick,
-    'data' : data,
-  })
-
+  
 def user_request(request):
   return render(request, 'topic/request.html')

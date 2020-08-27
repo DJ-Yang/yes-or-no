@@ -10,17 +10,19 @@
 
   {% block head_meta %}
   {% endblock %}
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169034644-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169034644-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'UA-169034644-1');
-</script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    gtag('config', 'UA-169034644-1');
+  </script>
+  <script data-ad-client="ca-pub-6059842750992024" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="{% static 'js/base.js' %}"></script>
   {% block head_script %}
   {% endblock %}
@@ -33,65 +35,83 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="ano
 </head>
 
 <body>
-<div class="wrapper">
-  <header>
-    <div class="header">
-      <div class="header-contents">
-        <div class="menu-btn">
-          <img id="open" onclick="menuSwitch(this)" src="{% static 'img/menu.png' %}">
-        </div>
-        <div class="menu-box">
-          <ul>
-            <a href="{% url 'topic:list' %}"><li><img src="{% static 'img/home.png' %}" alt="" height="20px">토픽목록</li></a>
-            <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li></a>
-            {% if request.user.is_active %}
-            <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
-            {% else %}
-            <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="" height="20px">회원가입/로그인</li></a>
-            {% endif %}
-          </ul>
-        </div>
-        <!-- <div class="user-icon">
+  <div class="wrapper">
+    <header>
+      <div class="header">
+        <div class="header-contents">
+          <div class="menu-btn">
+            <img id="open" onclick="menuSwitch(this)" src="{% static 'img/menu.png' %}">
+          </div>
+          <div class="menu-box">
+            <ul>
+              <a href="{% url 'notice:notice' %}">
+                <li><img src="{% static 'img/notice.png' %}" alt="" height="18px">공지사항</li>
+              </a>
+              {% if request.user.is_active %}
+              <a href="javascript:void(0);" onclick="logout()">
+                <li><img src="{% static 'img/user.png' %}">로그아웃</li>
+              </a>
+              <a href="{% url 'user_info' %}">
+                <li><img src="{% static 'img/home.png' %}" alt="" height="20px">마이페이지</li>
+              </a>
+              {% else %}
+              <a href="{% url 'signin' %}">
+                <li><img src="{% static 'img/user.png' %}" alt="" height="20px">회원가입/로그인</li>
+              </a>
+              {% endif %}
+            </ul>
+          </div>
+          <!-- <div class="user-icon">
           <img src="{% static 'img/user_icon.png' %}">
         </div>         -->
-        <div class="header-title">
-          <a href="{% url 'topic:list' %}">톺톡</a>
-          
+          <div class="header-title">
+            <a href="{% url 'topic:list' %}">톺톡</a>
+
+          </div>
         </div>
-      </div>        
+      </div>
+
+      <div class="side-menu">
+        <div class="side-menu-header">
+        </div>
+        <div class="menu-contents">
+          <ul>
+            {% if request.user.is_active %}
+            <a href="javascript:void(0);" onclick="logout()">
+              <li>로그아웃</li>
+            </a>
+            {% else %}
+            <a href="{% url 'signin' %}">
+              <li>회원가입/로그인</li>
+            </a>
+            {% endif %}
+            <a href="{% url 'user_info' %}">
+              <li>마이페이지</li>
+            </a>
+            <a href="{% url 'notice:notice' %}">
+              <li>공지사항</li>
+            </a>
+          </ul>
+        </div>
+      </div>
+
+    </header>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
     </div>
 
-    <div class="side-menu">
-      <div class="side-menu-header">
-        <span id="close" class="menu-close" onclick="menuSwitch(this)"><img src="{% static 'img/close.png' %}" alt=""></span>
+    <footer>
+      <div class="contents">
+        <div>Copyright © 톺톡</div>
+        <div style="display: inline-block;"><i class="fa fa-envelope" aria-hidden="true"></i> 문의 메일 : weall.co@gmail.com
+        </div>
       </div>
-      <div class="menu-contents">
-        <ul>
-          {% if request.user.is_active %}
-          <a href="javascript:void(0);" onclick="logout()"><li><img src="{% static 'img/user.png' %}">로그아웃</li></a>
-          {% else %}
-          <a href="{% url 'signin' %}"><li><img src="{% static 'img/user.png' %}" alt="">회원가입/로그인</li></a>
-          {% endif %}
-          <a href="{% url 'topic:list' %}"><li><img src="{% static 'img/home.png' %}" alt="">토픽목록</li></a>
-          <a href="{% url 'notice:notice' %}"><li><img src="{% static 'img/notice.png' %}" alt="">공지사항</li></a>
-        </ul>
-      </div>
-    </div>
+    </footer>
 
-  </header>
-  <div class="container">
-    {% block content %}
-    {% endblock %}
   </div>
-  
-</div>
-<footer>
-  <div class="contents">
-    <div>Copyright © 톺톡</div>
-    <div style="display: inline-block;"><i class="fa fa-envelope" aria-hidden="true"></i> 문의 메일 : weall.co@gmail.com </div>
-  </div>
-</footer>
-{% block extra_js %}
-{% endblock %}
+  {% block extra_js %}
+  {% endblock %}
 </body>
+
 </html>

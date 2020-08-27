@@ -31,24 +31,18 @@ class Selection(models.Model):
     # delete 시 삭제 항목
 
 class Pick(models.Model):
-  class Sex(models.IntegerChoices):
-    MALE = 0
-    FEMALE = 1
   topic = models.ForeignKey(Topic, related_name="picks", on_delete=models.CASCADE)
   author = models.ForeignKey(User, related_name="picks", on_delete=models.CASCADE)
   selection = models.IntegerField(validators=[
     MinValueValidator(1), 
     MaxValueValidator(4),
   ], null=True)
-  age_range = models.IntegerField(validators=[
-    MinValueValidator(0), 
-    MaxValueValidator(100),
-  ])
-  gender = models.IntegerField(choices=Sex.choices)
+  # age_range, gender 삭제 (2020-08-03)
   created_at = models.DateTimeField(auto_now=timezone.now())
   updated_at = models.DateTimeField(default=timezone.now)
   
 class DailyPick(models.Model):
+  topic = models.ForeignKey(Topic, related_name="daily", on_delete=models.CASCADE, null=True, blank=True)
   pick1 = models.IntegerField()
   pick2 = models.IntegerField()
   pick3 = models.IntegerField()

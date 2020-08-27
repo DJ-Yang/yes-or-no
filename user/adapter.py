@@ -10,8 +10,7 @@ class MyAccountAdapter(DefaultAccountAdapter):
 
     def get_login_redirect_url(self, request):      
         user = User.objects.get(pk=request.user.id)
-
-        if user.gender and user.age_range:
+        if user.gender and user.age_range and user.sido and user.sigungu:
             return settings.LOGIN_REDIRECT_URL
         else:
             return '/auth/add_info/'

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'topic.apps.TopicConfig',
     'notice.apps.NoticeConfig',
     'user.apps.UserConfig',
+    'point.apps.PointConfig',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -148,6 +149,7 @@ CRONJOBS = [
     ('0 0 * * *', 'topic.views.set_hot_topic', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
     ('59 23 * * *', 'topic.views.store_daily_pick', '>>'+ os.path.join(BASE_DIR, 'data.log'),),
 ]
+
 
 # #임시 스태틱 루트 설정
 # STATIC_URL = '/static/'

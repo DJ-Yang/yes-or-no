@@ -7,15 +7,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class UserManager(DefaultUserManager):
     def get_or_create_kakao_user(self, user_pk, extra_data):
 
-        user = User.objects.get(pk=user_pk)        
-        print('manager',user)
+        user = User.objects.get(pk=user_pk)     
         user.user_type = 'K'
         user.nickname = extra_data['properties'].get('nickname','')
         user.gender = extra_data['kakao_account'].get('gender','')
         user.age_range = self.save_age_range(extra_data['kakao_account'].get('age_range',''))
         user.save()
-
-        print(user)
 
         return user
 
@@ -75,6 +72,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     ],
     null=True,
     )
+    sido = models.CharField(max_length=10, null=True)
+    sigungu = models.CharField(max_length=15, null=True)
 
     is_active = models.BooleanField(default=True)    
     is_admin = models.BooleanField(default=False)    
@@ -83,3 +82,5 @@ class User(AbstractBaseUser,PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'username'
+
+

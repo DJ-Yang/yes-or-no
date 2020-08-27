@@ -9,6 +9,10 @@ body {
 .side-menu {
     background-color: #ffffff;
 }
+* {
+    font-family: nanum !important;
+}
+
 p {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -21,7 +25,8 @@ p {
     letter-spacing: -0.28px;
     font-family: nanum;
 }
-
+.container {
+}
 .notice-detail {
     max-width: 840px;
     margin: 0 auto;
