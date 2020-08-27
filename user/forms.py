@@ -54,14 +54,14 @@ class AddForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['nickname','gender','age_range']
+        fields = ['gender','age_range']
 
     def __init__(self, *args, **kwargs):
         super(EditForm, self).__init__(*args, **kwargs)
         self.label_suffix = ''
-        self.fields['nickname'] = forms.CharField(
-            label=False,
-        )
+        # self.fields['nickname'] = forms.CharField(
+        #     label=False,
+        # )
         self.fields['age_range'] = forms.ChoiceField(
             label=False,
             choices=age_range,

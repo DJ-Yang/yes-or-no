@@ -19,10 +19,10 @@
     <div class="editform-box">
         <form action="{% url 'edit_profile' %}" method="POST">
             {% csrf_token %}
-        <div class="setting">
+        <!-- <div class="setting">
             <span class="label">이름</span>
             <input type="text" name="nickname" required="" autocomplete="off">
-        </div>        
+        </div>         -->
         <div class="setting">
             <span class="label">성별</span>
                 <label id="label-male" class="radio-container" for="id_gender_0" onclick="check_radio(this)"><input type="radio" name="gender" value="male" id="id_gender_0"> 남자</label>

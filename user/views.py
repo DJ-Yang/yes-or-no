@@ -52,7 +52,7 @@ def edit_profile(request):
         regionform = regionForm(request.POST)
         if editform.is_valid() and regionform.is_valid():
             user = User.objects.get(pk=request.user.id)
-            user.nickname = editform.cleaned_data['nickname']
+            # user.nickname = editform.cleaned_data['nickname']
             user.age_range = editform.cleaned_data['age_range']
             user.gender = editform.cleaned_data['gender']
             user.sido = regionform.cleaned_data['sido']

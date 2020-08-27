@@ -2,7 +2,7 @@
 $(document).ready(function() {
     let data = user_data.split(',');
 
-    $('input[name=nickname]').val(data[0]);
+    // $('input[name=nickname]').val(data[0]);
     $('select[name=age_range]').val(data[1]);
     
     if (data[2] == 'male') {
