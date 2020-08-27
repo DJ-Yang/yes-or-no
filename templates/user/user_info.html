@@ -39,7 +39,7 @@
     </div>
     <div class="topic-contents">
         <div class="topic-list">
-            {% for pick in picks %}
+            {% for pick in picks|slice:":4" %}
             <div class="topic">
                 <a href="{% url 'topic:result' pick.topic.pk %}">
                     <div class="thumb-box" style="background-image: url({{pick.topic.thumb_image.url}});">
